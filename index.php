@@ -1,7 +1,10 @@
 <html>
 <head>
 <?php
-include('C:\wamp64\www\JRTM\class.php')
+
+sql_autoload_register(function($class){
+    include 'class/' . $class . '.php';
+});
 
 ?>
 

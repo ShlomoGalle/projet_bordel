@@ -1,0 +1,37 @@
+L'environnement : Exemple :
+Brouillard -10 pour les projectiles
+Océans : -10 à toutes les comp
+Zone dégagée : +10 au projectile, -10 embuscade
+etc
+
+Statut du personnage : 
+Endormie, empoisonné, desequilibré, envouté, affamé, etc
+
+Role du personnage :
+Roi, Marchand, Forgeron etc
+Systeme féodale, avec un rôle
+Influence sur quoi ?
+
+Personnage : is_die :
+Détérioration des caractéristiques
+
+Blessure : 
+Influence sur les compétences/Dommages corporels
+
+Maladie : 
+Influence sur la magie/compétences
+
+Propriété d'une personne : 
+Si il a une habitation, un moyen de transport etc Tout ce qui ne fait pas partie de l'inventaire
+
+L'experience est par compétence et non globale
+C'est à dire que si on utilise une compétence, on gagne de l'experience avec
+si on passe un niveau on gagne un degré de maitrise dans cette compétence,
+à partir d'un certain nombre de degré de maitrise, est mis en place une dégradation de compétence avec le temps
+qui force le personnage a utiliser cette compétence pour pas la perdre. Cela évite les gros bill et force les joueurs à jouer
+et force les joueurs à ce spécialiser
+
+On enleve le systeme de profession : 
+A la création, la personne à 15 points de comp à répartir et doit choisir une caractéristique primordial
+
+Prospection : Qui commence le round ? Total de manoeuvre & mouvement
