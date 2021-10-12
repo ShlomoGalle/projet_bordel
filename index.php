@@ -8,17 +8,21 @@
 
 require('class/test.php');
 
-$merlin = new Personnage('merlin', 180);
+$merlin = new ElfeDesBois('Elfes des bois', 'Elfes', 'merlin', 180);
 // $merlin = new Personnage(202, 200);
 // $merlin = new Personnage();
 
-$merlin->tombe();
+// $merlin->tombe(30);
 
-var_dump($merlin);
+// var_dump($merlin);
 
-$merlin->regenere();
+// $merlin->regenere();
 
-var_dump($merlin);
+// var_dump($merlin);
+
+$o = new MyHelloWorld();
+echo $o->test();
+var_dump($o);
 
 
 ?>
