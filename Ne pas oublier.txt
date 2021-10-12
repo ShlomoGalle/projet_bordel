@@ -35,3 +35,13 @@ On enleve le systeme de profession :
 A la création, la personne à 15 points de comp à répartir et doit choisir une caractéristique primordial
 
 Prospection : Qui commence le round ? Total de manoeuvre & mouvement
+
+
+
+
+Propriété constante : Point de coup maximaum (définit dans le constructor de la class parent)
+Propriété static : Les bonus et malus d'environnement, ils fonctionnent pour tout les objets instanciés
+Propriété/méthode/class abstraite : Jsp, peut-être tout ce qu'est trait vu qu'ils n'ont pas besoin de constructor
+Interface pour tout ce qu'est race/profession/métier/role/toutes les classes qui se multiplie et qui ont des similitudes
+ destructor : Permet d'enregistrer toutes les données de la classe dans la bdd avant la suppression de l'instance
+constructor : Permet "d'hydrater" la class, c'est à dire on récupère toutes les val de la class depuis la base de donnée pour instancier l'objet
