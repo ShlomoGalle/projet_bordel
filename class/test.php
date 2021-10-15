@@ -80,5 +80,76 @@ class MyHelloWorld extends Base {
     }
 }
 
+class Kid {
+ 
+    /**
+     * Age du kid
+     *
+     * @var int
+     * @access private
+     */
+    private $age;
+    private $age2;
+    private $age3;
+    private $age4;
+    private $age5;
+   
+    /**
+     * Methode magique __get()
+     *
+     * Retourne la valeur de la propriété appelée
+     *
+     * @param string $property
+     * @return int $age
+     * @throws Exception
+     */
+    public function __get($property) {
+      if('age' === $property) {
+        return $this->age;
+      } 
+      if('age2' === $property) {
+        return $this->age2;
+      } 
+      if('age3' === $property) {
+        return $this->age3;
+      } 
+      if('age4' === $property) {
+        return $this->age4;
+      }  
+    }
+
+    public function getage($property) {
+          return $this->age;
+    }
+    public function getage2($property) {
+          return $this->age2;
+    }
+    public function getage3($property) {
+          return $this->age3;
+    }
+    public function getage4($property) {
+          return $this->age4;
+    }
+   
+    /**
+     * Methode magique __set()
+     *
+     * Fixe la valeur de la propriété appelée
+     *
+     * @param string $property
+     * @param mixed $value
+     * @return void
+     * @throws Exception
+     */
+    public function __set($property,$value) {
+   
+      if('age' === $property && ctype_digit($value)) {
+        $this->age = (int) $value;  
+      } else {
+        $this->age = 'Error';  
+        }
+    }
+  }
+
 
 

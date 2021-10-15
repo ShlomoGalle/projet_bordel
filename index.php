@@ -8,7 +8,7 @@
 
 require('class/test.php');
 
-$merlin = new ElfeDesBois('Elfes des bois', 'Elfes', 'merlin', 180);
+// $merlin = new ElfeDesBois('Elfes des bois', 'Elfes', 'merlin', 180);
 // $merlin = new Personnage(202, 200);
 // $merlin = new Personnage();
 
@@ -20,9 +20,22 @@ $merlin = new ElfeDesBois('Elfes des bois', 'Elfes', 'merlin', 180);
 
 // var_dump($merlin);
 
-$o = new MyHelloWorld();
-echo $o->test();
-var_dump($o);
+// $o = new MyHelloWorld();
+$flo = new kid();
+
+$test = '18';
+
+$flo->__set('age',$test);
+
+echo $flo -> __get('age');
+
+
+
+$flo->__set('age3',$test);
+
+echo $flo->__get('get3');
+
+var_dump($flo);
 
 
 ?>
