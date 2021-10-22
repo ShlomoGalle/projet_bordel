@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^index.html$ /app/views/html/index.html [L]
+RewriteRule ^$ /app/views/html/index.html [L]
+
+RewriteRule ^creationpersonnage.html$ /app/views/html/creationpersonnage.html [L]
+

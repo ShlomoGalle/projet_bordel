@@ -1,0 +1,17 @@
+{
+    "name": "florian/app",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shlomo Galle",
+            "email": "shlomogalle@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0"
+    }
+}
