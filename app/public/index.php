@@ -18,6 +18,7 @@ $app->add(function ($request, $response, $next) {
 
 
 $app->post('/home',\App\Controllers\PagesController::class.':home');
+
 $app->post('/home2',\App\Controllers\PagesController::class.':home2');
 
 

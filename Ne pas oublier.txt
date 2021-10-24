@@ -32,7 +32,7 @@ qui force le personnage a utiliser cette compétence pour pas la perdre. Cela é
 et force les joueurs à ce spécialiser
 
 On enleve le systeme de profession : 
-A la création, la personne à 15 points de comp à répartir et doit choisir une caractéristique primordial
+A la création, la personne à 15 points de comp (avec un max de 5 par caractéristique) à répartir et doit choisir une caractéristique primordial
 
 Prospection : Qui commence le round ? Total de manoeuvre & mouvement
 
