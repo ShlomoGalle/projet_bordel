@@ -1,6 +1,5 @@
 $( document ).ready( function() {
 
-
     $("#test").click(function() {
     
         console.log('test');
@@ -11,14 +10,10 @@ $( document ).ready( function() {
             url: "../public/index.php/home",  
             success: function(data) {
                 if(data.success == 1){
-                    window.location.href = "/creationpersonnage.html";
-
+                    console.log(data.message);
+                    // window.location.href = "/creationpersonnage.html";
                 }
-    
             }
         });
-
-
     });
-
 });
