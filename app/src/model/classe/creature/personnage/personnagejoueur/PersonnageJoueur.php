@@ -5,13 +5,14 @@ namespace App\Model\Classe\Creature\Personnage\PersonnageJoueur;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 Use App\Model\Classe\Creature\Personnage\Personnage;
+Use App\Model\Traits\Personnage\Arme;
+Use App\Model\Traits\Personnage\Armure;
 
 class PersonnageJoueur extends Personnage{
     // Use trait : 
     // Inventaire
-    // Arme
-    // Armure
-    
+    Use Arme, Armure;
+
     //Endroit ou il se trouve
     protected $map_actuelle;
 
@@ -26,6 +27,9 @@ class PersonnageJoueur extends Personnage{
     protected $identite_royaume;
     protected $identite_pointsdepouvoir;
     protected $identite_penalitedencombrement;
+
+    // Argent du joueur 
+    protected $money_flouze_biff;
     
     public function __construct()
     {

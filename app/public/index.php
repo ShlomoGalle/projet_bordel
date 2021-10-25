@@ -17,9 +17,9 @@ $app->add(function ($request, $response, $next) {
 });
 
 
-$app->post('/home',\App\Controllers\PagesController::class.':home');
+$app->post('/home',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':home');
 
-$app->post('/home2',\App\Controllers\PagesController::class.':home2');
+$app->post('/home2',\App\Controllers\PagesController::class.':home');
 
 
 $app->run();
