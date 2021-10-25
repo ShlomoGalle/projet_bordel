@@ -1,17 +1,23 @@
 $( document ).ready( function() {
 
     $("#test").click(function() {
-    
-        console.log('test');
-    
+
+        var race = $("#field").val();
+
         $.ajax({ ///TEST
-            data :{test : 'test'},
+            data :{race : race},
             type: 'POST',
-            url: "../public/index.php/home",  
+            url: "../public/index.php/instanciation_class_personnage",  
             success: function(data) {
                 if(data.success == 1){
-                    console.log(data.message);
+                    // $("#print").append('test');
+                    $("#print").append(data.message + '<br />');
+
+                    // console.log(data.message);
                     // window.location.href = "/creationpersonnage.html";
+                }
+                else{
+                    $("#print").append(data.message + '<br />');
                 }
             }
         });

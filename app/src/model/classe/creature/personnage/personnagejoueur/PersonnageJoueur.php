@@ -36,9 +36,9 @@ class PersonnageJoueur extends Personnage{
         parent::__construct();
     }
 
-    public function getsante()
+    public function get_identite_race()
     {
-        return $this->sante;
+        return $this->identite_race;
     }
 
 }

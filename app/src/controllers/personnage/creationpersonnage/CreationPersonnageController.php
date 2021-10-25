@@ -5,6 +5,8 @@ Use Psr\Http\Message\ServerRequestInterface;
 Use Psr\Http\Message\ResponseInterface;
 Use App\Controllers\ConnexionBdd\Bdd as Bdd;
 
+Use App\Model\Classe\Factory;
+
 Use App\Model\Classe\Creature\Creature;
 Use App\Model\Classe\Creature\Pnj\MonstreEtAnimaux\MonstreEtAnimaux;
 Use App\Model\Classe\Creature\Personnage\Personnage;
@@ -35,6 +37,55 @@ class CreationPersonnageController extends Bdd {
     
         return $response->withJson($data);
     }
+
+
+
+
+    function instanciation_class_personnage(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+
+        $race  = $allPostPutVars['race'];
+        $race = new Factory($race);
+        $MonPersonnage = $race->switch_instance_class_race();
+        
+        if($MonPersonnage === 'Erreur')
+        {
+            $data = array(
+                'success' => 0, 
+                'message' => "Erreur, la race n'existe pas !"
+            );
+            return $response->withJson($data);
+        }
+        else{
+            // var_dump($MonPersonnage);
+
+            $data = array(
+                'success' => 1, 
+                'message' => $MonPersonnage->get_identite_race()
+            );
+
+            return $response->withJson($data);
+        }    
+
+    }
+
+    
+    function initialisation_caracteristique(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+
+
+        $data = array(
+            'success' => 1, 
+            'message' => '' 
+        );
+
+        return $response->withJson($data);
+        
+
+    }
+
 
     
 }
