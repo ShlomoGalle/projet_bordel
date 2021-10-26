@@ -8,37 +8,24 @@ use App\Controllers\ConnexionBdd\Bdd;
 
 class Creature extends Bdd {
 
-    protected $sante; //test
+    protected $point_de_vie = 0;
+    protected $point_de_vie_max = 5;
+    protected $base_defensif = 0;
+    protected $base_offensif = 0;
+    protected $type_armure = 0;
+    protected $type_arme = 0;
+    protected $type_creature = 0; //1 pj, 2 monstre&animaux, 3pnj
+    protected $nom = 0;
 
-
-    protected $point_de_vie;
-    protected $base_defensif;
-    protected $base_offensif;
-    protected $type_armure;
-    protected $type_arme;
-    protected $type_creature; //1 pj, 2 monstre&animaux, 3pnj
-    protected $nom;
-
-    public function __construct(int $sante = 81)
+    public function __construct()
     {
         parent::__construct();
-        $this->sante = $sante;
+
     }
-
-    public function getsante()
+    
+    public function set_base_defensif($val)
     {
-        $sql = "SELECT * FROM test WHERE id = '1'";
-        // $result1 = $this->bdd->query($sql);
-        // $row = $result1->fetch_assoc();
-
-        $row = $this->select($sql);
-
-        foreach($row as $key => $value)
-        {
-            $row_final = $row[$key]['name'];
-        }
-
-        return $row;
+        $this->base_defensif = $val;
     }
 
 }

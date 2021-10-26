@@ -10,26 +10,26 @@ Use Psr\Http\Message\ResponseInterface;
 Trait Langue {
 
     // propriété : 
-    protected $langue_Adûnaic;
-    protected $langue_Apysaic;
-    protected $langue_Atliduk;
-    protected $langue_Haradaic;
-    protected $langue_Khuzdul;
-    protected $langue_Kuduk;
-    protected $langue_Labba;
-    protected $langue_Logathig;
-    protected $langue_Nahaiduk;
-    protected $langue_Noirparler;
-    protected $langue_Orque;
-    protected $langue_Pûkael;
-    protected $langue_Quenya;
-    protected $langue_Rohirric;
-    protected $langue_Sindarin;
-    protected $langue_Sylvain;
-    protected $langue_Umitic;
-    protected $langue_Varadja;
-    protected $langue_Waildyth;
-    protected $langue_Westron; //(Langage commun)
+    protected $langue_Adûnaic  = 0;
+    protected $langue_Apysaic  = 0;
+    protected $langue_Atliduk  = 0;
+    protected $langue_Haradaic  = 0;
+    protected $langue_Khuzdul  = 0;
+    protected $langue_Kuduk  = 0;
+    protected $langue_Labba  = 0;
+    protected $langue_Logathig  = 0;
+    protected $langue_Nahaiduk  = 0;
+    protected $langue_Noirparler  = 0;
+    protected $langue_Orque  = 0;
+    protected $langue_Pûkael  = 0;
+    protected $langue_Quenya  = 0;
+    protected $langue_Rohirric  = 0;
+    protected $langue_Sindarin  = 0;
+    protected $langue_Sylvain  = 0;
+    protected $langue_Umitic  = 0;
+    protected $langue_Varadja  = 0;
+    protected $langue_Waildyth  = 0;
+    protected $langue_Westron = 5; //(Langage commun)
     
 
     public function __construct()

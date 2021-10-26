@@ -11,15 +11,14 @@ class Nain extends DetailPersonnageJoueur {
 
     protected $sante;
 
-    public function __construct(int $sante = 410, int $langue = 4, string $race = 'Nain')
+    public function __construct(int $langue = 4, string $race = 'Nain')
     {
         parent::__construct();
-        $this->sante = $sante;
         $this->langue_Quenya = $langue;
         $this->identite_race = $race;
     }
 
-    public function getsante()
+    public function get_sante()
     {
         return $this->sante;
     }

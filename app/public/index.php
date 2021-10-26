@@ -18,6 +18,8 @@ $app->add(function ($request, $response, $next) {
 
 
 $app->post('/home',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':home');
+
+$app->post('/initialisation_caracteristique',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':initialisation_caracteristique');
 $app->post('/instanciation_class_personnage',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':instanciation_class_personnage');
 
 $app->post('/home2',\App\Controllers\PagesController::class.':home');

@@ -11,6 +11,11 @@ class Bdd {
     protected $bdd; 
 
     public function __construct(){
+        
+        if (session_status() != PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
         // Create connection
         $conn = new \mysqli('localhost', "root","","projet_bordel_bdd");
         // $conn = new \mysqli('localhost', "root","JHDYSkxhe845xsUE!","LielCom");

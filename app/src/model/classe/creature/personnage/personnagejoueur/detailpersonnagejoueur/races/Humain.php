@@ -19,7 +19,7 @@ class Humain extends DetailPersonnageJoueur {
         $this->identite_race = $race;
     }
 
-    public function getsante()
+    public function get_sante()
     {
         return $this->sante;
     }

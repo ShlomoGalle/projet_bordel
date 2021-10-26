@@ -29,8 +29,15 @@ class PersonnageJoueur extends Personnage{
     protected $identite_penalitedencombrement;
 
     // Argent du joueur 
-    protected $money_flouze_biff;
-    
+    protected $money_flouze_biff = 20000;
+
+    // Resistance du joueur
+    protected $jr_essence_total = 0;
+    protected $jr_theurgie_total = 0;
+    protected $jr_poison_total = 0;
+    protected $jr_maladie_total = 0;
+        
+
     public function __construct()
     {
         parent::__construct();

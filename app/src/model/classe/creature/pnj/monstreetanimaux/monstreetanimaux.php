@@ -8,17 +8,10 @@ Use App\Model\Classe\Creature\Creature;
 
 class MonstreEtAnimaux extends Creature {
 
-    protected $sante;
 
-    public function __construct(int $sante = 700)
+    public function __construct()
     {
         parent::__construct();
-        $this->sante = $sante;
-    }
-
-    public function getsante()
-    {
-        return $this->sante;
     }
 
 }
