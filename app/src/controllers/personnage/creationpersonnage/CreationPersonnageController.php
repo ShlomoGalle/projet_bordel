@@ -38,6 +38,17 @@ class CreationPersonnageController extends Bdd {
         return $response->withJson($data);
     }
 
+    function var_dump(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+        var_dump($MonPersonnage);
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+        $data = array(
+            'success' => 1, 
+        );
+        return $response->withJson($data);
+    }
+
 
     function instanciation_class_personnage(ServerRequestInterface $request, ResponseInterface $response)
     {
@@ -48,7 +59,6 @@ class CreationPersonnageController extends Bdd {
 
         try{
             $MonPersonnage = $race->switch_instance_class_race();
-
             $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
             $data = array(
@@ -73,29 +83,173 @@ class CreationPersonnageController extends Bdd {
         $allPostPutVars = $request->getParsedBody();
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        $caracteristique['force'] = 76;
-        $caracteristique['agilite'] = 98;
-        $caracteristique['constitution'] = 102;  //Test je creer moi meme les chiffres
-        $caracteristique['intelligence'] = 44;
-        $caracteristique['intuition'] = 40;
-        $caracteristique['presence'] = 11;
+        // $caracteristique['force'] = $allPostPutVars['force'];
+        // $caracteristique['agilite'] = $allPostPutVars['agilite'];
+        // $caracteristique['constitution'] = $allPostPutVars['constitution'];
+        // $caracteristique['intelligence'] = $allPostPutVars['intelligence'];
+        // $caracteristique['intuition'] = $allPostPutVars['intuition'];
+        // $caracteristique['presence'] = $allPostPutVars['presence'];
+        $caracteristique['force'] = 98;
+        $caracteristique['agilite'] = 70;
+        $caracteristique['constitution'] = 90;
+        $caracteristique['intelligence'] = 95;
+        $caracteristique['intuition'] = 74;
+        $caracteristique['presence'] = 50;
+        
+        try{
+            $MonPersonnage->set_caracteristique($caracteristique, 'val'); //Je met dans mon objet les valeurs des caracteristiques
 
-        $caracteristique['force'] = $allPostPutVars['force'];
-        $caracteristique['agilite'] = $allPostPutVars['agilite'];
-        $caracteristique['constitution'] = $allPostPutVars['constitution'];
-        $caracteristique['intelligence'] = $allPostPutVars['intelligence'];
-        $caracteristique['intuition'] = $allPostPutVars['intuition'];
-        $caracteristique['presence'] = $allPostPutVars['presence'];
+            // var_dump($MonPersonnage);
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
-        $comp['comp_manoeuvreetmouvement_sansarmure'] = 3;
-        $comp['comp_manoeuvreetmouvement_cuirsouple'] = 50;
+            $data = array(  
+                'success' => 1, 
+                'langage_add' => $MonPersonnage->get_nb_degres_langages_additionnel(),
+                'nb_pts_histor' => $MonPersonnage->get_nb_points_histor(),
+            );
+    
+            return $response->withJson($data);
+
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+
+            return $response->withJson($data);
+        }
+    }
+    
+    function add_langage_additionnel(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $langage = new FactoryPersonnage($allPostPutVars['langage']);
+
+        try{
+            $val_langage = $langage->switch_set_langage($MonPersonnage, $allPostPutVars['val']);
+
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+            
+            $data = array(  
+                'success' => 1, 
+                'nb_point' => $val_langage
+            );
+    
+            return $response->withJson($data);
+
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+
+            return $response->withJson($data);
+        }
+    }
+
+    function add_competence_additionnel(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $comp[$allPostPutVars['comp']] = $allPostPutVars['val'];
+
+        try{
+            $MonPersonnage->set_comp($comp);
+
+            // var_dump($MonPersonnage);
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+            
+            $data = array(  
+                'success' => 1,
+            );
+    
+            return $response->withJson($data);
+
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+
+            return $response->withJson($data);
+        }
+    }
+
+    function add_carac_additionnel(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $caracteristique[$allPostPutVars['carac']] = $allPostPutVars['val'];
+
+        try{
+            $MonPersonnage->set_caracteristique($caracteristique, 'val'); //Je met dans mon objet les valeurs des caracteristiques
+
+            // var_dump($MonPersonnage);
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+            $data = array(  
+                'success' => 1,
+            );
+    
+            return $response->withJson($data);
+
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+
+            return $response->withJson($data);
+        }
+    }
+
+
+
+
+    function comp(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+
+        // $comp['comp_manoeuvreetmouvement_sansarmure'] = 3;
+        // $comp['comp_manoeuvreetmouvement_cuirsouple'] = 50;        
+        // $comp['comp_manoeuvreetmouvement_sansarmure'] = 1;
+        // $comp['comp_manoeuvreetmouvement_cuirsouple'] = 1;
+        $comp['comp_manoeuvreetmouvement_cuirrigide'] = 1;
+        $comp['comp_manoeuvreetmouvement_cottedemaille'] = 1;
+        $comp['comp_manoeuvreetmouvement_plate'] = 1;
+        $comp['comp_arme_tranchantunemain'] = 1;
+        $comp['comp_arme_contondantunemain'] = 1;
+        $comp['comp_arme_deuxmains'] = 1;
+        $comp['comp_arme_armedelance'] = 1;
+        $comp['comp_arme_projectile'] = 1;
+        $comp['comp_arme_armedhast'] = 1;
+        $comp['comp_generale_escalade'] = 1;
+        $comp['comp_generale_equitation'] = 1;
+        $comp['comp_generale_natation'] = 1;
+        $comp['comp_generale_pistage'] = 1;
+        $comp['comp_subterfuge_embuscade'] = 1;
+        $comp['comp_subterfuge_filatdissim'] = 1;
+        $comp['comp_subterfuge_crochetage'] = 1;
+        $comp['comp_subterfuge_desarmementdepiege'] = 1;
+        $comp['comp_magie_lecturederune'] = 1;
+        $comp['comp_magie_utilisationdobjet'] = 1;
+        $comp['comp_magie_directiondesort'] = 1;
+        $comp['comp_physique_developcorporel'] = 1;
+        $comp['comp_physique_perception'] = 1;
 
         try{
             $MonPersonnage->set_caracteristique_val($caracteristique); //Je met dans mon objet les valeurs des caracteristiques
-            $MonPersonnage->set_comp_degre($comp);
+            $MonPersonnage->set_comp($comp, 'degre');
 
             var_dump($MonPersonnage);
-    
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
             $data = array(  
                 'success' => 1, 
                 'message' => ''
@@ -112,18 +266,4 @@ class CreationPersonnageController extends Bdd {
             return $response->withJson($data);
         }
     }
-    
-    // function varexport($expression, $return=FALSE) {
-    //     $export = var_export($expression, TRUE);
-    //     $export = preg_replace("/^([ ]*)(.*)/m", '$1$1$2', $export);
-    //     $array = preg_split("/\r\n|\n|\r/", $export);
-    //     $array = preg_replace(["/\s*array\s\($/", "/\)(,)?$/", "/\s=>\s$/"], [NULL, ']$1', ' => ['], $array);
-    //     $export = join(PHP_EOL, array_filter(["["] + $array));
-    //     if ((bool)$return) return $export; else echo $export;
-    // }
 }
-
-
-
-
-

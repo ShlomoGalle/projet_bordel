@@ -21,7 +21,7 @@ class ElfeNoldor extends DetailPersonnageJoueur {
         $this->identite_race = $race;
 
         //Langue parler
-        $this->langue_Adûnaic = 3;
+        $this->langue_Adunaic = 3;
         $this->langue_Quenya = 5;
         $this->langue_Sindarin = 5;
 
@@ -71,8 +71,8 @@ class ElfeNoldor extends DetailPersonnageJoueur {
 
         //Autres
         $this->chance_obtenir_liste_sort_pourcentage = 40;
-        $this->nb_degres_langages_additionnel = 10;
-        $this->nb_points_histor = 2;
+        $this->nb_degres_langages_additionnel = 0;
+        $this->nb_points_histor = 20;
     }
 
 }

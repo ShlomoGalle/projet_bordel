@@ -33,6 +33,7 @@ class DetailPersonnageJoueur extends PersonnageJoueur {
         parent::__construct();
     }
 
+    //SETTER
     public function set_jr_carac()
     {
         $this->jr_essence['carac'] = $this->caracteristique_intelligence_total;
@@ -54,6 +55,18 @@ class DetailPersonnageJoueur extends PersonnageJoueur {
     {
         $this->base_defensif_detail['carac'] = $this->caracteristique_agilite_total;
         $this->set_base_defensif($this->base_defensif_detail['carac'] +  $this->base_defensif_detail['special_1'] + $this->base_defensif_detail['special_2']); //Recalculer la bd total en fonction des carac
+    }
+
+
+    //GETTER
+    public function get_chance_obtenir_liste_sort_pourcentage(){
+        return $this->chance_obtenir_liste_sort_pourcentage;
+    }
+    public function get_nb_degres_langages_additionnel(){
+        return $this->nb_degres_langages_additionnel;
+    }
+    public function get_nb_points_histor(){
+        return $this->nb_points_histor;
     }
 
 }

@@ -26,26 +26,22 @@ Trait DetailCarac {
 
     //Set la valeur dans caracteristique
     //Prend un tableau de caracteristique 'la_caracteristique' => 'la valeur'
-    public function set_caracteristique_val(array $caracteristique)  
+    public function set_caracteristique(array $caracteristique, string $key)  
     {
-        foreach ($caracteristique as $key => $value) {
-            $val = new FactoryPersonnage($key);
-            $val->switch_set_caracteristique($this, $value);
+        foreach ($caracteristique as $index => $value) {
+            $val = new FactoryPersonnage($index);
+            $caracteristique[$index] = $val->switch_set_caracteristique($this, $value, $key);
         }
-        $this->set_caracteristique_norm($caracteristique); //Je recalcule la norm pour chaque caracteristique
+
+        if($key == 'val')
+        {
+            $this->set_caracteristique($caracteristique, 'norm'); //Je recalcule la norm pour chaque caracteristique
+        }
+        elseif($key == 'norm'){
+            $this->set_calcul_caracteristique_total();
+        }
     }
 
-    //Set la norme dans caracteristique en fonction de la valeur (le bonus de caracteristique)
-    //Prend un tableau de caracteristique 'la_caracteristique' => 'la valeur'
-    public function set_caracteristique_norm(array $caracteristique)
-    {
-        foreach ($caracteristique as $key => $value) {
-            $norme = new FactoryPersonnage($key);
-            $norme_val = $norme->switch_calcul_bonus_caracteristique($value);
-            $norme->switch_set_caracteristique($this, $norme_val, 'norm');
-        }
-        $this->set_calcul_caracteristique_total();
-    }
 
     public function set_calcul_caracteristique_total() //Caracteristique total = Norm + Race
     {
@@ -55,39 +51,73 @@ Trait DetailCarac {
         $this->caracteristique_intelligence_total = $this->caracteristique_intelligence['norm'] + $this->caracteristique_intelligence['race'];
         $this->caracteristique_intuition_total = $this->caracteristique_intuition['norm'] + $this->caracteristique_intuition['race'];
         $this->caracteristique_presence_total = $this->caracteristique_presence['norm'] + $this->caracteristique_presence['race'];
-        $this->set_comp_carac();
-        $this->set_bd_carac();
-        $this->set_jr_carac();
+        $this->set_comp_carac(); //dans trait DetalComp
+        $this->set_bd_carac(); //dans class DetailPersonnageJoueur
+        $this->set_jr_carac(); //dans class DetailPersonnageJoueur
+        // $this->set_point_de_pouvoir_carac(); //A FAIRE
     }
 
-    public function set_caracteristique_force($key, $val)
+
+    //SETTER
+    public function set_caracteristique_force(string $key, int $val)
     {
         $this->caracteristique_force[$key] = $val;
     }
 
-    public function set_caracteristique_agilite($key, $val)
+    public function set_caracteristique_agilite(string $key, int $val)
     {
         $this->caracteristique_agilite[$key] = $val;
     }
 
-    public function set_caracteristique_constitution($key, $val)
+    public function set_caracteristique_constitution(string $key, int $val)
     {
         $this->caracteristique_constitution[$key] = $val;
     }
 
-    public function set_caracteristique_intelligence($key, $val)
+    public function set_caracteristique_intelligence(string $key, int $val)
     {
         $this->caracteristique_intelligence[$key] = $val;
     }
 
-    public function set_caracteristique_intuition($key, $val)
+    public function set_caracteristique_intuition(string $key, int $val)
     {
         $this->caracteristique_intuition[$key] = $val;
     }
 
-    public function set_caracteristique_presence($key, $val)
+    public function set_caracteristique_presence(string $key, int $val)
     {
         $this->caracteristique_presence[$key] = $val;
+    }
+
+    //GETTER
+    public function get_caracteristique_force(string $key)
+    {
+        return $this->caracteristique_force[$key];
+    }
+
+    public function get_caracteristique_agilite(string $key)
+    {
+        return $this->caracteristique_agilite[$key];
+    }
+
+    public function get_caracteristique_constitution(string $key)
+    {
+        return $this->caracteristique_constitution[$key];
+    }
+
+    public function get_caracteristique_intelligence(string $key)
+    {
+        return $this->caracteristique_intelligence[$key];
+    }
+
+    public function get_caracteristique_intuition(string $key)
+    {
+        return $this->caracteristique_intuition[$key];
+    }
+
+    public function get_caracteristique_presence(string $key)
+    {
+        return $this->caracteristique_presence[$key];
     }
 
 }

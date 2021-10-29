@@ -10,7 +10,7 @@ Use Psr\Http\Message\ResponseInterface;
 Trait Langue {
 
     // propriété : 
-    protected $langue_Adûnaic  = 0;
+    protected $langue_Adunaic  = 0;
     protected $langue_Apysaic  = 0;
     protected $langue_Atliduk  = 0;
     protected $langue_Haradaic  = 0;
@@ -21,7 +21,7 @@ Trait Langue {
     protected $langue_Nahaiduk  = 0;
     protected $langue_Noirparler  = 0;
     protected $langue_Orque  = 0;
-    protected $langue_Pûkael  = 0;
+    protected $langue_Pukael  = 0;
     protected $langue_Quenya  = 0;
     protected $langue_Rohirric  = 0;
     protected $langue_Sindarin  = 0;
@@ -36,5 +36,166 @@ Trait Langue {
     {
     }
 
+    //SETTER
+    public function set_langue_Adunaic($val){
+        $this->langue_Adunaic = $val;
+    }
 
+    public function set_langue_Apysaic($val){
+        $this->langue_Apysaic = $val;
+    }
+
+    public function set_langue_Atliduk($val){
+        $this->langue_Atliduk = $val;
+    }
+
+    public function set_langue_Haradaic($val){
+        $this->langue_Haradaic = $val;
+    }
+
+    public function set_langue_Khuzdul($val){
+        $this->langue_Khuzdul = $val;
+    }
+
+    public function set_langue_Kuduk($val){
+        $this->langue_Kuduk = $val;
+    }
+
+    public function set_langue_Labba($val){
+        $this->langue_Labba = $val;
+    }
+
+    public function set_langue_Logathig($val){
+        $this->langue_Logathig = $val;
+    }
+
+    public function set_langue_Nahaiduk($val){
+        $this->langue_Nahaiduk = $val;
+    }
+
+    public function set_langue_Noirparler($val){
+        $this->langue_Noirparler = $val;
+    }
+
+    public function set_langue_Orque($val){
+        $this->langue_Orque = $val;
+    }
+
+    public function set_langue_Pukael($val){
+        $this->langue_Pukael = $val;
+    }
+
+    public function set_langue_Quenya($val){
+        $this->langue_Quenya = $val;
+    }
+
+    public function set_langue_Rohirric($val){
+        $this->langue_Rohirric = $val;
+    }
+
+    public function set_langue_Sindarin($val){
+        $this->langue_Sindarin = $val;
+    }
+
+    public function set_langue_Sylvain($val){
+        $this->langue_Sylvain = $val;
+    }
+
+    public function set_langue_Umitic($val){
+        $this->langue_Umitic = $val;
+    }
+
+    public function set_langue_Varadja($val){
+        $this->langue_Varadja = $val;
+    }
+
+    public function set_langue_Waildyth($val){
+        $this->langue_Waildyth = $val;
+    }
+
+    public function set_langue_Westron($val){
+        $this->langue_Westron = $val;
+    }
+
+    //GETTER
+
+    public function get_langue_Adunaic(){
+        return $this->langue_Adunaic;
+    }
+
+    public function get_langue_Apysaic(){
+        return $this->langue_Apysaic;
+    }
+
+    public function get_langue_Atliduk(){
+        return $this->langue_Atliduk;
+    }
+
+    public function get_langue_Haradaic(){
+        return $this->langue_Haradaic;
+    }
+
+    public function get_langue_Khuzdul(){
+        return $this->langue_Khuzdul;
+    }
+
+    public function get_langue_Kuduk(){
+        return $this->langue_Kuduk;
+    }
+
+    public function get_langue_Labba(){
+        return $this->langue_Labba;
+    }
+
+    public function get_langue_Logathig(){
+        return $this->langue_Logathig;
+    }
+
+    public function get_langue_Nahaiduk(){
+        return $this->langue_Nahaiduk;
+    }
+
+    public function get_langue_Noirparler(){
+        return $this->langue_Noirparler;
+    }
+
+    public function get_langue_Orque(){
+        return $this->langue_Orque;
+    }
+
+    public function get_langue_Pukael(){
+        return $this->langue_Pukael;
+    }
+
+    public function get_langue_Quenya(){
+        return $this->langue_Quenya;
+    }
+
+    public function get_langue_Rohirric(){
+        return $this->langue_Rohirric;
+    }
+
+    public function get_langue_Sindarin(){
+        return $this->langue_Sindarin;
+    }
+
+    public function get_langue_Sylvain(){
+        return $this->langue_Sylvain;
+    }
+
+    public function get_langue_Umitic(){
+        return $this->langue_Umitic;
+    }
+
+    public function get_langue_Varadja(){
+        return $this->langue_Varadja;
+    }
+
+    public function get_langue_Waildyth(){
+        return $this->langue_Waildyth;
+    }
+
+    public function get_langue_Westron(){
+        return $this->langue_Westron;
+    }
 }

@@ -21,7 +21,7 @@ class Race extends DetailPersonnageJoueur {
         $this->identite_race = $race;
 
         //Langue parler
-        $this->langue_Adûnaic  = 0;
+        $this->langue_Adunaic  = 0;
         $this->langue_Apysaic  = 0;
         $this->langue_Atliduk  = 0;
         $this->langue_Haradaic  = 0;
@@ -32,7 +32,7 @@ class Race extends DetailPersonnageJoueur {
         $this->langue_Nahaiduk  = 0;
         $this->langue_Noirparler  = 0;
         $this->langue_Orque  = 0;
-        $this->langue_Pûkael  = 0;
+        $this->langue_Pukael  = 0;
         $this->langue_Quenya  = 0;
         $this->langue_Rohirric  = 0;
         $this->langue_Sindarin  = 0;
@@ -52,10 +52,10 @@ class Race extends DetailPersonnageJoueur {
         $this->set_calcul_caracteristique_total(); //On recalcule les caracteristiques totals en fct des vals racials
 
         //Resistance racial
-        $this->jr_essence_total['raciale'] = 0;        
-        $this->jr_theurgie_total['raciale'] = 0;        
-        $this->jr_poison_total['raciale'] = 0;        
-        $this->jr_maladie_total['raciale'] = 0;
+        $this->jr_essence['raciale'] = 0;        
+        $this->jr_theurgie['raciale'] = 0;        
+        $this->jr_poison['raciale'] = 0;        
+        $this->jr_maladie['raciale'] = 0;
         $this->set_calcul_jr_total(); //Recalculer les jr totals grace au nouvelle jr en fonction de la race
 
         //Competences innees (a l'adolescence)
