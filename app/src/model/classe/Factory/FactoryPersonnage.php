@@ -62,12 +62,14 @@ class FactoryPersonnage extends Factory {
                 if($key == 'val') {$val = $MonPersonnage->get_caracteristique_intelligence($key) + $val;}
                 elseif($key == 'norm'){$val = $this->switch_calcul_bonus_caracteristique($val);}
                 $MonPersonnage->set_caracteristique_intelligence($key, $val);
+                $MonPersonnage->set_point_de_pouvoir_max_carac();
                 break;
 
             case 'intuition':
                 if($key == 'val') {$val = $MonPersonnage->get_caracteristique_intuition($key) + $val;}
                 elseif($key == 'norm'){$val = $this->switch_calcul_bonus_caracteristique($val);}
                 $MonPersonnage->set_caracteristique_intuition($key, $val);
+                $MonPersonnage->set_point_de_pouvoir_max_carac();
                 break;
 
             case 'presence':
@@ -88,240 +90,246 @@ class FactoryPersonnage extends Factory {
         switch ($this->selected) {
             case 'comp_manoeuvreetmouvement_sansarmure':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure_total('niveau');
-                $MonPersonnage->set_comp_manoeuvreetmouvement_sansarmure_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure_total('niveau');
+                    $MonPersonnage->set_comp_manoeuvreetmouvement_sansarmure_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_manoeuvreetmouvement_sansarmure($val, $key);
                 break;
 
             case 'comp_manoeuvreetmouvement_cuirsouple':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple_total('niveau');
-                $MonPersonnage->set_comp_manoeuvreetmouvement_cuirsouple_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple_total('niveau');
+                    $MonPersonnage->set_comp_manoeuvreetmouvement_cuirsouple_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_manoeuvreetmouvement_cuirsouple($val, $key);
                 break;
 
             case 'comp_manoeuvreetmouvement_cuirrigide':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirrigide_total('niveau');
-                $MonPersonnage->set_comp_manoeuvreetmouvement_cuirrigide_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirrigide($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirrigide_total('niveau');
+                    $MonPersonnage->set_comp_manoeuvreetmouvement_cuirrigide_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirrigide($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_manoeuvreetmouvement_cuirrigide($val, $key);
                 break;
             
             case 'comp_manoeuvreetmouvement_cottedemaille':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cottedemaille_total('niveau');
-                $MonPersonnage->set_comp_manoeuvreetmouvement_cottedemaille_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cottedemaille($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cottedemaille_total('niveau');
+                    $MonPersonnage->set_comp_manoeuvreetmouvement_cottedemaille_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_cottedemaille($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_manoeuvreetmouvement_cottedemaille($val, $key);
                 break;
 
             case 'comp_manoeuvreetmouvement_plate':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_plate_total('niveau');
-                $MonPersonnage->set_comp_manoeuvreetmouvement_plate_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_plate($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_plate_total('niveau');
+                    $MonPersonnage->set_comp_manoeuvreetmouvement_plate_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_manoeuvreetmouvement_plate($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_manoeuvreetmouvement_plate($val, $key);
                 break;
 
             case 'comp_arme_tranchantunemain':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_tranchantunemain_total('niveau');
-                $MonPersonnage->set_comp_arme_tranchantunemain_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_tranchantunemain($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_tranchantunemain_total('niveau');
+                    $MonPersonnage->set_comp_arme_tranchantunemain_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_tranchantunemain($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_tranchantunemain($val, $key);
                 break;
 
             case 'comp_arme_contondantunemain':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_contondantunemain_total('niveau');
-                $MonPersonnage->set_comp_arme_contondantunemain_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_contondantunemain($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_contondantunemain_total('niveau');
+                    $MonPersonnage->set_comp_arme_contondantunemain_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_contondantunemain($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_contondantunemain($val, $key);
                 break;
 
             case 'comp_arme_deuxmains':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_deuxmains_total('niveau');
-                $MonPersonnage->set_comp_arme_deuxmains_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_deuxmains($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_deuxmains_total('niveau');
+                    $MonPersonnage->set_comp_arme_deuxmains_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_deuxmains($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_deuxmains($val, $key);
                 break;
             
             case 'comp_arme_armedelance':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_armedelance_total('niveau');
-                $MonPersonnage->set_comp_arme_armedelance_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_armedelance($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_armedelance_total('niveau');
+                    $MonPersonnage->set_comp_arme_armedelance_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_armedelance($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_armedelance($val, $key);
                 break;
 
             case 'comp_arme_projectile':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_projectile_total('niveau');
-                $MonPersonnage->set_comp_arme_projectile_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_projectile($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_projectile_total('niveau');
+                    $MonPersonnage->set_comp_arme_projectile_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_projectile($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_projectile($val, $key);
                 break;
 
             case 'comp_arme_armedhast':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_arme_armedhast_total('niveau');
-                $MonPersonnage->set_comp_arme_armedhast_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_arme_armedhast($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_arme_armedhast_total('niveau');
+                    $MonPersonnage->set_comp_arme_armedhast_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_arme_armedhast($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_arme_armedhast($val, $key);
                 break;
             
             case 'comp_generale_escalade':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_generale_escalade_total('niveau');
-                $MonPersonnage->set_comp_generale_escalade_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_generale_escalade($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_generale_escalade_total('niveau');
+                    $MonPersonnage->set_comp_generale_escalade_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_generale_escalade($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_generale_escalade($val, $key);
                 break;
 
             case 'comp_generale_equitation':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_generale_equitation_total('niveau');
-                $MonPersonnage->set_comp_generale_equitation_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_generale_equitation($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_generale_equitation_total('niveau');
+                    $MonPersonnage->set_comp_generale_equitation_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_generale_equitation($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_generale_equitation($val, $key);
                 break;
 
             case 'comp_generale_natation':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_generale_natation_total('niveau');
-                $MonPersonnage->set_comp_generale_natation_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_generale_natation($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_generale_natation_total('niveau');
+                    $MonPersonnage->set_comp_generale_natation_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_generale_natation($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_generale_natation($val, $key);
                 break;
             
             case 'comp_generale_pistage':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_generale_pistage_total('niveau');
-                $MonPersonnage->set_comp_generale_pistage_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_generale_pistage($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_generale_pistage_total('niveau');
+                    $MonPersonnage->set_comp_generale_pistage_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_generale_pistage($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_generale_pistage($val, $key);
                 break;
                 
             case 'comp_subterfuge_embuscade':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_subterfuge_embuscade_total('niveau');
-                $MonPersonnage->set_comp_subterfuge_embuscade_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_subterfuge_embuscade($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_subterfuge_embuscade_total('niveau');
+                    $MonPersonnage->set_comp_subterfuge_embuscade_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_subterfuge_embuscade($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_subterfuge_embuscade($val, $key);
                 break;
 
             case 'comp_subterfuge_filatdissim':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_subterfuge_filatdissim_total('niveau');
-                $MonPersonnage->set_comp_subterfuge_filatdissim_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_subterfuge_filatdissim($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_subterfuge_filatdissim_total('niveau');
+                    $MonPersonnage->set_comp_subterfuge_filatdissim_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_subterfuge_filatdissim($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_subterfuge_filatdissim($val, $key);
                 break;
 
             case 'comp_subterfuge_crochetage':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_subterfuge_crochetage_total('niveau');
-                $MonPersonnage->set_comp_subterfuge_crochetage_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_subterfuge_crochetage($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_subterfuge_crochetage_total('niveau');
+                    $MonPersonnage->set_comp_subterfuge_crochetage_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_subterfuge_crochetage($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_subterfuge_crochetage($val, $key);
                 break;
             
             case 'comp_subterfuge_desarmementdepiege':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_subterfuge_desarmementdepiege_total('niveau');
-                $MonPersonnage->set_comp_subterfuge_desarmementdepiege_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_subterfuge_desarmementdepiege($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_subterfuge_desarmementdepiege_total('niveau');
+                    $MonPersonnage->set_comp_subterfuge_desarmementdepiege_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_subterfuge_desarmementdepiege($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_subterfuge_desarmementdepiege($val, $key);
                 break;
 
             case 'comp_magie_lecturederune':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_magie_lecturederune_total('niveau');
-                $MonPersonnage->set_comp_magie_lecturederune_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_magie_lecturederune($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_magie_lecturederune_total('niveau');
+                    $MonPersonnage->set_comp_magie_lecturederune_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_magie_lecturederune($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_magie_lecturederune($val, $key);
                 break;
 
             case 'comp_magie_utilisationdobjet':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_magie_utilisationdobjet_total('niveau');
-                $MonPersonnage->set_comp_magie_utilisationdobjet_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_magie_utilisationdobjet($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_magie_utilisationdobjet_total('niveau');
+                    $MonPersonnage->set_comp_magie_utilisationdobjet_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_magie_utilisationdobjet($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_magie_utilisationdobjet($val, $key);
                 break;
             
             case 'comp_magie_directiondesort':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_magie_directiondesort_total('niveau');
-                $MonPersonnage->set_comp_magie_directiondesort_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_magie_directiondesort($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_magie_directiondesort_total('niveau');
+                    $MonPersonnage->set_comp_magie_directiondesort_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_magie_directiondesort($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $MonPersonnage->set_point_de_pouvoir_max_carac();
                 }
                 $MonPersonnage->set_comp_magie_directiondesort($val, $key);
                 break;
 
             case 'comp_physique_developcorporel':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_physique_developcorporel_total('niveau');
-                $MonPersonnage->set_comp_physique_developcorporel_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_physique_developcorporel($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_physique_developcorporel_total('niveau');
+                    $MonPersonnage->set_comp_physique_developcorporel_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_physique_developcorporel($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                }
+                if($key == "innee")
+                {
+                    $bonus_actuel = $MonPersonnage->get_comp_physique_developcorporel($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_physique_developcorporel($val, $key);
                 break;
             
             case 'comp_physique_perception':
                 if($key == "degre"){
-                $niveau_actuel = $MonPersonnage->get_comp_physique_perception_total('niveau');
-                $MonPersonnage->set_comp_physique_perception_total(($niveau_actuel+$val), 'niveau');
-                $bonus_actuel = $MonPersonnage->get_comp_physique_perception($key);      
-                $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
+                    $niveau_actuel = $MonPersonnage->get_comp_physique_perception_total('niveau');
+                    $MonPersonnage->set_comp_physique_perception_total(($niveau_actuel+$val), 'niveau');
+                    $bonus_actuel = $MonPersonnage->get_comp_physique_perception($key);      
+                    $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);
                 }
                 $MonPersonnage->set_comp_physique_perception($val, $key);
                 break;
@@ -575,6 +583,73 @@ class FactoryPersonnage extends Factory {
             
             default:
                 throw new Exception("La valeur de la caracteristique n'est pas valide");
+                break;
+        }
+    }
+
+    public function switch_calcul_point_de_pouvoir(int $val) //Donne en fonction de la valeur d'une caracteristique sa norme
+    {
+        switch (true) {
+            case $val >= 102:
+                return 5;
+                break;
+
+            case $val >= 99:
+                return 4;
+                break;
+            
+            case $val >= 95:
+                return 3;
+                break;
+
+            case $val >= 75:
+                return 2;
+                break;
+            
+            case $val >= 55:
+                return 1;
+                break;
+            
+            case $val < 55:
+                return 0;
+                break;
+            
+            default:
+                throw new Exception("Probleme dans le calcul des points de pouvoir");
+                break;
+        }
+    }
+
+    public function switch_habilite_speciale($MonPersonnage) //Donne en fonction de la valeur d'une caracteristique sa norme
+    {
+        switch (true) {
+            // $this->selected
+            case $this->selected >= 96:
+                return 'Vous avez pris 3 niveaux innée en developpement corporel';
+                break;
+
+            case $this->selected >= 99:
+                return 4;
+                break;
+            
+            case $this->selected >= 95:
+                return 3;
+                break;
+
+            case $this->selected >= 75:
+                return 2;
+                break;
+            
+            case $this->selected >= 55:
+                return 1;
+                break;
+            
+            case $this->selected < 55:
+                return 0;
+                break;
+            
+            default:
+                throw new Exception("Probleme dans le calcul des points de pouvoir");
                 break;
         }
     }

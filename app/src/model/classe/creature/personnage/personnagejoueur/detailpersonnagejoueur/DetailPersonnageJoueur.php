@@ -8,6 +8,7 @@ Use App\Model\Classe\Creature\Personnage\PersonnageJoueur\PersonnageJoueur;
 Use App\Model\Traits\Personnage\CreationPersonnage\Langue;
 Use App\Model\Traits\Personnage\CreationPersonnage\DetailComp;
 Use App\Model\Traits\Personnage\CreationPersonnage\DetailCarac;
+Use App\Model\Classe\Factory\FactoryPersonnage;
 
 
 class DetailPersonnageJoueur extends PersonnageJoueur {

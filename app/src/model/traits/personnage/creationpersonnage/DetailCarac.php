@@ -54,7 +54,6 @@ Trait DetailCarac {
         $this->set_comp_carac(); //dans trait DetalComp
         $this->set_bd_carac(); //dans class DetailPersonnageJoueur
         $this->set_jr_carac(); //dans class DetailPersonnageJoueur
-        // $this->set_point_de_pouvoir_carac(); //A FAIRE
     }
 
 

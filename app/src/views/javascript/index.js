@@ -229,6 +229,37 @@ $( document ).ready( function() {
         }
     });
 
+    $("#button_habilite_speciale_add").click(function() {
+        if(nb_pts_histor > 0)
+        {
+            var habilite_speciale = entierAleatoire(0,100);
+            $("#resumer").append('Vous avez fait ' + habilite_speciale + ' au dés pour une habilité spéciale<br />');
+
+            $.ajax({ ///Add habilité spécial depuis les points d'historiques 
+                data :{habilite_speciale : habilite_speciale},
+                type: 'POST',
+                async: false,
+                url: "../public/index.php/add_habilite_speciale",  
+                success: function(data) {
+                    if(data.success == 1){
+                        nb_pts_histor -= 1;
+
+                        $('#span_total_point_histor_add').html(nb_pts_histor);
+                        $("#resumer").append(data.message + '<br />');
+                        if(nb_pts_histor === 0){$("#resumer").append('<br />');}
+                    }
+                },
+                error: function(){
+                    $("#resumer").append('Impossible d"avoir une habilité spéciale<br />');
+                }
+            });
+        }
+        if(nb_pts_histor <= 0)
+        {
+            $('#div_pts_histor_add').hide();
+        }
+    });
+
     $("#var_dump").click(function() {
         $.ajax({ ///Permet d'effecter un var dmp
             type: 'POST',

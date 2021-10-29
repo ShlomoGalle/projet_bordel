@@ -17,41 +17,42 @@ class Personnage extends Creature {
     protected $caracteristique_presence_total;
 
     //Compétence :
-    protected $comp_manoeuvreetmouvement_sansarmure_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_manoeuvreetmouvement_cuirsouple_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_manoeuvreetmouvement_cuirrigide_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_manoeuvreetmouvement_cottedemaille_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_manoeuvreetmouvement_plate_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_manoeuvreetmouvement_sansarmure_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_manoeuvreetmouvement_cuirsouple_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_manoeuvreetmouvement_cuirrigide_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_manoeuvreetmouvement_cottedemaille_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_manoeuvreetmouvement_plate_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
 
-    protected $comp_arme_tranchantunemain_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_arme_contondantunemain_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_arme_deuxmains_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_arme_armedelance_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_arme_projectile_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_arme_armedhast_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_arme_tranchantunemain_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_arme_contondantunemain_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_arme_deuxmains_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_arme_armedelance_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_arme_projectile_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_arme_armedhast_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
 
-    protected $comp_generale_escalade_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_generale_equitation_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_generale_natation_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_generale_pistage_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_generale_escalade_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_generale_equitation_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_generale_natation_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_generale_pistage_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
 
-    protected $comp_subterfuge_embuscade_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_subterfuge_filatdissim_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_subterfuge_crochetage_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_subterfuge_desarmementdepiege_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_subterfuge_embuscade_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_subterfuge_filatdissim_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_subterfuge_crochetage_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_subterfuge_desarmementdepiege_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
 
-    protected $comp_magie_lecturederune_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_magie_utilisationdobjet_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_magie_directiondesort_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_magie_lecturederune_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_magie_utilisationdobjet_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_magie_directiondesort_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
     
-    protected $comp_physique_developcorporel_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
-    protected $comp_physique_perception_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 0];
+    protected $comp_physique_developcorporel_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
+    protected $comp_physique_perception_total = ['val' => 0, 'experience_total' => 0, 'niveau' => 1];
 
     public function __construct()
     {
         parent::__construct();
     }
 
+    //SETTER ET GETTER COMP//
     //SETTER manoeuvreetmouvement
     public function set_comp_manoeuvreetmouvement_sansarmure_total($val, $key){
         $this->comp_manoeuvreetmouvement_sansarmure_total[$key] = $val;
@@ -257,5 +258,69 @@ class Personnage extends Creature {
     public function get_comp_physique_perception_total($key){
         return $this->comp_physique_perception_total[$key];
     }
+
+    //SETTER ET GETTER CACACTERISTIQUE//
+    //SETTER
+    public function set_caracteristique_force_total($val)
+    {
+        $this->caracteristique_force_total = $val;
+    }
+
+    public function set_caracteristique_agilite_total($val)
+    {
+        $this->caracteristique_agilite_total = $val;
+    }
+
+    public function set_caracteristique_constitution_total($val)
+    {
+        $this->caracteristique_constitution_total = $val;
+    }
+
+    public function set_caracteristique_intelligence_total($val)
+    {
+        $this->caracteristique_intelligence_total = $val;
+    }
+
+    public function set_caracteristique_intuition_total($val)
+    {
+        $this->caracteristique_intuition_total = $val;
+    }
+
+    public function set_caracteristique_presence_total($val)
+    {
+        $this->caracteristique_presence_total = $val;
+    }
+
+    //GETTER
+    public function get_caracteristique_force_total()
+    {
+        return $this->caracteristique_force_total;
+    }
+
+    public function get_caracteristique_agilite_total()
+    {
+        return $this->caracteristique_agilite_total;
+    }
+
+    public function get_caracteristique_constitution_total()
+    {
+        return $this->caracteristique_constitution_total;
+    }
+
+    public function get_caracteristique_intelligence_total()
+    {
+        return $this->caracteristique_intelligence_total;
+    }
+
+    public function get_caracteristique_intuition_total()
+    {
+        return $this->caracteristique_intuition_total;
+    }
+
+    public function get_caracteristique_presence_total()
+    {
+        return $this->caracteristique_presence_total;
+    }
+
 
 }

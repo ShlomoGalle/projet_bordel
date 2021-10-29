@@ -207,6 +207,39 @@ class CreationPersonnageController extends Bdd {
         }
     }
 
+    function add_habilite_speciale(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        // $habilite_speciale = $allPostPutVars['habilite_speciale'];
+        $habilite_speciale = 96;
+        $habilite = new FactoryPersonnage($habilite_speciale);
+        
+        try{
+            
+            $message = $habilite->switch_habilite_speciale($MonPersonnage);
+
+            // var_dump($MonPersonnage);
+            $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+            $data = array(  
+                'success' => 1,
+                'message' => $message
+            );
+    
+            return $response->withJson($data);
+
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+
+            return $response->withJson($data);
+        }
+    }
+
 
 
 
