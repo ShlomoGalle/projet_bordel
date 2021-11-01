@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PROJET POUBELLE</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+    
+  <!-- <input type="text" id="field" value="ElfeNoldor"> -->
+  <select name="field" id="field">
+    <option value="ElfeNoldor">Elfe Noldor</option>
+    <option value="Nain">Nain</option>
+  </select>
+
+  <button id="button_creation_personnage">
+      Creation de personnage
+  </button>
+  <button id="var_dump">
+    var_dump
+</button>
+  
+  <div id="resumer">
+
+  </div>
+
+  <div id="div_langage_add" style="display:none">
+    <div id="div_total_point_langage_add_restant">Il vous reste un total de <span id="span_total_point_langage_add"></span> points.<br /></div>
+    Vous pouvez apprendre un langage additionnel : 
+    <select name="select_langage_add" id="select_langage_add">
+      <option value="langue_Adunaic">Langue Adûnaic</option>
+      <option value="langue_Apysaic">Langue Apysaic</option>
+      <option value="langue_Atliduk">Langue Atliduk</option>
+      <option value="langue_Haradaic">Langue Haradaic</option>
+
+      <option value="langue_Khuzdul">Langue Khuzdul</option>
+      <option value="langue_Kuduk">Langue Kuduk</option>
+      <option value="langue_Labba">Langue Labba</option>
+      <option value="langue_Logathig">Langue Logathig</option>
+
+      <option value="langue_Nahaiduk">Langue Nahaiduk</option>
+      <option value="langue_Noirparler">Langue Noirparler</option>
+      <option value="langue_Orque">Langue Orque</option>
+      <option value="langue_Pukael">Langue Pukael</option>
+
+      <option value="langue_Quenya">Langue Quenya</option>
+      <option value="langue_Rohirric">Langue Rohirric</option>
+      <option value="langue_Sindarin">Langue Sindarin</option>
+      <option value="langue_Sylvain">Langue Sylvain</option>
+      
+      <option value="langue_Umitic">Langue Umitic</option>
+      <option value="langue_Varadja">Langue Varadja</option>
+      <option value="langue_Waildyth">Langue Waildyth</option>
+      <option value="langue_Westron">Langue Westron (langue commune)</option>
+    </select>
+
+    <select name="select_point_langage_add" id="select_point_langage_add">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <button id="button_langage_add">
+      Valider
+    </button>
+  </div>
+
+  <div id="div_pts_histor_add" style="display:none">
+    <div id="div_total_point_histor_add_restant">Il vous reste un total de <span id="span_total_point_histor_add"></span> points d'historiques.<br /></div>
+    Augmenter une comp primaire de 2 degrés :
+
+    <select name="select_histor_comp_add" id="select_histor_comp_add">
+      <option value="comp_manoeuvreetmouvement_sansarmure">Manoeuvre et mouvement sans armure</option>
+      <option value="comp_manoeuvreetmouvement_cuirsouple">Manoeuvre et mouvement cuir souple</option>
+      <option value="comp_manoeuvreetmouvement_cuirrigide">Manoeuvre et mouvement cuir rigide</option>
+      <option value="comp_manoeuvreetmouvement_cottedemaille">Manoeuvre et mouvement cotte de maille</option>
+      <option value="comp_manoeuvreetmouvement_plate">Manoeuvre et mouvement plate</option>
+      <option value="comp_arme_tranchantunemain">Arme tranchant une main</option>
+      <option value="comp_arme_contondantunemain">Arme contondant une main</option>
+      <option value="comp_arme_deuxmains">Arme deux mains</option>
+      <option value="comp_arme_armedelance">Arme arme de lancé</option>
+      <option value="comp_arme_projectile">Arme projectile</option>
+      <option value="comp_arme_armedhast">Arme arme d'hast</option>
+      <option value="comp_generale_escalade">Generale escalade</option>
+      <option value="comp_generale_equitation">Generale equitation</option>
+      <option value="comp_generale_natation">Generale natation</option>
+      <option value="comp_generale_pistage">Generale pistage</option>
+      <option value="comp_subterfuge_embuscade">Subterfuge embuscade</option>
+      <option value="comp_subterfuge_filatdissim">Subterfuge filature/dissimulation</option>
+      <option value="comp_subterfuge_crochetage">Subterfuge crochetage</option>
+      <option value="comp_subterfuge_desarmementdepiege">Subterfuge désarmement de piège</option>
+      <option value="comp_magie_lecturederune">Magie lecture de rune</option>
+      <option value="comp_magie_utilisationdobjet">Magie utilisation d'objet</option>
+      <option value="comp_magie_directiondesort">Magie direction de sort</option>
+      <option value="comp_physique_developcorporel">Physique dévéloppement corporel</option>
+      <option value="comp_physique_perception">Physique perception</option>
+    </select>
+
+    <button id="button_histor_comp_add">
+      Valider
+    </button>
+
+    <br />
+
+    Augmenter la valeur d'une caracteristique de 2 points :
+
+    <select name="select_histor_carac_add" id="select_histor_carac_add">
+      <option value="force">Caractéristique Force</option>
+      <option value="agilite">Caractéristique Agilite</option>
+      <option value="constitution">Caractéristique Constitution</option>
+      <option value="intelligence">Caractéristique Intelligence</option>
+      <option value="intuition">Caractéristique Intuition</option>
+      <option value="presence">Caractéristique Presence</option>
+    </select>
+
+    <button id="button_histor_carac_add">
+      Valider
+    </button>
+
+    <br />
+
+    Augmenter une langue de 5 points :
+
+    <select name="select_histor_langue_add" id="select_histor_langue_add">
+      <option value="langue_Adunaic">Langue Adûnaic</option>
+      <option value="langue_Apysaic">Langue Apysaic</option>
+      <option value="langue_Atliduk">Langue Atliduk</option>
+      <option value="langue_Haradaic">Langue Haradaic</option>
+
+      <option value="langue_Khuzdul">Langue Khuzdul</option>
+      <option value="langue_Kuduk">Langue Kuduk</option>
+      <option value="langue_Labba">Langue Labba</option>
+      <option value="langue_Logathig">Langue Logathig</option>
+
+      <option value="langue_Nahaiduk">Langue Nahaiduk</option>
+      <option value="langue_Noirparler">Langue Noirparler</option>
+      <option value="langue_Orque">Langue Orque</option>
+      <option value="langue_Pukael">Langue Pukael</option>
+
+      <option value="langue_Quenya">Langue Quenya</option>
+      <option value="langue_Rohirric">Langue Rohirric</option>
+      <option value="langue_Sindarin">Langue Sindarin</option>
+      <option value="langue_Sylvain">Langue Sylvain</option>
+      
+      <option value="langue_Umitic">Langue Umitic</option>
+      <option value="langue_Varadja">Langue Varadja</option>
+      <option value="langue_Waildyth">Langue Waildyth</option>
+      <option value="langue_Westron">Langue Westron (langue commune)</option>
+    </select>
+
+    <button id="button_histor_langue_add">
+      Valider
+    </button>
+
+
+    <br />
+
+    Choisir une habilité spéciale :
+    <button id="button_habilite_speciale_add">
+      Valider
+    </button>
+  </div>
+
+  
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="/src/views/javascript/index.js"></script>
+</body>
+
+</html>

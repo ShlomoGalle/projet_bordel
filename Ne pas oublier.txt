@@ -1,0 +1,71 @@
+L'environnement : Exemple :
+Brouillard -10 pour les projectiles
+Océans : -10 à toutes les comp
+Zone dégagée : +10 au projectile, -10 embuscade
+etc
+
+Statut du personnage : 
+Endormie, empoisonné, desequilibré, envouté, affamé, etc
+
+Role du personnage :
+Roi, Marchand, Forgeron etc
+Systeme féodale, avec un rôle
+Influence sur quoi ?
+
+Personnage : is_die :
+Détérioration des caractéristiques
+
+Blessure : 
+Influence sur les compétences/Dommages corporels
+
+Maladie : 
+Influence sur la magie/compétences
+
+Propriété d'une personne : 
+Si il a une habitation, un moyen de transport etc Tout ce qui ne fait pas partie de l'inventaire
+
+L'experience est par compétence et non globale
+C'est à dire que si on utilise une compétence, on gagne de l'experience avec
+si on passe un niveau on gagne un degré de maitrise dans cette compétence,
+à partir d'un certain nombre de degré de maitrise, est mis en place une dégradation de compétence avec le temps
+qui force le personnage a utiliser cette compétence pour pas la perdre. Cela évite les gros bill et force les joueurs à jouer
+et force les joueurs à ce spécialiser
+
+On enleve le systeme de profession : 
+A la création, la personne à 15 points de comp (avec un max de 5 par caractéristique) à répartir et doit choisir une caractéristique primordial
+
+Prospection : Qui commence le round ? Total de manoeuvre & mouvement
+
+
+
+
+Propriété constante : Point de coup maximaum (définit dans le constructor de la class parent)
+Propriété static : Les bonus et malus d'environnement, ils fonctionnent pour tout les objets instanciés
+Propriété/méthode/class abstraite : Jsp, peut-être tout ce qu'est trait vu qu'ils n'ont pas besoin de constructor
+Interface pour tout ce qu'est race/profession/métier/role/toutes les classes qui se multiplie et qui ont des similitudes
+ destructor : Permet d'enregistrer toutes les données de la classe dans la bdd avant la suppression de l'instance
+constructor : Permet "d'hydrater" la class, c'est à dire on récupère toutes les val de la class depuis la base de donnée pour instancier l'objet
+
+
+
+EXPERIENCE : 
+
+[13:43, 12/10/2021] Florian Galle: J'ai plusieurs questions (tu peux répondre à ta pause ou ce soir tkt) :
+Le passage à niveau est-il le meme pour toutes les compétences, c-a-d, est ce que toutes les comp ont besoin du même X d'xp pour passer d'un niveau 12 à 13 (par exemple) ?
+[13:45, 12/10/2021] Florian Galle: Dans le code, comment organise-t-on l'xp, une variable qui monte pour toujours ? Une variable qui se réinitialise à chaque passage à niveau ? Une variable qui est égale au nombre d'xp qui faut et qui décremente (au lieu d'incrementer) ex : Lvl 10 = 1000 xp, j'ai tuer un monstre, il me reste que Lvl 10 = 900 xp (sous entendu : avant de up) ?
+[13:45, 12/10/2021] Florian Galle: Comment on fait pour savoir combien il faut d'xp pour passer d'un niveau X à 
+
+Y'a une manière très simple qui consiste à dire : on fait nb total d'xp qu'il fallait pour le niveau d'avant * 1.3 (par exemple), avec ca on a pas besoin d'un tableau qu'on doit écrire et dans lequel il faut chercher à chaque fois pour savoir qu'elle nb d'xp il reste avant de up
+Parce qu'enfaite, si on dit à chaque de fin d'evenement on distribue l'xp en fonction des comps utilisés, on va être obligé de regarder à chaque fin d'evement si le personnage n'a pas up. Soit tu fait 
+(xp qu'il manque - xp gagné) <= 0 ? 
+ Soit tu fais : 
+xp total + xp gagné = xp total_gagné 
+Regarder dans le tableau combien il faut d'xp pour passer 
+et faire xp_total_gagné > xp_pour_passer ?
+
+Si on stock une variable qui est égale au nombre d'xp qui manque et qui décremente, on aura besoin de faire une requete que quand il y a un passage à niveau.
+Mais encore mieux, si on fait ca : "on fait nb total d'xp qu'il fallait pour le niveau d'avant * 1.3", t'as même pas besoin de stocker l'xp qui manque (ni faire de requete) vu que tu peux le faire rapidement sans demander rien à personne.
+tu fais : ((nb d'xp au niveau 1) *1.3^(le nombre de niveau que tu es +1) < nb_total_gagné) : ?
+
+[14:15, 12/10/2021] Florian Galle: Mais pareil, vaut mieux faire le calcul dans du coté client et soulagé (de quelques calculs) le serveur ?
+[14:17, 12/10/2021] Florian Galle: Faire le calcul du coté serveur, et si il y a une monté en niveau on a pas besoin de faire un allé retour vers le coté client (dit toi que un allé c'est 0.8 seconde, donc énorme) donc perdre 1.6 seconde à faire un allé retour du coté serveur ?
