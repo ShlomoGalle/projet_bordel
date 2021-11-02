@@ -10,8 +10,8 @@ Use Psr\Http\Message\ResponseInterface;
 Trait Capacite {
 
     //Capacité
-    protected $infravision = 0;
-    protected $vision_nocturne = 0;
+    protected $capacite_infravision = 0;
+    protected $capacite_vision_nocturne = 0;
     // protected $compagnon = 0;
     
 
@@ -21,13 +21,24 @@ Trait Capacite {
 
 
     //SETTER
-    public function set_infravision(int $val)
+    public function set_capacite_infravision(int $val)
     {
-        $this->infravision = $val;
+        $this->capacite_infravision = $val;
     }
 
-    public function set_vision_nocturne(int $val)
+    public function set_capacite_vision_nocturne(int $val)
     {
-        $this->vision_nocturne = $val;
+        $this->capacite_vision_nocturne = $val;
+    }
+
+    //GETTER
+    public function get_capacite_infravision()
+    {
+        return $this->capacite_infravision;
+    }
+
+    public function get_capacite_vision_nocturne()
+    {
+        return $this->capacite_vision_nocturne;
     }
 }

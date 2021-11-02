@@ -17,17 +17,29 @@ $app->add(function ($request, $response, $next) {
 });
 
 
-$app->post('/home',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':home');
 $app->post('/var_dump',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':var_dump');
 
+// TOUTES LES FONCTIONS PAR DEFAULT
+$app->post('/default',App\Controllers\DefaultFunction::class.':default');
+
+
+// CREATION DE PERSONNAGE
 $app->post('/initialisation_caracteristique',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':initialisation_caracteristique');
 $app->post('/instanciation_class_personnage',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':instanciation_class_personnage');
 $app->post('/add_langage_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_langage_additionnel');
 $app->post('/add_competence_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_competence_additionnel');
 $app->post('/add_carac_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_carac_additionnel');
 $app->post('/add_habilite_speciale',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_habilite_speciale');
+$app->post('/add_option_finance',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_option_finance');
+$app->post('/add_sort_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_sort_additionnel');
 
-$app->post('/home2',\App\Controllers\PagesController::class.':home');
 
+// CONNEXION A SON COMPTE (et deconnexion)
+$app->post('/connexion',App\Controllers\Compte\Connexion::class.':connexion');
+$app->post('/deconnexion',App\Controllers\Compte\Connexion::class.':deconnexion');
+
+
+//INSCRIPTION
+$app->post('/inscription',App\Controllers\Compte\Inscription::class.':inscription');
 
 $app->run();

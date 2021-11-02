@@ -622,26 +622,26 @@ class FactoryPersonnage extends Factory {
             case $this->selected >= 96:
                 $comp["comp_physique_developcorporel"] = 4;
                 $MonPersonnage->set_comp($comp, "innee");
-                return '<b>Peaux Robuste :</b> bonus innée +20 Developpement Corporel';
+                return '<b>Peaux Robuste :</b> bonus innée <b>+20</b> Developpement Corporel';
                 break;
 
             case $this->selected >= 91:
                 $caracteristique["presence"] = 15;
                 $MonPersonnage->set_caracteristique($caracteristique, "val");
-                return '<b>Charismatique :</b> bonus de +15 au valeur de Présence';
+                return '<b>Charismatique :</b> bonus de <b>+15</b> au valeur de Présence';
                 break;
             
             case $this->selected >= 86:
                 $MonPersonnage->set_bd_detail(10, 'special_1');
                 $MonPersonnage->set_bo_detail(10, 'special_1');
-                return '<b>Reaction éclair :</b> bonus de +10 à la Base Defensif et Offensif';
+                return '<b>Reaction éclair :</b> bonus de <b>+10</b> à la Base Defensif et Offensif';
                 break;
 
             case $this->selected >= 81:
                 $comp["comp_physique_perception"] = 3;
                 $comp["comp_generale_pistage"] = 3;
                 $MonPersonnage->set_comp($comp, "innee");
-                return '<b>Très observateur :</b> bonus innée de +15 à la Perception et au Pistage';
+                return '<b>Très observateur :</b> bonus innée de <b>+15</b> à la Perception et au Pistage';
                 break;
             
             case $this->selected >= 75:
@@ -651,7 +651,7 @@ class FactoryPersonnage extends Factory {
                 $comp["comp_manoeuvreetmouvement_cottedemaille"] = 3;
                 $comp["comp_manoeuvreetmouvement_plate"] = 3;
                 $MonPersonnage->set_comp($comp, "innee");
-                return '<b>Expert en mouvement :</b> bonus spécial de +15 pour toutes les manoeuvres';
+                return '<b>Expert en mouvement :</b> bonus spécial de <b>+15</b> pour toutes les manoeuvres';
                 break;
             
             case $this->selected >= 71:
@@ -664,31 +664,137 @@ class FactoryPersonnage extends Factory {
                 $MonPersonnage->set_jr_theurgie(15, "special_1");
                 $MonPersonnage->set_jr_poison(15, "special_1");
                 $MonPersonnage->set_jr_maladie(15, "special_1");
-                return '<b>Resistance naturel :</b> bonus spécial de +15 à tout les Jets de Résistance';
+                return '<b>Resistance naturel :</b> bonus spécial de <b>+15</b> à tout les Jets de Résistance';
                 break;
 
             case $this->selected >= 61:
-                $MonPersonnage->set_infravision(1);
-                return "<b>Infravision :</b> capacité spéciale à voir les sources de chaleur dans l'obscurité ";
+                if(!$MonPersonnage->get_capacite_infravision())
+                {
+                    $MonPersonnage->set_capacite_infravision(1);
+                    return "<b>Infravision :</b> capacité spéciale à voir les sources de chaleur dans l'obscurité ";
+                }
+                else{
+                    throw new Exception("Vous avez déjà cette capacité spéciale !");
+                }
                 break;
 
             case $this->selected >= 56:
-                $MonPersonnage->set_vision_nocturne(1);
-                return "<b>Vision Nocturne :</b> capacité spéciale à voir loin dans l'obscurité totale";
+                if(!$MonPersonnage->get_capacite_vision_nocturne())
+                {
+                    $MonPersonnage->set_capacite_vision_nocturne(1);
+                    return "<b>Vision Nocturne :</b> capacité spéciale à voir loin dans l'obscurité totale";
+                }
+                else{
+                    throw new Exception("Vous avez déjà cette capacité spéciale !");
+                }
                 break;
 
             case $this->selected >= 51:
                 $comp_random = $this->switch_return_random_comp();
                 $comp[$comp_random] = 2;
                 $MonPersonnage->set_comp($comp, "innee");
-                return "<b>Trait naturel :</b> bonus innée de +10 à une compétence aléatoire = " . $comp_random;
+                return "<b>Trait naturel :</b> bonus innée de <b>+10</b> à une compétence aléatoire = " . $comp_random;
                 break;
             
             case $this->selected >= 1:
                 $comp_random = $this->switch_return_random_comp();
                 $comp[$comp_random] = 1;
                 $MonPersonnage->set_comp($comp, "innee");
-                return "<b>Trait naturel :</b> bonus innée de +5 à une compétence aléatoire = " . $comp_random;
+                return "<b>Trait naturel :</b> bonus innée de <b>+5</b> à une compétence aléatoire = " . $comp_random;
+                break;
+            
+            default:
+                throw new Exception("Probleme dans le choix des habilités spéciales");
+                break;
+        }
+    }
+
+    public function switch_option_finance($MonPersonnage) //Donne en fonction de la valeur d'une caracteristique sa norme
+    {
+        $money_actuel = $MonPersonnage->get_money_flouze_biff();
+        switch (true) {
+            // $this->selected
+            case $this->selected >= 100:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 2000000);
+                return 'Vous avez gagné un montant de : <b> 200 po </b>';
+                break;
+
+            case $this->selected >= 98:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 1500000);
+                return 'Vous avez gagné un montant de : <b> 150 po </b>';
+                break;
+            
+            case $this->selected >= 95:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 1250000);
+                return 'Vous avez gagné un montant de : <b> 125 po </b>';
+                break;
+
+            case $this->selected >= 91:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 1000000);
+                return 'Vous avez gagné un montant de : <b> 100 po </b>';
+                break;
+            
+            case $this->selected >= 86:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 800000);
+                return 'Vous avez gagné un montant de : <b> 80 po </b>';
+                break;
+            
+            case $this->selected >= 81:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 700000);
+                return 'Vous avez gagné un montant de : <b> 70 po </b>';
+                break;
+                
+            case $this->selected >= 76:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 600000);
+                return 'Vous avez gagné un montant de : <b> 60 po </b>';
+                break;
+
+            case $this->selected >= 71:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 500000);
+                return 'Vous avez gagné un montant de : <b> 50 po </b>';
+                break;
+
+            case $this->selected >= 66:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 400000);
+                return 'Vous avez gagné un montant de : <b> 40 po </b>';
+                break;
+            case $this->selected >= 56:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 350000);
+                return 'Vous avez gagné un montant de : <b> 35 po </b>';
+                break;
+            case $this->selected >= 46:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 300000);
+                return 'Vous avez gagné un montant de : <b> 30 po </b>';
+                break;
+
+            case $this->selected >= 36:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 200000);
+                return 'Vous avez gagné un montant de : <b> 20 po </b>';
+                break;
+            
+            case $this->selected >= 26:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 150000);
+                return 'Vous avez gagné un montant de : <b> 15 po </b>';
+                break;
+            
+            case $this->selected >= 16:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 100000);
+                return 'Vous avez gagné un montant de : <b> 10 po </b>';
+                break;
+            
+            case $this->selected >= 6:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 50000);
+                return 'Vous avez gagné un montant de : <b> 5 po </b>';
+                break;
+            
+            case $this->selected >= 3:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 20000);
+                return 'Vous avez gagné un montant de : <b> 2 po </b>';
+                break;
+            
+            case $this->selected >= 1:
+                $MonPersonnage->set_money_flouze_biff($money_actuel + 10000);
+                return 'Vous avez gagné un montant de : <b> 1 po </b>';
                 break;
             
             default:

@@ -17,6 +17,13 @@ class Creature extends Bdd {
     protected $type_creature = 0; //1 pj, 2 monstre&animaux, 3pnj
     protected $nom = 0;
 
+    //Resistance Créature
+    protected $jr_feu = 0;
+    protected $jr_froid = 0;
+    protected $jr_eau = 0;
+    protected $jr_lumière = 0;
+    protected $jr_obscurité = 0;
+
     public function __construct()
     {
         parent::__construct();
