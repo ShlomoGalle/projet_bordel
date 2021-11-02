@@ -25,8 +25,8 @@ class DetailPersonnageJoueur extends PersonnageJoueur {
     protected $jr_maladie = ['carac' => 0, 'special_1' => 0, 'raciale' => 0];
 
     //Detail du bd et du bo (base defensif et base offensif)
-    protected $base_offensif_detail = ['carac' => 0, 'special_1' => 0, 'special_2' => 0];
     protected $base_defensif_detail = ['carac' => 0, 'special_1' => 0, 'special_2' => 0];
+    protected $base_offensif_detail = ['special_1' => 0, 'special_2' => 0];
 
 
     public function __construct()
@@ -57,7 +57,45 @@ class DetailPersonnageJoueur extends PersonnageJoueur {
         $this->base_defensif_detail['carac'] = $this->caracteristique_agilite_total;
         $this->set_base_defensif($this->base_defensif_detail['carac'] +  $this->base_defensif_detail['special_1'] + $this->base_defensif_detail['special_2']); //Recalculer la bd total en fonction des carac
     }
+    
+    public function set_bo_carac()
+    {
+        $this->set_base_offensif($this->base_offensif_detail['special_1'] + $this->base_offensif_detail['special_2']); //Recalculer la bd total en fonction des carac
+    }
 
+    public function set_bd_detail(int $val, string $key){
+        $this->base_defensif_detail[$key] = $val;
+        $this->set_bd_carac();
+    }
+
+    public function set_bo_detail(int $val, string $key){
+        $this->base_offensif_detail[$key] = $val;
+        $this->set_bo_carac();
+    }
+
+    public function set_chance_obtenir_liste_sort_pourcentage(int $val){
+        $this->chance_obtenir_liste_sort_pourcentage = $this->get_chance_obtenir_liste_sort_pourcentage() + $val;
+    }
+
+    public function set_jr_essence(int $val, string $key){
+        $this->jr_essence[$key] = $this->get_jr_essence($key) + $val;
+        $this->set_calcul_jr_total();
+    }
+
+    public function set_jr_theurgie(int $val, string $key){
+        $this->jr_theurgie[$key] = $this->get_jr_theurgie($key) + $val;
+        $this->set_calcul_jr_total();
+    }
+
+    public function set_jr_poison(int $val, string $key){
+        $this->jr_poison[$key] = $this->get_jr_poison($key) + $val;
+        $this->set_calcul_jr_total();
+    }
+
+    public function set_jr_maladie(int $val, string $key){
+        $this->jr_maladie[$key] = $this->get_jr_maladie($key) + $val;
+        $this->set_calcul_jr_total();
+    }
 
     //GETTER
     public function get_chance_obtenir_liste_sort_pourcentage(){
@@ -68,6 +106,22 @@ class DetailPersonnageJoueur extends PersonnageJoueur {
     }
     public function get_nb_points_histor(){
         return $this->nb_points_histor;
+    }
+    
+    public function get_jr_essence($key){
+        return $this->jr_essence[$key];
+    }
+    
+    public function get_jr_theurgie($key){
+        return $this->jr_theurgie[$key];
+    }
+
+    public function get_jr_poison($key){
+        return $this->jr_poison[$key];
+    }
+
+    public function get_jr_maladie($key){
+        return $this->jr_maladie[$key];
     }
 
 }

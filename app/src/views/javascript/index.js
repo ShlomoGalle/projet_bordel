@@ -233,7 +233,7 @@ $( document ).ready( function() {
         if(nb_pts_histor > 0)
         {
             var habilite_speciale = entierAleatoire(0,100);
-            $("#resumer").append('Vous avez fait ' + habilite_speciale + ' au dés pour une habilité spéciale<br />');
+            $("#resumer").append('Vous avez fait <b>' + habilite_speciale + '</b> au dés pour une habilité spéciale<br />');
 
             $.ajax({ ///Add habilité spécial depuis les points d'historiques 
                 data :{habilite_speciale : habilite_speciale},

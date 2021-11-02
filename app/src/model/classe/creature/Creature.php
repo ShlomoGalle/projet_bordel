@@ -23,9 +23,27 @@ class Creature extends Bdd {
 
     }
     
+    //SETTER ET GETTER
+    //SETTER
     public function set_base_defensif($val)
     {
         $this->base_defensif = $val;
+    }
+
+    public function set_base_offensif($val)
+    {
+        $this->base_offensif = $val;
+    }
+
+    //GETTER   
+    public function get_base_defensif()
+    {
+        return $this->base_defensif;
+    }
+
+    public function get_base_offensif()
+    {
+        return $this->base_offensif;
     }
 
 }

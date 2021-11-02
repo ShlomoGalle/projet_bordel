@@ -212,8 +212,7 @@ class CreationPersonnageController extends Bdd {
         $allPostPutVars = $request->getParsedBody();
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        // $habilite_speciale = $allPostPutVars['habilite_speciale'];
-        $habilite_speciale = 96;
+        $habilite_speciale = $allPostPutVars['habilite_speciale'];
         $habilite = new FactoryPersonnage($habilite_speciale);
         
         try{
