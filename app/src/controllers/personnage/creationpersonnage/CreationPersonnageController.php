@@ -232,7 +232,7 @@ class CreationPersonnageController extends Bdd {
 
             $data = array(
                 'success' => 0,
-				$message = print_r($e, true);
+				 'message' => print_r($e, true);
             );
 
         }
