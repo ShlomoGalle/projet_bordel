@@ -19,8 +19,8 @@ Trait Arme {
     protected $arme_statistique_maladresse;
     protected $arme_statistique_coupcritprimaire;
     protected $arme_statistique_coupcritsecondaire;
-    protected $arme_statistique_modifspeciaux;
-    protected $arme_statistique_enchantement;
+    protected $arme_statistique_modifspeciaux = 0;
+    protected $arme_statistique_enchantement = 0;
     
 
     public function __construct()

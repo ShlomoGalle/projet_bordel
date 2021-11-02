@@ -26,6 +26,7 @@ $app->post('/add_langage_additionnel',App\Controllers\Personnage\CreationPersonn
 $app->post('/add_competence_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_competence_additionnel');
 $app->post('/add_carac_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_carac_additionnel');
 $app->post('/add_habilite_speciale',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_habilite_speciale');
+$app->post('/add_option_finance',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_option_finance');
 
 $app->post('/home2',\App\Controllers\PagesController::class.':home');
 

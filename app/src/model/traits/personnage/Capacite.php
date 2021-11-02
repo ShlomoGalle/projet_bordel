@@ -30,4 +30,15 @@ Trait Capacite {
     {
         $this->vision_nocturne = $val;
     }
+
+    //GETTER
+    public function get_infravision()
+    {
+        return $this->infravision;
+    }
+
+    public function get_vision_nocturne()
+    {
+        return $this->vision_nocturne;
+    }
 }

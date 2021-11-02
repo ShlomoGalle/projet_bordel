@@ -29,7 +29,7 @@
   </div>
 
   <div id="div_langage_add" style="display:none">
-    <div id="div_total_point_langage_add_restant">Il vous reste un total de <span id="span_total_point_langage_add"></span> points.<br /></div>
+    <div id="div_total_point_langage_add_restant">Il vous reste un total de <span id="span_total_point_langage_add"></span> points de langage.<br /></div>
     Vous pouvez apprendre un langage additionnel : 
     <select name="select_langage_add" id="select_langage_add">
       <option value="langue_Adunaic">Langue Adûnaic</option>
@@ -72,7 +72,7 @@
   </div>
 
   <div id="div_pts_histor_add" style="display:none">
-    <div id="div_total_point_histor_add_restant">Il vous reste un total de <span id="span_total_point_histor_add"></span> points d'historiques.<br /></div>
+    <div id="div_total_point_histor_add_restant">Il vous reste un total de <span id="span_total_point_histor_add"></span> points d'historique.<br /></div>
     Augmenter une comp primaire de 2 degrés :
 
     <select name="select_histor_comp_add" id="select_histor_comp_add">
@@ -163,6 +163,54 @@
 
     Choisir une habilité spéciale :
     <button id="button_habilite_speciale_add">
+      Valider
+    </button>
+    
+    <br />
+
+    Choisir des pièces d'or supplémentaire (quantité aléatoire) :
+    <button id="button_option_finance_add">
+      Valider
+    </button>
+  </div>
+
+  <div id="div_comp_add" style="display:none">
+    <div id="div_total_point_comp_add_restant">Il vous reste un total de <span id="span_total_point_comp_add"></span> points de compétence.<br /></div>
+    Vous pouvez augmenter votre prédisposition à une compétence en octroyant des bonus innées : (avec un maximum de 3 points par compétence) <br />
+    <select name="select_comp_add" id="select_comp_add">
+      <option value="comp_manoeuvreetmouvement_sansarmure">Manoeuvre et mouvement sans armure</option>
+      <option value="comp_manoeuvreetmouvement_cuirsouple">Manoeuvre et mouvement cuir souple</option>
+      <option value="comp_manoeuvreetmouvement_cuirrigide">Manoeuvre et mouvement cuir rigide</option>
+      <option value="comp_manoeuvreetmouvement_cottedemaille">Manoeuvre et mouvement cotte de maille</option>
+      <option value="comp_manoeuvreetmouvement_plate">Manoeuvre et mouvement plate</option>
+      <option value="comp_arme_tranchantunemain">Arme tranchant une main</option>
+      <option value="comp_arme_contondantunemain">Arme contondant une main</option>
+      <option value="comp_arme_deuxmains">Arme deux mains</option>
+      <option value="comp_arme_armedelance">Arme arme de lancé</option>
+      <option value="comp_arme_projectile">Arme projectile</option>
+      <option value="comp_arme_armedhast">Arme arme d'hast</option>
+      <option value="comp_generale_escalade">Generale escalade</option>
+      <option value="comp_generale_equitation">Generale equitation</option>
+      <option value="comp_generale_natation">Generale natation</option>
+      <option value="comp_generale_pistage">Generale pistage</option>
+      <option value="comp_subterfuge_embuscade">Subterfuge embuscade</option>
+      <option value="comp_subterfuge_filatdissim">Subterfuge filature/dissimulation</option>
+      <option value="comp_subterfuge_crochetage">Subterfuge crochetage</option>
+      <option value="comp_subterfuge_desarmementdepiege">Subterfuge désarmement de piège</option>
+      <option value="comp_magie_lecturederune">Magie lecture de rune</option>
+      <option value="comp_magie_utilisationdobjet">Magie utilisation d'objet</option>
+      <option value="comp_magie_directiondesort">Magie direction de sort</option>
+      <option value="comp_physique_developcorporel">Physique dévéloppement corporel</option>
+      <option value="comp_physique_perception">Physique perception</option>
+    </select>
+
+    <select name="select_point_comp_add" id="select_point_comp_add">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <button id="button_comp_add">
       Valider
     </button>
   </div>

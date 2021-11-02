@@ -37,6 +37,11 @@ class PersonnageJoueur extends Personnage{
     protected $jr_theurgie_total = 0;
     protected $jr_poison_total = 0;
     protected $jr_maladie_total = 0;
+
+    protected $jr_feu = 0;
+    protected $jr_froid = 0;
+    protected $jr_lumière = 0;
+    protected $jr_obscurité = 0;
         
     //Points de pouvoir
     protected $point_de_pouvoir_max = 0;
@@ -75,10 +80,21 @@ class PersonnageJoueur extends Personnage{
         $this->point_de_pouvoir_actuelle = $val;
     }
 
+    public function set_money_flouze_biff(int $val)
+    {
+        $this->money_flouze_biff = $val;
+    }
+
 
     //GETTER
     public function get_identite_race()
     {
         return $this->identite_race;
     }
+
+    public function get_money_flouze_biff()
+    {
+        return $this->money_flouze_biff;
+    }
+
 }
