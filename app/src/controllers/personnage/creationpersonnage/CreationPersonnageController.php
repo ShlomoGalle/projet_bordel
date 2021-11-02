@@ -227,17 +227,16 @@ class CreationPersonnageController extends Bdd {
                 'success' => 1,
                 'message' => $message
             );
-    
-            return $response->withJson($data);
 
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
+				$message = print_r($e, true);
             );
 
-            return $response->withJson($data);
         }
+            return $response->withJson($data);
     }
 
     function add_option_finance(ServerRequestInterface $request, ResponseInterface $response)
