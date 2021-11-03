@@ -2,6 +2,10 @@
 
 namespace App\Model\Classe\Creature\Personnage\PersonnageJoueur;
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 Use App\Model\Classe\Creature\Personnage\Personnage;
@@ -10,6 +14,7 @@ Use App\Model\Traits\Personnage\Armure;
 Use App\Model\Traits\Personnage\Capacite;
 Use App\Model\Traits\Personnage\Sort;
 Use App\Model\Classe\Factory\FactoryPersonnage;
+Use App\Controllers\ConnexionBdd\Bdd as Bdd;
 Use Exception;
 
 class PersonnageJoueur extends Personnage{
@@ -27,8 +32,8 @@ class PersonnageJoueur extends Personnage{
     protected $identite_poids;
     protected $identite_cheveux;
     protected $identite_yeux;
-    protected $identite_signeparticulier;
-    protected $identite_penalitedencombrement = 0;
+    protected $identite_signeparticulier = '';
+    protected $penalitedencombrement = 0;
 
     // //Argent du joueur 
     protected $money_flouze_biff = 20000;
@@ -176,5 +181,25 @@ class PersonnageJoueur extends Personnage{
             return null;
         }
     }
+
+
+    //BDD
+    //INSERT
+    public function insert_personnage_joueur_identite() 
+    {
+        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) VALUES ('". $this->nom ."', '". $this->identite_race ."', ". $this->identite_taille .", ". $this->identite_age .", ". $this->identite_poids .", '". $this->identite_cheveux ."', '". $this->identite_yeux ."', '". $this->identite_signeparticulier ."', ". $this->money_flouze_biff .", ". $this->point_de_pouvoir_actuelle .", ". $this->point_de_vie .", ". $this->jr_essence_total .", ". $this->jr_theurgie_total .", ". $this->jr_poison_total .", ". $this->jr_maladie_total .");";
+        $this->bdd->query($sql);
+        $last_id = $this->bdd->insert_id;
+        return $last_id;
+    }
+
+    public function insert_personnage_joueur_complementaire() 
+    {
+        $sql = "INSERT INTO `personnage_complementaire` (`id_personnage`, `point_de_vie_max`, `cc_point_de_vie`, `point_de_pouvoir_max`, `cc_point_de_pouvoir`, `base_defensif`, `base_offensif`, `type_armure`, `type_arme`) 
+        VALUES ('". $this->id ."', '". $this->point_de_vie_max ."', '". $this->point_de_vie ."', '". $this->point_de_pouvoir_max ."', '". $this->point_de_pouvoir_actuelle ."',
+        '". $this->base_defensif ."', '". $this->base_offensif ."', '". $this->type_armure ."', '". $this->type_arme ."');";
+        $this->bdd->query($sql);
+    }
+
 
 }

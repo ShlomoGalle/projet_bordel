@@ -371,7 +371,7 @@ $( document ).ready( function() {
             else
             {
                 personnage_finis = 1;
-                $('#button_finish').show();
+                $('#button_finir_mon_personnage').show();
             }
         }
     });
@@ -423,7 +423,7 @@ $( document ).ready( function() {
         if(nb_pts_sort <= 0)
         {
             $('#div_sort_add').hide();
-            $('#button_finish').show();
+            $('#button_finir_mon_personnage').show();
             personnage_finis = 1;
         }
     });

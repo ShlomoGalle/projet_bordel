@@ -19,7 +19,7 @@ class Bdd {
         }
 
         // Create connection
-        $conn = new \mysqli('localhost', "root","","projet_bordel_bdd");
+        $conn = new \mysqli('127.0.0.1', "root","","projet_bordel_bdd");
         // $conn = new \mysqli('localhost', "root","JHDYSkxhe845xsUE!","LielCom");
         $conn->set_charset("utf8");
         // Check connection
@@ -39,6 +39,24 @@ class Bdd {
         
         return $rowtotal;
     }
+
+    public function new_connection(){
+        if (session_status() != PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        // Create connection
+        $conn = new \mysqli('127.0.0.1', "root","","projet_bordel_bdd");
+        // $conn = new \mysqli('localhost', "root","JHDYSkxhe845xsUE!","LielCom");
+        $conn->set_charset("utf8");
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        $this->bdd = $conn;
+    }
+
+
     
 
 }

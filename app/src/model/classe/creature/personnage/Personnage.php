@@ -323,4 +323,57 @@ class Personnage extends Creature {
     }
 
 
+    
+    //BDD
+    //INSERT
+    public function insert_personnage_carac() 
+    {
+        $carac['caracteristique_force_total'] = $this->caracteristique_force_total;
+        $carac['caracteristique_agilite_total'] = $this->caracteristique_agilite_total;
+        $carac['caracteristique_constitution_total'] = $this->caracteristique_constitution_total;
+        $carac['caracteristique_intelligence_total'] = $this->caracteristique_intelligence_total;
+        $carac['caracteristique_intuition_total'] = $this->caracteristique_intuition_total;
+        $carac['caracteristique_presence_total'] = $this->caracteristique_presence_total;
+
+        foreach ($carac as $key => $value) {
+            $sql = "INSERT INTO `personnage_caracteristique` (`id_personnage`, `name`, `val`) 
+            VALUES ('". $this->id ."', '". $key ."', '". $value ."');";
+            $this->bdd->query($sql);
+        }
+    }
+
+    public function insert_personnage_comp() 
+    {
+        $comp['comp_manoeuvreetmouvement_sansarmure_total'] = $this->comp_manoeuvreetmouvement_sansarmure_total;
+        $comp['comp_manoeuvreetmouvement_cuirsouple_total'] = $this->comp_manoeuvreetmouvement_cuirsouple_total;
+        $comp['comp_manoeuvreetmouvement_cuirrigide_total'] = $this->comp_manoeuvreetmouvement_cuirrigide_total;
+        $comp['comp_manoeuvreetmouvement_cottedemaille_total'] = $this->comp_manoeuvreetmouvement_cottedemaille_total;
+        $comp['comp_manoeuvreetmouvement_plate_total'] = $this->comp_manoeuvreetmouvement_plate_total;
+        $comp['comp_arme_tranchantunemain_total'] = $this->comp_arme_tranchantunemain_total;
+        $comp['comp_arme_contondantunemain_total'] = $this->comp_arme_contondantunemain_total;
+        $comp['comp_arme_deuxmains_total'] = $this->comp_arme_deuxmains_total;
+        $comp['comp_arme_armedelance_total'] = $this->comp_arme_armedelance_total;
+        $comp['comp_arme_projectile_total'] = $this->comp_arme_projectile_total;
+        $comp['comp_arme_armedhast_total'] = $this->comp_arme_armedhast_total;
+        $comp['comp_generale_escalade_total'] = $this->comp_generale_escalade_total;
+        $comp['comp_generale_equitation_total'] = $this->comp_generale_equitation_total;
+        $comp['comp_generale_natation_total'] = $this->comp_generale_natation_total;
+        $comp['comp_generale_pistage_total'] = $this->comp_generale_pistage_total;
+        $comp['comp_subterfuge_embuscade_total'] = $this->comp_subterfuge_embuscade_total;
+        $comp['comp_subterfuge_filatdissim_total'] = $this->comp_subterfuge_filatdissim_total;
+        $comp['comp_subterfuge_crochetage_total'] = $this->comp_subterfuge_crochetage_total;
+        $comp['comp_subterfuge_desarmementdepiege_total'] = $this->comp_subterfuge_desarmementdepiege_total;
+        $comp['comp_magie_lecturederune_total'] = $this->comp_magie_lecturederune_total;
+        $comp['comp_magie_utilisationdobjet_total'] = $this->comp_magie_utilisationdobjet_total;
+        $comp['comp_magie_directiondesort_total'] = $this->comp_magie_directiondesort_total;
+        $comp['comp_physique_developcorporel_total'] = $this->comp_physique_developcorporel_total;
+        $comp['comp_physique_perception_total'] = $this->comp_physique_perception_total;
+
+        foreach ($comp as $key => $value) {
+            $sql = "INSERT INTO `personnage_competence` (`id_personnage`, `name`, `val`, `experience`, `niveau`) 
+            VALUES ('". $this->id ."', '". $key ."', '". $value['val'] ."', '". $value['experience_total'] ."', '". $value['niveau'] ."');";
+            $this->bdd->query($sql);
+        }
+    }
+
 }

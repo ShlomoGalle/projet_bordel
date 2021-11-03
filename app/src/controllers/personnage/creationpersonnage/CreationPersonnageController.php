@@ -97,7 +97,7 @@ class CreationPersonnageController extends Bdd {
         parse_str($allPostPutVars['data'],$data_arr);
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        $MonPersonnage->set_nom($data_arr['nom']);
+        $MonPersonnage->set_nom_creature($data_arr['nom']);
         $MonPersonnage->set_identite_taille($data_arr['taille']);
         $MonPersonnage->set_identite_age($data_arr['age']);
         $MonPersonnage->set_identite_poids($data_arr['poids']);
@@ -284,7 +284,15 @@ class CreationPersonnageController extends Bdd {
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
         
         try{
-            
+            //CALCULER LES POINTS DE VIE MAX AVANT
+
+            $MonPersonnage->new_connection();
+            $id = $MonPersonnage->insert_personnage_joueur_identite();
+            $MonPersonnage->set_id_creature($id);
+            // $MonPersonnage->insert_personnage_joueur_complementaire();
+            // $MonPersonnage->insert_personnage_comp();
+            $MonPersonnage->insert_personnage_carac();
+
 
             $data = array(  
                 'success' => 1,

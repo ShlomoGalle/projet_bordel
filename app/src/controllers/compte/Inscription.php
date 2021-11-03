@@ -42,7 +42,12 @@ class Inscription extends bdd {
 
                             $sql = "INSERT INTO `membre` (`pseudo`, `password`) VALUES ('".$pseudo_inscrire."', '".$mdp_inscrire."');";
                             $requser = $this->bdd->query($sql);
-    
+                            
+                            $last_id = $this->bdd->insert_id;
+
+                            $_SESSION['id'] = $last_id;
+                            $_SESSION['pseudo'] = $pseudo_inscrire;
+                            $_SESSION['id_personnage'] = 0;
     
                             $data = array(
                                 'success' => 1, 
