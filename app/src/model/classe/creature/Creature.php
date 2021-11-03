@@ -15,7 +15,7 @@ class Creature extends Bdd {
     protected $type_armure = 0;
     protected $type_arme = 0;
     protected $type_creature = 0; //1 pj, 2 monstre&animaux, 3pnj
-    protected $nom = 0;
+    protected $nom;
 
     //Resistance Créature
     protected $jr_feu = 0;
@@ -32,12 +32,17 @@ class Creature extends Bdd {
     
     //SETTER ET GETTER
     //SETTER
-    public function set_base_defensif($val)
+    public function set_nom(string $val)
+    {
+        $this->nom = $val;
+    }
+
+    public function set_base_defensif(int $val)
     {
         $this->base_defensif = $val;
     }
 
-    public function set_base_offensif($val)
+    public function set_base_offensif(int $val)
     {
         $this->base_offensif = $val;
     }

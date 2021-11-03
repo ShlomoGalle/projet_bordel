@@ -10,15 +10,15 @@ Use Psr\Http\Message\ResponseInterface;
 Trait Armure {
 
     // propriété : 
-    protected $armure_nom;
-    protected $armure_cout;
-    protected $armure_poids;
+    protected $armure_nom  = NULL;
+    protected $armure_cout  = NULL;
+    protected $armure_poids  = NULL;
     //armure_type déjà dans - class créature
     
-    protected $armure_bouclier_type;
-    protected $armure_jambiere_type;
-    protected $armure_brassiere_type;
-    protected $armure_casque_type;
+    protected $armure_bouclier_type = NULL;
+    protected $armure_jambiere_type  = NULL;
+    protected $armure_brassiere_type  = NULL;
+    protected $armure_casque_type  = NULL;
 
     public function __construct()
     {

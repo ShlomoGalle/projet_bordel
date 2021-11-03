@@ -18,17 +18,17 @@ class PersonnageJoueur extends Personnage{
     Use Arme, Armure, Capacite, Sort;
 
     // Endroit ou il se trouve
-    // protected $map_actuelle;
+    protected $map_actuelle = 1;
 
     //Identité :
     protected $identite_race;
-    // protected $identite_taille;
-    // protected $identite_age;
-    // protected $identite_poids;
-    // protected $identite_cheveux;
-    // protected $identite_yeux;
-    // protected $identite_signeparticulier;
-    // protected $identite_penalitedencombrement = 0;
+    protected $identite_taille;
+    protected $identite_age;
+    protected $identite_poids;
+    protected $identite_cheveux;
+    protected $identite_yeux;
+    protected $identite_signeparticulier;
+    protected $identite_penalitedencombrement = 0;
 
     // //Argent du joueur 
     protected $money_flouze_biff = 20000;
@@ -69,7 +69,35 @@ class PersonnageJoueur extends Personnage{
         }  
     }
 
+    //SETTER ET GETTER
     //SETTER
+    //IDENTITE
+    public function set_identite_taille(int $val)
+    {
+        $this->identite_taille = $val;
+    }
+    public function set_identite_age(int $val)
+    {
+        $this->identite_age = $val;
+    }
+    public function set_identite_poids(int $val)
+    {
+        $this->identite_poids = $val;
+    }
+    public function set_identite_cheveux(string $val)
+    {
+        $this->identite_cheveux = $val;
+    }
+    public function set_identite_yeux(string $val)
+    {
+        $this->identite_yeux = $val;
+    }
+    public function set_identite_signeparticulier(string $val)
+    {
+        $this->identite_signeparticulier = $val;
+    }
+
+    //POINT DE POUVOIR
     public function set_point_de_pouvoir_max(int $val)
     {
         $this->point_de_pouvoir_max = $val;
@@ -80,11 +108,13 @@ class PersonnageJoueur extends Personnage{
         $this->point_de_pouvoir_actuelle = $val;
     }
 
+    //ARGENT
     public function set_money_flouze_biff(int $val)
     {
         $this->money_flouze_biff = $val;
     }
 
+    //SORT
     public function set_liste_sort_acquis(string $key, int $val = 1)
     {
         if($this->get_liste_sort_acquis($key) === null)

@@ -29,6 +29,27 @@
     <div id="resumer">
   
     </div>
+
+    <div id="div_identite_add" style="display:none">
+      <form method="POST" id="form_identite">
+        <label for="nom">Nom du personnage :*</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+        <label for="taille">Taille :*</label>
+        <input type="number" id="taille" name="taille"  min="50" max="250" required><br><br>
+        <label for="age">Age :*</label>
+        <input type="number" id="age" name="age" min="15" max="1000" required><br><br>
+        <label for="poids">Poids :*</label>
+        <input type="number" id="poids" name="poids" min="30" max="200" required><br><br>
+        <label for="cheveux">Couleur des cheveux :*</label>
+        <input type="text" id="cheveux" name="cheveux" required><br><br>
+        <label for="yeux">Couleur des yeux :*</label>
+        <input type="text" id="yeux" name="yeux" required><br><br> 
+        <label for="signe_particulier">Signe particulier :</label>
+        <input type="text" id="signe_particulier" name="signe_particulier"><br><br>
+        
+        <input type="submit" value="Valider">
+      </form>
+    </div>
   
     <div id="div_langage_add" style="display:none">
       <div id="div_total_point_langage_add_restant">Il vous reste un total de <span id="span_total_point_langage_add"></span> points de langage.<br /></div>
@@ -238,6 +259,10 @@
       </button>
     </div>
     
+    <button id="button_finir_mon_personnage" style="display: none;">
+      Finir Mon Personnage
+    </button>
+
     <a href="index.html" style="color: darkslategrey;">retour</a>
   
     <div style="margin-bottom: 285px;"></div>  
@@ -248,6 +273,7 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="/src/views/javascript/creationpersonnage.js"></script>
+    <script src="/src/views/javascript/default.js"></script>
 </body>
 
 </html>

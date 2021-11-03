@@ -4,6 +4,13 @@ $( document ).ready( function() {
     var nb_pts_histor = 0;
     var nb_pts_comp = 10;
     var nb_pts_sort = 0;
+    var force = 0;
+    var agilite = 0;
+    var constitution = 0;
+    var intelligence = 0;
+    var intuition = 0;
+    var presence = 0;
+    var personnage_finis = 0;
 
     $('#span_total_point_comp_add').html(nb_pts_comp);
 
@@ -21,21 +28,12 @@ $( document ).ready( function() {
                     $("#resumer").append('Race du joueur : <br />');
                     $("#resumer").append(data.message + '<br /><br />');
                     
-                    var force = entierAleatoire(11,100);
-                    var agilite = entierAleatoire(11,100);
-                    var constitution = entierAleatoire(11,100);
-                    var intelligence = entierAleatoire(11,100);
-                    var intuition = entierAleatoire(11,100);
-                    var presence = entierAleatoire(11,100);
-                    
-                    $("#resumer").append('Resumer des caractéristiques : <br />');
-                    $("#resumer").append('force : <b>' + force + '</b><br />');
-                    $("#resumer").append('agilite : <b>' + agilite + '</b><br />');
-                    $("#resumer").append('constitution : <b>' + constitution + '</b><br />');
-                    $("#resumer").append('intelligence : <b>' + intelligence + '</b><br />');
-                    $("#resumer").append('intuition : <b>' + intuition + '</b><br />');
-                    $("#resumer").append('presence : <b>' + presence + '</b><br /><br />');
-            
+                    force = entierAleatoire(20,100);
+                    agilite = entierAleatoire(20,100);
+                    constitution = entierAleatoire(20,100);
+                    intelligence = entierAleatoire(20,100);
+                    intuition = entierAleatoire(20,100);
+                    presence = entierAleatoire(20,100);
             
                     $.ajax({ ///initialisation des caracteristiques + langage + nb_pts_histor
                         data :{force : force, agilite : agilite, constitution : constitution, intelligence : intelligence, intuition : intuition, presence : presence},
@@ -45,15 +43,8 @@ $( document ).ready( function() {
                             if(data.success == 1){
                                 langage_add = data.langage_add;
                                 nb_pts_histor = data.nb_pts_histor;
-                                if(langage_add >= 1)
-                                {
-                                    $('#div_langage_add').show();
-                                    $('#span_total_point_langage_add').append(langage_add);
-                                }
-                                else{
-                                    $('#div_pts_histor_add').show();
-                                    $('#span_total_point_histor_add').append(nb_pts_histor);
-                                }
+
+                                $('#div_identite_add').show();
                             }
                         }
                     });
@@ -63,6 +54,45 @@ $( document ).ready( function() {
                     $("#resumer").append(data.message + '<br />');
                 }
             }
+        });
+    });
+
+
+    $("#form_identite").submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({ ///IDENTITE
+            data :{
+                data: $(this).serialize()
+            },
+            type: 'POST',
+            async: false,
+            url: "../public/index.php/add_identite", 
+            success: function(data) {
+                if(data.success == 1){
+                    $("#resumer").append('Identité du Personnage : <br />Nom : <b>' + data.nom + '</b><br />Taille : <b>' + data.taille + '</b><br />Age : <b>' + data.age + '</b><br />Poids : <b>' + data.poids + '</b><br />Cheveux : <b>' + data.cheveux + '</b><br />Yeux : <b>' + data.yeux + '</b><br />Signe Particulier : <b>' + data.signe_particulier + '</b><br /><br />');
+
+                    $("#resumer").append('Resumer des caractéristiques : <br />');
+                    $("#resumer").append('force : <b>' + force + '</b><br />');
+                    $("#resumer").append('agilite : <b>' + agilite + '</b><br />');
+                    $("#resumer").append('constitution : <b>' + constitution + '</b><br />');
+                    $("#resumer").append('intelligence : <b>' + intelligence + '</b><br />');
+                    $("#resumer").append('intuition : <b>' + intuition + '</b><br />');
+                    $("#resumer").append('presence : <b>' + presence + '</b><br /><br />');
+
+                    if(langage_add >= 1)
+                    {
+                        $('#div_identite_add').hide();
+                        $('#div_langage_add').show();
+                        $('#span_total_point_langage_add').html(langage_add);
+                    }
+                    else{
+                        $('#div_identite_add').hide();
+                        $('#div_pts_histor_add').show();
+                        $('#span_total_point_histor_add').html(nb_pts_histor);
+                    }
+                }
+            },
         });
     });
 
@@ -333,8 +363,16 @@ $( document ).ready( function() {
         if(nb_pts_comp <= 0)
         {
             $('#div_comp_add').hide();
-            $('#div_sort_add').show();
-            $('#span_total_point_sort_add').html(nb_pts_sort);
+            if(nb_pts_sort > 0)
+            {
+                $('#div_sort_add').show();
+                $('#span_total_point_sort_add').html(nb_pts_sort);
+            }
+            else
+            {
+                personnage_finis = 1;
+                $('#button_finish').show();
+            }
         }
     });
 
@@ -385,8 +423,24 @@ $( document ).ready( function() {
         if(nb_pts_sort <= 0)
         {
             $('#div_sort_add').hide();
+            $('#button_finish').show();
+            personnage_finis = 1;
         }
     });
+
+    $("#button_finir_mon_personnage").click(function() {
+        if(personnage_finis == 1)
+        {
+            $.ajax({ ///Permet d'effecter un var dmp
+                type: 'POST',
+                url: "../public/index.php/finir_mon_personnage",  
+                success: function(data) {
+                    window.location.href('index.html');
+                },
+            });
+        }
+    });
+
 
     $("#var_dump").click(function() {
         $.ajax({ ///Permet d'effecter un var dmp

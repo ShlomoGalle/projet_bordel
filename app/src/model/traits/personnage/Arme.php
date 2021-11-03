@@ -10,15 +10,15 @@ Use Psr\Http\Message\ResponseInterface;
 Trait Arme {
 
     // propriété : 
-    protected $arme_nom;
-    protected $arme_abreviation;
-    protected $arme_cout;
-    protected $arme_poids;
+    protected $arme_nom  = NULL;
+    protected $arme_abreviation  = NULL;
+    protected $arme_cout = NULL;
+    protected $arme_poids = NULL;
     //arme_type déjà dans - class créature
     
-    protected $arme_statistique_maladresse;
-    protected $arme_statistique_coupcritprimaire;
-    protected $arme_statistique_coupcritsecondaire;
+    protected $arme_statistique_maladresse = NULL;
+    protected $arme_statistique_coupcritprimaire = NULL;
+    protected $arme_statistique_coupcritsecondaire = NULL;
     protected $arme_statistique_modifspeciaux = 0;
     protected $arme_statistique_enchantement = 0;
     

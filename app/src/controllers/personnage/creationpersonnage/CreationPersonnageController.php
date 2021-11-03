@@ -44,15 +44,13 @@ class CreationPersonnageController extends Bdd {
                 'message' => '<b>' . $MonPersonnage->get_identite_race() . '</b>',
             );
 
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0, 
             );
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     
@@ -84,17 +82,43 @@ class CreationPersonnageController extends Bdd {
                 'langage_add' => $MonPersonnage->get_nb_degres_langages_additionnel(),
                 'nb_pts_histor' => $MonPersonnage->get_nb_points_histor(),
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
+    }
+
+    function add_identite(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        parse_str($allPostPutVars['data'],$data_arr);
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $MonPersonnage->set_nom($data_arr['nom']);
+        $MonPersonnage->set_identite_taille($data_arr['taille']);
+        $MonPersonnage->set_identite_age($data_arr['age']);
+        $MonPersonnage->set_identite_poids($data_arr['poids']);
+        $MonPersonnage->set_identite_cheveux($data_arr['cheveux']);
+        $MonPersonnage->set_identite_yeux($data_arr['yeux']);
+        $MonPersonnage->set_identite_signeparticulier($data_arr['signe_particulier']);
+
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+        $data = array(
+            'success' => 1, 
+            'nom' => $data_arr['nom'],
+            'taille' => $data_arr['taille'],
+            'age' => $data_arr['age'],
+            'poids' => $data_arr['poids'],
+            'cheveux' => $data_arr['cheveux'],
+            'yeux' => $data_arr['yeux'],
+            'signe_particulier' => $data_arr['signe_particulier'],
+        );
+
+        return $response->withJson($data);
     }
     
     function add_langage_additionnel(ServerRequestInterface $request, ResponseInterface $response)
@@ -113,17 +137,13 @@ class CreationPersonnageController extends Bdd {
                 'success' => 1, 
                 'nb_point' => $val_langage
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     function add_competence_additionnel(ServerRequestInterface $request, ResponseInterface $response)
@@ -143,17 +163,13 @@ class CreationPersonnageController extends Bdd {
                 'success' => 1,
                 'chance_obtenir_liste_sort_pourcentage' => $MonPersonnage->get_chance_obtenir_liste_sort_pourcentage() //Obligé de le faire tout de suite
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     function add_carac_additionnel(ServerRequestInterface $request, ResponseInterface $response)
@@ -171,17 +187,13 @@ class CreationPersonnageController extends Bdd {
             $data = array(  
                 'success' => 1,
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     function add_habilite_speciale(ServerRequestInterface $request, ResponseInterface $response)
@@ -202,17 +214,13 @@ class CreationPersonnageController extends Bdd {
                 'success' => 1,
                 'message' => $message
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     function add_option_finance(ServerRequestInterface $request, ResponseInterface $response)
@@ -233,17 +241,13 @@ class CreationPersonnageController extends Bdd {
                 'success' => 1,
                 'message' => $message
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
     }
 
     function add_sort_additionnel(ServerRequestInterface $request, ResponseInterface $response)
@@ -265,16 +269,32 @@ class CreationPersonnageController extends Bdd {
             $data = array(  
                 'success' => 1,
             );
-    
-            return $response->withJson($data);
-
         }catch(Exception $e){
 
             $data = array(
                 'success' => 0,
             );
-
-            return $response->withJson($data);
         }
+        return $response->withJson($data);
+    }
+
+    function finir_mon_personnage(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+        
+        try{
+            
+
+            $data = array(  
+                'success' => 1,
+            );
+        }catch(Exception $e){
+
+            $data = array(
+                'success' => 0,
+            );
+        }
+        return $response->withJson($data);
     }
 }
