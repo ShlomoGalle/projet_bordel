@@ -12,10 +12,6 @@ Use App\Controllers\ConnexionBdd\Bdd as Bdd;
 
 class Inscription extends bdd {
 
-    const SALAGE = 'd1ès5çq8ç_à/à6)1g_3f';
-    const POIVRAGE = 'è8-7çèg3-2qà8s89d(çà)g'; //Lol
-
-
     function inscription(ServerRequestInterface $request, ResponseInterface $response)
     {
         $allPostPutVars = $request->getParsedBody();
@@ -40,12 +36,25 @@ class Inscription extends bdd {
                     {
                         // $userinfo = $requser->fetch_assoc();
 
+                        if(strlen($pseudo_inscrire) <= 12 && strlen($pseudo_inscrire) >= 4)
+                        {
+                            $mdp_inscrire = md5(self::SALAGE.$mdp_inscrire.self::POIVRAGE);
 
-
-                        $data = array(
-                            'success' => 1, 
-                            'personnage' => $_SESSION['id_personnage'] 
-                        );
+                            $sql = "INSERT INTO `membre` (`pseudo`, `password`) VALUES ('".$pseudo_inscrire."', '".$mdp_inscrire."');";
+                            $requser = $this->bdd->query($sql);
+    
+    
+                            $data = array(
+                                'success' => 1, 
+                            );
+                        }
+                        else
+                        {
+                            $data = array(
+                                'success' => 0,
+                                'erreur' => "Le pseudo doit etre plus long que 3 charactères et moins long que 13 charactères"
+                            );
+                        }
                     }
                     else
                     {

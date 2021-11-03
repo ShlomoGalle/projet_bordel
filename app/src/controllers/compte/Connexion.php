@@ -25,6 +25,8 @@ class Connexion extends bdd {
 
         if(!empty($pseudo_connect) AND !empty($mdp_connect))
         {
+            $mdp_connect = md5(self::SALAGE.$mdp_connect.self::POIVRAGE);
+            
             $sql = "SELECT * FROM membre WHERE pseudo = '".$pseudo_connect."' AND password = '".$mdp_connect."'";
             $requser = $this->bdd->query($sql);
 

@@ -7,7 +7,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 class Bdd {
-
+    const SALAGE = 'd1ès5çq8ç_à/à6)1g_3f';
+    const POIVRAGE = 'è8-7çèg3-2qà8s89d(çà)g'; //Lol
+    
     protected $bdd; 
 
     public function __construct(){

@@ -91,7 +91,7 @@ $( document ).ready( function() {
                     }
                     else
                     {
-                        $('#erreur_connexion').html(data.erreur);
+                        $('#erreur_inscription').html(data.erreur);
                     }
                 }
             });
