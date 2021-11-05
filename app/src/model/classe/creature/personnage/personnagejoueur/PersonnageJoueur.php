@@ -187,7 +187,7 @@ class PersonnageJoueur extends Personnage{
     //INSERT
     public function insert_personnage_joueur_identite() 
     {
-        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) VALUES ('". $this->nom ."', '". $this->identite_race ."', ". $this->identite_taille .", ". $this->identite_age .", ". $this->identite_poids .", '". $this->identite_cheveux ."', '". $this->identite_yeux ."', '". $this->identite_signeparticulier ."', ". $this->money_flouze_biff .", ". $this->point_de_pouvoir_actuelle .", ". $this->point_de_vie .", ". $this->jr_essence_total .", ". $this->jr_theurgie_total .", ". $this->jr_poison_total .", ". $this->jr_maladie_total .");";
+        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->money_flouze_biff) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
         $this->bdd->query($sql);
         $last_id = $this->bdd->insert_id;
         return $last_id;
@@ -196,8 +196,8 @@ class PersonnageJoueur extends Personnage{
     public function insert_personnage_joueur_complementaire() 
     {
         $sql = "INSERT INTO `personnage_complementaire` (`id_personnage`, `point_de_vie_max`, `cc_point_de_vie`, `point_de_pouvoir_max`, `cc_point_de_pouvoir`, `base_defensif`, `base_offensif`, `type_armure`, `type_arme`) 
-        VALUES ('". $this->id ."', '". $this->point_de_vie_max ."', '". $this->point_de_vie ."', '". $this->point_de_pouvoir_max ."', '". $this->point_de_pouvoir_actuelle ."',
-        '". $this->base_defensif ."', '". $this->base_offensif ."', '". $this->type_armure ."', '". $this->type_arme ."');";
+        VALUES ('". $this->bdd->real_escape_string($this->id) ."', '". $this->bdd->real_escape_string($this->point_de_vie_max) ."', '". $this->bdd->real_escape_string($this->point_de_vie) ."', '". $this->bdd->real_escape_string($this->point_de_pouvoir_max) ."', '". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) ."',
+        '". $this->bdd->real_escape_string($this->base_defensif) ."', '". $this->bdd->real_escape_string($this->base_offensif) ."', '". $this->bdd->real_escape_string($this->type_armure) ."', '". $this->bdd->real_escape_string($this->type_arme) ."');";
         $this->bdd->query($sql);
     }
 

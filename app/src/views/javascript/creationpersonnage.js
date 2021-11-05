@@ -435,7 +435,7 @@ $( document ).ready( function() {
                 type: 'POST',
                 url: "../public/index.php/finir_mon_personnage",  
                 success: function(data) {
-                    window.location.href('index.html');
+                    window.location.href = 'index.html';
                 },
             });
         }

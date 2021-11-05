@@ -41,4 +41,21 @@ Trait Capacite {
     {
         return $this->capacite_vision_nocturne;
     }
+
+    public function insert_personnage_capacite()
+    {
+        $capacite['id_personnage'] = $this->id;
+        $capacite['capacite_infravision'] = $this->capacite_infravision;
+        $capacite['capacite_vision_nocturne'] = $this->capacite_vision_nocturne;
+
+        foreach ($capacite as $key => $value) {
+            if($value == 1)
+            {
+                $sql = "INSERT INTO `personnage_capacite` (`id_personnage`, `name`) VALUES ('" . $this->id . "' , '" . $key . "');";
+                $this->bdd->query($sql);
+                // var_dump($sql);
+            }
+        }
+
+    }
 }

@@ -345,9 +345,4 @@ Trait DetailComp {
         return $this->comp_physique_perception[$key];
     }
 
-
-
-    
-
-
 }

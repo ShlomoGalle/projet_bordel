@@ -198,4 +198,45 @@ Trait Langue {
     public function get_langue_Westron(){
         return $this->langue_Westron;
     }
+
+    //BDD
+    //INSERT
+    public function insert_personnage_language()
+    {
+        $langue['id_personnage'] = $this->id;
+        $langue['Adunaic'] = $this->langue_Adunaic;
+        $langue['Apysaic'] = $this->langue_Apysaic;
+        $langue['Atliduk'] = $this->langue_Atliduk;
+        $langue['Haradaic'] = $this->langue_Haradaic;
+        $langue['Khuzdul'] = $this->langue_Khuzdul;
+        $langue['Kuduk'] = $this->langue_Kuduk;
+        $langue['Labba'] = $this->langue_Labba;
+        $langue['Logathig'] = $this->langue_Logathig;
+        $langue['Nahaiduk'] = $this->langue_Nahaiduk;
+        $langue['Noirparler'] = $this->langue_Noirparler;
+        $langue['Orque'] = $this->langue_Orque;
+        $langue['Pukael'] = $this->langue_Pukael;
+        $langue['Quenya'] = $this->langue_Quenya;
+        $langue['Rohirric'] = $this->langue_Rohirric;
+        $langue['Sindarin'] = $this->langue_Sindarin;
+        $langue['Sylvain'] = $this->langue_Sylvain;
+        $langue['Umitic'] = $this->langue_Umitic;
+        $langue['Varadja'] = $this->langue_Varadja;
+        $langue['Waildyth'] = $this->langue_Waildyth;
+        $langue['Westron'] = $this->langue_Westron;
+
+        $sql = "INSERT INTO `personnage_langue` (";
+        foreach ($langue as $key => $value) {
+            $sql .= "`".$key."`,";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ") VALUES (";
+        foreach ($langue as $key => $value) {
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ");";
+
+        $this->bdd->query($sql);
+    }
 }

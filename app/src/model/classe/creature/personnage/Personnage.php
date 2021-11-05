@@ -337,7 +337,7 @@ class Personnage extends Creature {
 
         foreach ($carac as $key => $value) {
             $sql = "INSERT INTO `personnage_caracteristique` (`id_personnage`, `name`, `val`) 
-            VALUES ('". $this->id ."', '". $key ."', '". $value ."');";
+            VALUES ('". $this->id ."', '". $this->bdd->real_escape_string($key) ."', '". $this->bdd->real_escape_string($value) ."');";
             $this->bdd->query($sql);
         }
     }
@@ -371,7 +371,7 @@ class Personnage extends Creature {
 
         foreach ($comp as $key => $value) {
             $sql = "INSERT INTO `personnage_competence` (`id_personnage`, `name`, `val`, `experience`, `niveau`) 
-            VALUES ('". $this->id ."', '". $key ."', '". $value['val'] ."', '". $value['experience_total'] ."', '". $value['niveau'] ."');";
+            VALUES ('". $this->id ."', '". $this->bdd->real_escape_string($key) ."', '". $this->bdd->real_escape_string($value['val']) ."', '". $this->bdd->real_escape_string($value['experience_total']) ."', '". $this->bdd->real_escape_string($value['niveau']) ."');";
             $this->bdd->query($sql);
         }
     }
