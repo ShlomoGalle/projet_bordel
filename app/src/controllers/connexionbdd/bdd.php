@@ -57,6 +57,23 @@ class Bdd {
     }
 
 
+    public function insert_since_array($name_table, $array){
+        $sql = "INSERT INTO `".$name_table."` (";
+        foreach ($array as $key => $value) {
+            $sql .= "`".$this->bdd->real_escape_string($key)."`,";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ") VALUES (";
+        foreach ($array as $key => $value) {
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ");";
+
+        $this->bdd->query($sql);
+    }
+
+
     
 
 }

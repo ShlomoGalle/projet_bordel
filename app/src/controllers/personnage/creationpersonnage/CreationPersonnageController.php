@@ -290,11 +290,15 @@ class CreationPersonnageController extends Bdd {
             $id = $MonPersonnage->insert_personnage_joueur_identite();
             $MonPersonnage->set_id_creature($id);
             // $MonPersonnage->insert_personnage_joueur_complementaire();
-            // $MonPersonnage->insert_personnage_comp(); //
-            // $MonPersonnage->insert_personnage_carac(); //
+            // $MonPersonnage->insert_personnage_comp();
+            // $MonPersonnage->insert_personnage_carac(); 
             // $MonPersonnage->insert_personnage_language();
-            // $MonPersonnage->insert_personnage_capacite(); //
-            // $MonPersonnage->insert_detail_personnage_comp(); //
+            // $MonPersonnage->insert_personnage_capacite(); 
+            // $MonPersonnage->insert_personnage_liste_sort(); 
+            // $MonPersonnage->insert_detail_personnage_comp(); 
+            // $MonPersonnage->insert_detail_personnage_carac(); 
+            // $MonPersonnage->insert_detail_personnage_jr_bd_bo(); 
+            // $MonPersonnage->insert_detail_personnage_autre(); 
 
 
             $data = array(  

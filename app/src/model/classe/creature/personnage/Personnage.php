@@ -328,6 +328,7 @@ class Personnage extends Creature {
     //INSERT
     public function insert_personnage_carac() 
     {
+        $carac['id_personnage'] = $this->id;
         $carac['caracteristique_force_total'] = $this->caracteristique_force_total;
         $carac['caracteristique_agilite_total'] = $this->caracteristique_agilite_total;
         $carac['caracteristique_constitution_total'] = $this->caracteristique_constitution_total;
@@ -335,45 +336,87 @@ class Personnage extends Creature {
         $carac['caracteristique_intuition_total'] = $this->caracteristique_intuition_total;
         $carac['caracteristique_presence_total'] = $this->caracteristique_presence_total;
 
-        foreach ($carac as $key => $value) {
-            $sql = "INSERT INTO `personnage_caracteristique` (`id_personnage`, `name`, `val`) 
-            VALUES ('". $this->id ."', '". $this->bdd->real_escape_string($key) ."', '". $this->bdd->real_escape_string($value) ."');";
-            $this->bdd->query($sql);
-        }
+        $this->insert_since_array("personnage_caracteristique", $carac);
     }
 
     public function insert_personnage_comp() 
     {
-        $comp['comp_manoeuvreetmouvement_sansarmure_total'] = $this->comp_manoeuvreetmouvement_sansarmure_total;
-        $comp['comp_manoeuvreetmouvement_cuirsouple_total'] = $this->comp_manoeuvreetmouvement_cuirsouple_total;
-        $comp['comp_manoeuvreetmouvement_cuirrigide_total'] = $this->comp_manoeuvreetmouvement_cuirrigide_total;
-        $comp['comp_manoeuvreetmouvement_cottedemaille_total'] = $this->comp_manoeuvreetmouvement_cottedemaille_total;
-        $comp['comp_manoeuvreetmouvement_plate_total'] = $this->comp_manoeuvreetmouvement_plate_total;
-        $comp['comp_arme_tranchantunemain_total'] = $this->comp_arme_tranchantunemain_total;
-        $comp['comp_arme_contondantunemain_total'] = $this->comp_arme_contondantunemain_total;
-        $comp['comp_arme_deuxmains_total'] = $this->comp_arme_deuxmains_total;
-        $comp['comp_arme_armedelance_total'] = $this->comp_arme_armedelance_total;
-        $comp['comp_arme_projectile_total'] = $this->comp_arme_projectile_total;
-        $comp['comp_arme_armedhast_total'] = $this->comp_arme_armedhast_total;
-        $comp['comp_generale_escalade_total'] = $this->comp_generale_escalade_total;
-        $comp['comp_generale_equitation_total'] = $this->comp_generale_equitation_total;
-        $comp['comp_generale_natation_total'] = $this->comp_generale_natation_total;
-        $comp['comp_generale_pistage_total'] = $this->comp_generale_pistage_total;
-        $comp['comp_subterfuge_embuscade_total'] = $this->comp_subterfuge_embuscade_total;
-        $comp['comp_subterfuge_filatdissim_total'] = $this->comp_subterfuge_filatdissim_total;
-        $comp['comp_subterfuge_crochetage_total'] = $this->comp_subterfuge_crochetage_total;
-        $comp['comp_subterfuge_desarmementdepiege_total'] = $this->comp_subterfuge_desarmementdepiege_total;
-        $comp['comp_magie_lecturederune_total'] = $this->comp_magie_lecturederune_total;
-        $comp['comp_magie_utilisationdobjet_total'] = $this->comp_magie_utilisationdobjet_total;
-        $comp['comp_magie_directiondesort_total'] = $this->comp_magie_directiondesort_total;
-        $comp['comp_physique_developcorporel_total'] = $this->comp_physique_developcorporel_total;
-        $comp['comp_physique_perception_total'] = $this->comp_physique_perception_total;
+        $comp['id_personnage'] = $this->id;
+        $comp['comp_manoeuvreetmouvement_sansarmure_total_val'] = $this->comp_manoeuvreetmouvement_sansarmure_total['val'];
+        $comp['comp_manoeuvreetmouvement_sansarmure_total_experience'] = $this->comp_manoeuvreetmouvement_sansarmure_total['experience_total'];
+        $comp['comp_manoeuvreetmouvement_sansarmure_total_niveau'] = $this->comp_manoeuvreetmouvement_sansarmure_total['niveau'];
+        $comp['comp_manoeuvreetmouvement_cuirsouple_total_val'] = $this->comp_manoeuvreetmouvement_cuirsouple_total['val'];
+        $comp['comp_manoeuvreetmouvement_cuirsouple_total_experience'] = $this->comp_manoeuvreetmouvement_cuirsouple_total['experience_total'];
+        $comp['comp_manoeuvreetmouvement_cuirsouple_total_niveau'] = $this->comp_manoeuvreetmouvement_cuirsouple_total['niveau'];
+        $comp['comp_manoeuvreetmouvement_cuirrigide_total_val'] = $this->comp_manoeuvreetmouvement_cuirrigide_total['val'];
+        $comp['comp_manoeuvreetmouvement_cuirrigide_total_experience'] = $this->comp_manoeuvreetmouvement_cuirrigide_total['experience_total'];
+        $comp['comp_manoeuvreetmouvement_cuirrigide_total_niveau'] = $this->comp_manoeuvreetmouvement_cuirrigide_total['niveau'];
+        $comp['comp_manoeuvreetmouvement_cottedemaille_total_val'] = $this->comp_manoeuvreetmouvement_cottedemaille_total['val'];
+        $comp['comp_manoeuvreetmouvement_cottedemaille_total_experience'] = $this->comp_manoeuvreetmouvement_cottedemaille_total['experience_total'];
+        $comp['comp_manoeuvreetmouvement_cottedemaille_total_niveau'] = $this->comp_manoeuvreetmouvement_cottedemaille_total['niveau'];
+        $comp['comp_manoeuvreetmouvement_plate_total_val'] = $this->comp_manoeuvreetmouvement_plate_total['val'];
+        $comp['comp_manoeuvreetmouvement_plate_total_experience'] = $this->comp_manoeuvreetmouvement_plate_total['experience_total'];
+        $comp['comp_manoeuvreetmouvement_plate_total_niveau'] = $this->comp_manoeuvreetmouvement_plate_total['niveau'];
+        $comp['comp_arme_tranchantunemain_total_val'] = $this->comp_arme_tranchantunemain_total['val'];
+        $comp['comp_arme_tranchantunemain_total_experience'] = $this->comp_arme_tranchantunemain_total['experience_total'];
+        $comp['comp_arme_tranchantunemain_total_niveau'] = $this->comp_arme_tranchantunemain_total['niveau'];
+        $comp['comp_arme_contondantunemain_total_val'] = $this->comp_arme_contondantunemain_total['val'];
+        $comp['comp_arme_contondantunemain_total_experience'] = $this->comp_arme_contondantunemain_total['experience_total'];
+        $comp['comp_arme_contondantunemain_total_niveau'] = $this->comp_arme_contondantunemain_total['niveau'];
+        $comp['comp_arme_deuxmains_total_val'] = $this->comp_arme_deuxmains_total['val'];
+        $comp['comp_arme_deuxmains_total_experience'] = $this->comp_arme_deuxmains_total['experience_total'];
+        $comp['comp_arme_deuxmains_total_niveau'] = $this->comp_arme_deuxmains_total['niveau'];
+        $comp['comp_arme_armedelance_total_val'] = $this->comp_arme_armedelance_total['val'];
+        $comp['comp_arme_armedelance_total_experience'] = $this->comp_arme_armedelance_total['experience_total'];
+        $comp['comp_arme_armedelance_total_niveau'] = $this->comp_arme_armedelance_total['niveau'];
+        $comp['comp_arme_projectile_total_val'] = $this->comp_arme_projectile_total['val'];
+        $comp['comp_arme_projectile_total_experience'] = $this->comp_arme_projectile_total['experience_total'];
+        $comp['comp_arme_projectile_total_niveau'] = $this->comp_arme_projectile_total['niveau'];
+        $comp['comp_arme_armedhast_total_val'] = $this->comp_arme_armedhast_total['val'];
+        $comp['comp_arme_armedhast_total_experience'] = $this->comp_arme_armedhast_total['experience_total'];
+        $comp['comp_arme_armedhast_total_niveau'] = $this->comp_arme_armedhast_total['niveau'];
+        $comp['comp_generale_escalade_total_val'] = $this->comp_generale_escalade_total['val'];
+        $comp['comp_generale_escalade_total_experience'] = $this->comp_generale_escalade_total['experience_total'];
+        $comp['comp_generale_escalade_total_niveau'] = $this->comp_generale_escalade_total['niveau'];
+        $comp['comp_generale_equitation_total_val'] = $this->comp_generale_equitation_total['val'];
+        $comp['comp_generale_equitation_total_experience'] = $this->comp_generale_equitation_total['experience_total'];
+        $comp['comp_generale_equitation_total_niveau'] = $this->comp_generale_equitation_total['niveau'];
+        $comp['comp_generale_natation_total_val'] = $this->comp_generale_natation_total['val'];
+        $comp['comp_generale_natation_total_experience'] = $this->comp_generale_natation_total['experience_total'];
+        $comp['comp_generale_natation_total_niveau'] = $this->comp_generale_natation_total['niveau'];
+        $comp['comp_generale_pistage_total_val'] = $this->comp_generale_pistage_total['val'];
+        $comp['comp_generale_pistage_total_experience'] = $this->comp_generale_pistage_total['experience_total'];
+        $comp['comp_generale_pistage_total_niveau'] = $this->comp_generale_pistage_total['niveau'];
+        $comp['comp_subterfuge_embuscade_total_val'] = $this->comp_subterfuge_embuscade_total['val'];
+        $comp['comp_subterfuge_embuscade_total_experience'] = $this->comp_subterfuge_embuscade_total['experience_total'];
+        $comp['comp_subterfuge_embuscade_total_niveau'] = $this->comp_subterfuge_embuscade_total['niveau'];
+        $comp['comp_subterfuge_filatdissim_total_val'] = $this->comp_subterfuge_filatdissim_total['val'];
+        $comp['comp_subterfuge_filatdissim_total_experience'] = $this->comp_subterfuge_filatdissim_total['experience_total'];
+        $comp['comp_subterfuge_filatdissim_total_niveau'] = $this->comp_subterfuge_filatdissim_total['niveau'];
+        $comp['comp_subterfuge_crochetage_total_val'] = $this->comp_subterfuge_crochetage_total['val'];
+        $comp['comp_subterfuge_crochetage_total_experience'] = $this->comp_subterfuge_crochetage_total['experience_total'];
+        $comp['comp_subterfuge_crochetage_total_niveau'] = $this->comp_subterfuge_crochetage_total['niveau'];
+        $comp['comp_subterfuge_desarmementdepiege_total_val'] = $this->comp_subterfuge_desarmementdepiege_total['val'];
+        $comp['comp_subterfuge_desarmementdepiege_total_experience'] = $this->comp_subterfuge_desarmementdepiege_total['experience_total'];
+        $comp['comp_subterfuge_desarmementdepiege_total_niveau'] = $this->comp_subterfuge_desarmementdepiege_total['niveau'];
+        $comp['comp_magie_lecturederune_total_val'] = $this->comp_magie_lecturederune_total['val'];
+        $comp['comp_magie_lecturederune_total_experience'] = $this->comp_magie_lecturederune_total['experience_total'];
+        $comp['comp_magie_lecturederune_total_niveau'] = $this->comp_magie_lecturederune_total['niveau'];
+        $comp['comp_magie_utilisationdobjet_total_val'] = $this->comp_magie_utilisationdobjet_total['val'];
+        $comp['comp_magie_utilisationdobjet_total_experience'] = $this->comp_magie_utilisationdobjet_total['experience_total'];
+        $comp['comp_magie_utilisationdobjet_total_niveau'] = $this->comp_magie_utilisationdobjet_total['niveau'];
+        $comp['comp_magie_directiondesort_total_val'] = $this->comp_magie_directiondesort_total['val'];
+        $comp['comp_magie_directiondesort_total_experience'] = $this->comp_magie_directiondesort_total['experience_total'];
+        $comp['comp_magie_directiondesort_total_niveau'] = $this->comp_magie_directiondesort_total['niveau'];
+        $comp['comp_physique_developcorporel_total_val'] = $this->comp_physique_developcorporel_total['val'];
+        $comp['comp_physique_developcorporel_total_experience'] = $this->comp_physique_developcorporel_total['experience_total'];
+        $comp['comp_physique_developcorporel_total_niveau'] = $this->comp_physique_developcorporel_total['niveau'];
+        $comp['comp_physique_perception_total_val'] = $this->comp_physique_perception_total['val'];
+        $comp['comp_physique_perception_total_experience'] = $this->comp_physique_perception_total['experience_total'];
+        $comp['comp_physique_perception_total_niveau'] = $this->comp_physique_perception_total['niveau'];
 
-        foreach ($comp as $key => $value) {
-            $sql = "INSERT INTO `personnage_competence` (`id_personnage`, `name`, `val`, `experience`, `niveau`) 
-            VALUES ('". $this->id ."', '". $this->bdd->real_escape_string($key) ."', '". $this->bdd->real_escape_string($value['val']) ."', '". $this->bdd->real_escape_string($value['experience_total']) ."', '". $this->bdd->real_escape_string($value['niveau']) ."');";
-            $this->bdd->query($sql);
-        }
+        $this->insert_since_array("personnage_competence", $comp);
+        
     }
 
 }

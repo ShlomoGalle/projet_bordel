@@ -201,5 +201,23 @@ class PersonnageJoueur extends Personnage{
         $this->bdd->query($sql);
     }
 
+    public function insert_personnage_liste_sort()
+    {
+        foreach ($this->liste_sort_acquis as $key => $value) {
+            $liste['id_personnage'] = $this->id;
+            $liste['liste'] = $key;
+            $liste['acquis'] = 1;
 
+            $this->insert_since_array("personnage_liste_sort", $liste);
+        }
+
+        foreach ($this->liste_sort_apprentissage as $key => $value) {
+            $liste['id_personnage'] = $this->id;
+            $liste['liste'] = $key;
+            $liste['acquis'] = 0;
+            $liste['apprentissage'] = $value;
+
+            $this->insert_since_array("personnage_liste_sort", $liste);
+        }
+    }
 }

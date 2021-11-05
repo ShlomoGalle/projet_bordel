@@ -225,18 +225,6 @@ Trait Langue {
         $langue['Waildyth'] = $this->langue_Waildyth;
         $langue['Westron'] = $this->langue_Westron;
 
-        $sql = "INSERT INTO `personnage_langue` (";
-        foreach ($langue as $key => $value) {
-            $sql .= "`".$key."`,";
-        }
-        $sql = substr($sql, 0, -1);
-        $sql .= ") VALUES (";
-        foreach ($langue as $key => $value) {
-            $sql .= "'". $this->bdd->real_escape_string($value)."',";
-        }
-        $sql = substr($sql, 0, -1);
-        $sql .= ");";
-
-        $this->bdd->query($sql);
+        $this->insert_since_array("personnage_langue", $langue);
     }
 }
