@@ -85,6 +85,7 @@ class FactoryPersonnage extends Factory {
         return $val;
     }
 
+    //INFOOO : Si je veux augmenter mes degres de +10, ca equivaut à 2 lvl, donc degré = 2, et ca augmente de 10 mes degrés
     public function switch_set_comp($MonPersonnage, int $val, string $key = 'degre') //Incremente les degres dans les comp
     {
         switch ($this->selected) {
@@ -317,6 +318,7 @@ class FactoryPersonnage extends Factory {
                 $bonus_actuel = $MonPersonnage->get_comp_physique_developcorporel($key);      
                 $val = $this->switch_convertir_degre_en_bonus($bonus_actuel, $val);            
                 $MonPersonnage->set_comp_physique_developcorporel($val, $key);
+                $MonPersonnage->set_point_de_vie_max_personnage_joueur(); //Recalcul les pv du personnages quand on modifie les stat du dev corporel
                 break;
             
             case 'comp_physique_perception':

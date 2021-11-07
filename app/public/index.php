@@ -23,6 +23,13 @@ $app->post('/var_dump',App\Controllers\Personnage\CreationPersonnage\CreationPer
 // TOUTES LES FONCTIONS PAR DEFAULT
 $app->post('/default',App\Controllers\DefaultFunction::class.':default');
 
+// CONNEXION A SON COMPTE (et deconnexion)
+$app->post('/connexion',App\Controllers\Compte\Connexion::class.':connexion');
+$app->post('/deconnexion',App\Controllers\Compte\Connexion::class.':deconnexion');
+
+//INSCRIPTION
+$app->post('/inscription',App\Controllers\Compte\Inscription::class.':inscription');
+
 
 // CREATION DE PERSONNAGE
 $app->post('/initialisation_caracteristique',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':initialisation_caracteristique');
@@ -36,13 +43,7 @@ $app->post('/add_option_finance',App\Controllers\Personnage\CreationPersonnage\C
 $app->post('/add_sort_additionnel',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':add_sort_additionnel');
 $app->post('/finir_mon_personnage',App\Controllers\Personnage\CreationPersonnage\CreationPersonnageController::class.':finir_mon_personnage');
 
-
-// CONNEXION A SON COMPTE (et deconnexion)
-$app->post('/connexion',App\Controllers\Compte\Connexion::class.':connexion');
-$app->post('/deconnexion',App\Controllers\Compte\Connexion::class.':deconnexion');
-
-
-//INSCRIPTION
-$app->post('/inscription',App\Controllers\Compte\Inscription::class.':inscription');
+// CARTE
+$app->post('/get_info_carte',App\Controllers\Carte\CarteController::class.':get_info_carte');
 
 $app->run();

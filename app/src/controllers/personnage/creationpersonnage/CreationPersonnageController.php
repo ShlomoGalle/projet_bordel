@@ -67,7 +67,7 @@ class CreationPersonnageController extends Bdd {
         $caracteristique['presence'] = $allPostPutVars['presence'];
         // $caracteristique['force'] = 98;
         // $caracteristique['agilite'] = 70;
-        // $caracteristique['constitution'] = 90;
+        // $caracteristique['constitution'] = 95;
         // $caracteristique['intelligence'] = 95;
         // $caracteristique['intuition'] = 74;
         // $caracteristique['presence'] = 50;
@@ -284,22 +284,23 @@ class CreationPersonnageController extends Bdd {
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
         
         try{
-            //CALCULER LES POINTS DE VIE MAX AVANT
-
             $MonPersonnage->new_connection();
             $id = $MonPersonnage->insert_personnage_joueur_identite();
             $MonPersonnage->set_id_creature($id);
-            // $MonPersonnage->insert_personnage_joueur_complementaire();
-            // $MonPersonnage->insert_personnage_comp();
-            // $MonPersonnage->insert_personnage_carac(); 
-            // $MonPersonnage->insert_personnage_language();
-            // $MonPersonnage->insert_personnage_capacite(); 
-            // $MonPersonnage->insert_personnage_liste_sort(); 
-            // $MonPersonnage->insert_detail_personnage_comp(); 
-            // $MonPersonnage->insert_detail_personnage_carac(); 
-            // $MonPersonnage->insert_detail_personnage_jr_bd_bo(); 
-            // $MonPersonnage->insert_detail_personnage_autre(); 
+            $MonPersonnage->insert_personnage_joueur_complementaire();
+            $MonPersonnage->insert_personnage_comp();
+            $MonPersonnage->insert_personnage_carac(); 
+            $MonPersonnage->insert_personnage_language();
+            $MonPersonnage->insert_personnage_capacite(); 
+            $MonPersonnage->insert_personnage_liste_sort(); 
+            $MonPersonnage->insert_detail_personnage_comp(); 
+            $MonPersonnage->insert_detail_personnage_carac(); 
+            $MonPersonnage->insert_detail_personnage_jr_bd_bo(); 
+            $MonPersonnage->insert_detail_personnage_autre(); 
 
+            $array['id_personnage'] = $id;
+            $where['id'] = $_SESSION['id'];
+            $sql = $MonPersonnage->update_since_array('membre', $array, $where);
 
             $data = array(  
                 'success' => 1,

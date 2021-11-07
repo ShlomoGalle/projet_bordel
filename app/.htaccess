@@ -3,4 +3,6 @@ RewriteRule ^index.html$ /src/views/html/index.html [L]
 RewriteRule ^$ /src/views/html/index.html [L]
 
 RewriteRule ^creationpersonnage.html$ /src/views/html/creationpersonnage.html [L]
+RewriteRule ^carte.html$ /src/views/html/carte.html [L]
+RewriteRule ^personnage.html$ /src/views/html/personnage.html [L]
 

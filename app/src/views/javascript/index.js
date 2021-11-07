@@ -1,6 +1,6 @@
 $( document ).ready( function() {
     var connected = 0;
-    var personnage_exist = 0;
+    var personnage = 0;
 
     $.ajax({
         type: 'POST',
@@ -11,10 +11,10 @@ $( document ).ready( function() {
                 if(data.connected == 1)
                 {
                     connected = 1;
-                    if(data.personnage_exist == 1)
+                    if(data.personnage != 0)
                     {
                         $('#avec_personnage').show(); 
-                        personnage_exist = 1;
+                        personnage = data.personnage;
                     }
                     else
                     {
@@ -46,7 +46,7 @@ $( document ).ready( function() {
                     {
                         $('#connexion_inscription').hide();
     
-                        if(data.personnage == 1){
+                        if(data.personnage != 0){
                             $('#avec_personnage').show();
                             $('#deconnexion').show();
                         }
@@ -79,15 +79,9 @@ $( document ).ready( function() {
                     if(data.success == 1)
                     {
                         $('#connexion_inscription').hide();
-    
-                        if(data.personnage == 1){
-                            $('#avec_personnage').show();
-                            $('#deconnexion').show();
-                        }
-                        else{
-                            $('#sans_personnage').show();
-                            $('#deconnexion').show();
-                        }
+                        
+                        $('#sans_personnage').show();
+                        $('#deconnexion').show();
                     }
                     else
                     {

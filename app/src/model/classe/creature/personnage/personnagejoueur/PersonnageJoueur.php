@@ -23,7 +23,7 @@ class PersonnageJoueur extends Personnage{
     Use Arme, Armure, Capacite, Sort;
 
     // Endroit ou il se trouve
-    protected $map_actuelle = 1;
+    protected $id_carte_actuelle = 1;
 
     //Identité :
     protected $identite_race;
@@ -100,6 +100,13 @@ class PersonnageJoueur extends Personnage{
     public function set_identite_signeparticulier(string $val)
     {
         $this->identite_signeparticulier = $val;
+    }
+
+    //PV
+    public function set_point_de_vie_max_personnage_joueur()
+    {
+        $this->set_point_de_vie_max($this->comp_physique_developcorporel_total['val']);
+        $this->set_point_de_vie($this->comp_physique_developcorporel_total['val']);
     }
 
     //POINT DE POUVOIR
@@ -187,7 +194,8 @@ class PersonnageJoueur extends Personnage{
     //INSERT
     public function insert_personnage_joueur_identite() 
     {
-        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->money_flouze_biff) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
+        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `id_carte_actuelle`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) 
+        VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->id_carte_actuelle) .", ". $this->bdd->real_escape_string($this->money_flouze_biff) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
         $this->bdd->query($sql);
         $last_id = $this->bdd->insert_id;
         return $last_id;
@@ -203,21 +211,27 @@ class PersonnageJoueur extends Personnage{
 
     public function insert_personnage_liste_sort()
     {
-        foreach ($this->liste_sort_acquis as $key => $value) {
-            $liste['id_personnage'] = $this->id;
-            $liste['liste'] = $key;
-            $liste['acquis'] = 1;
-
-            $this->insert_since_array("personnage_liste_sort", $liste);
+        if(isset($this->liste_sort_acquis))
+        {
+            foreach ($this->liste_sort_acquis as $key => $value) {
+                $liste['id_personnage'] = $this->id;
+                $liste['liste'] = $key;
+                $liste['acquis'] = 1;
+    
+                $this->insert_since_array("personnage_liste_sort", $liste);
+            }
         }
 
-        foreach ($this->liste_sort_apprentissage as $key => $value) {
-            $liste['id_personnage'] = $this->id;
-            $liste['liste'] = $key;
-            $liste['acquis'] = 0;
-            $liste['apprentissage'] = $value;
-
-            $this->insert_since_array("personnage_liste_sort", $liste);
+        if(isset($this->liste_sort_apprentissage))
+        {
+            foreach ($this->liste_sort_apprentissage as $key => $value) {
+                $liste['id_personnage'] = $this->id;
+                $liste['liste'] = $key;
+                $liste['acquis'] = 0;
+                $liste['apprentissage'] = $value;
+    
+                $this->insert_since_array("personnage_liste_sort", $liste);
+            }
         }
     }
 }

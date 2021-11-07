@@ -43,6 +43,16 @@ class Creature extends Bdd {
         $this->nom = $val;
     }
 
+    public function set_point_de_vie(int $val)
+    {
+        $this->point_de_vie = $val;
+    }
+
+    public function set_point_de_vie_max(string $val)
+    {
+        $this->point_de_vie_max = $val;
+    }
+
     public function set_base_defensif(int $val)
     {
         $this->base_defensif = $val;

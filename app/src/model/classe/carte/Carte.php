@@ -18,7 +18,6 @@ class Carte extends Bdd {
     public function __construct()
     {
         parent::__construct();
-
     }
     
     // //SETTER ET GETTER

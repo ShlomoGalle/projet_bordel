@@ -12,7 +12,7 @@ Trait Arme {
     // propriété : 
     protected $arme_nom  = NULL;
     protected $arme_abreviation  = NULL;
-    protected $arme_cout = NULL;
+    protected $arme_prix = NULL;
     protected $arme_poids = NULL;
     //arme_type déjà dans - class créature
     

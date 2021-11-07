@@ -138,7 +138,7 @@ $( document ).ready( function() {
         {
             var histor_comp_add = $('#select_histor_comp_add').val();
             $.ajax({ ///Add Compétence depuis les points d'historiques
-                data :{comp : histor_comp_add, val : 2, key : "degre"},
+                data :{comp : histor_comp_add, val : 2, key : "innee"},
                 type: 'POST',
                 async: false,
                 url: "../public/index.php/add_competence_additionnel",  
@@ -147,7 +147,7 @@ $( document ).ready( function() {
                         nb_pts_histor -= 1;
 
                         $('#span_total_point_histor_add').html(nb_pts_histor);
-                        $("#resumer").append("Bonus niveau : <b> +10 </b> dans la compétence <b>" + $('#select_histor_comp_add option:selected').text() + '</b><br />');
+                        $("#resumer").append("Bonus innee : <b> +10 </b> dans la compétence <b>" + $('#select_histor_comp_add option:selected').text() + '</b><br />');
                         if(nb_pts_histor === 0){$("#resumer").append('<br />');}
                     }
                 },
@@ -334,7 +334,7 @@ $( document ).ready( function() {
         {
             if(point_comp_add <= 3)
             {
-                $.ajax({ ///Add Compétence depuis les points d'historiques
+                $.ajax({ ///Add Compétence
                     data :{comp : $('#select_comp_add').val(), val : point_comp_add, key : "innee"},
                     type: 'POST',
                     async: false,

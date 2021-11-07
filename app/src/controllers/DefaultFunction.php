@@ -16,6 +16,21 @@ class DefaultFunction extends bdd {
     {
         $allPostPutVars = $request->getParsedBody();
 
+        if(isset($_SESSION['id_personnage'])) //VERIFIE SI IL A FAIT SON PERSONNAGE 
+        {
+            if($_SESSION['id_personnage'] == 0)
+            {
+                $sql = "SELECT `id_personnage` FROM `membre` WHERE `id` = " . $_SESSION['id'];
+                $result = $this->bdd->query($sql);
+                $row = $result->fetch_assoc();
+                if($row['id_personnage'] != 0)
+                {
+                    $_SESSION['id_personnage'] = $row['id_personnage'];
+                }
+            }
+        }
+
+
         if(isset($_SESSION['id']))
         {
             if($_SESSION['id_personnage'] != 0)
@@ -23,7 +38,7 @@ class DefaultFunction extends bdd {
                 $data = array(
                     'success' => 1,
                     'connected' => 1,
-                    'personnage_exist' => 1,
+                    'personnage' => $_SESSION['id_personnage'],
                 );  
             }
             else
@@ -31,7 +46,7 @@ class DefaultFunction extends bdd {
                 $data = array(
                     'success' => 1,
                     'connected' => 1,
-                    'personnage_exist' => 0,
+                    'personnage' => 0,
                 );  
             }
         }
@@ -40,7 +55,7 @@ class DefaultFunction extends bdd {
             $data = array(
                 'success' => 1,
                 'connected' => 0,
-                'personnage_exist' => 0,
+                'personnage' => 0,
             );  
         }
         return $response->withJson($data);

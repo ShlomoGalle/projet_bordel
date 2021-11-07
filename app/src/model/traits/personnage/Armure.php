@@ -11,7 +11,7 @@ Trait Armure {
 
     // propriété : 
     protected $armure_nom  = NULL;
-    protected $armure_cout  = NULL;
+    protected $armure_prix  = NULL;
     protected $armure_poids  = NULL;
     //armure_type déjà dans - class créature
     

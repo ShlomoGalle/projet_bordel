@@ -73,6 +73,28 @@ class Bdd {
         $this->bdd->query($sql);
     }
 
+    // UPDATE `membre` SET `pseudo` = 'floflo', `id_personnage` = '3' WHERE `membre`.`id` = 11;
+    
+    public function update_since_array($name_table, $array, $where){
+        $sql = "UPDATE `".$name_table."` SET ";
+        foreach ($array as $key => $value) {
+            $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= " WHERE ";
+        foreach ($where as $key => $value) {
+            $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ";";
+
+        $this->bdd->query($sql);
+        return $sql;
+
+    }
+
 
     
 
