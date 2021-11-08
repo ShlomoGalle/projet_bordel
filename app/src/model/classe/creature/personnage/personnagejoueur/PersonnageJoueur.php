@@ -13,6 +13,7 @@ Use App\Model\Traits\Personnage\Arme;
 Use App\Model\Traits\Personnage\Armure;
 Use App\Model\Traits\Personnage\Capacite;
 Use App\Model\Traits\Personnage\Sort;
+Use App\Model\Traits\Personnage\Langue;
 Use App\Model\Classe\Factory\FactoryPersonnage;
 Use App\Controllers\ConnexionBdd\Bdd as Bdd;
 Use Exception;
@@ -20,7 +21,7 @@ Use Exception;
 class PersonnageJoueur extends Personnage{
     // Use trait : 
     // Inventaire
-    Use Arme, Armure, Capacite, Sort;
+    Use Arme, Armure, Capacite, Langue;
 
     // Endroit ou il se trouve
     protected $id_carte_actuelle = 1;
@@ -36,7 +37,7 @@ class PersonnageJoueur extends Personnage{
     protected $penalitedencombrement = 0;
 
     // //Argent du joueur 
-    protected $money_flouze_biff = 20000;
+    protected $argent = 20000;
 
     //Resistance du joueur
     protected $jr_essence_total = 0;
@@ -77,6 +78,10 @@ class PersonnageJoueur extends Personnage{
     //SETTER ET GETTER
     //SETTER
     //IDENTITE
+    public function set_identite_race(string $val)
+    {
+        $this->identite_race = $val;
+    }
     public function set_identite_taille(int $val)
     {
         $this->identite_taille = $val;
@@ -101,6 +106,34 @@ class PersonnageJoueur extends Personnage{
     {
         $this->identite_signeparticulier = $val;
     }
+    public function set_penalitedencombrement(int $val)
+    {
+        $this->penalitedencombrement = $val;
+    }
+    public function set_id_carte_actuelle(int $val)
+    {
+        $this->id_carte_actuelle = $val;
+
+        $this->new_connection();
+        $array['id_carte_actuelle'] = $val;
+        $this->update_personnage_since_array("personnage_identite", $array);
+    }
+    public function set_jr_essence_total(int $val)
+    {
+        $this->jr_essence_total = $val;
+    }
+    public function set_jr_theurgie_total(int $val)
+    {
+        $this->jr_theurgie_total = $val;
+    }
+    public function set_jr_poison_total(int $val)
+    {
+        $this->jr_poison_total = $val;
+    }
+    public function set_jr_maladie_total(int $val)
+    {
+        $this->jr_maladie_total = $val;
+    }
 
     //PV
     public function set_point_de_vie_max_personnage_joueur()
@@ -121,9 +154,9 @@ class PersonnageJoueur extends Personnage{
     }
 
     //ARGENT
-    public function set_money_flouze_biff(int $val)
+    public function set_argent(int $val)
     {
-        $this->money_flouze_biff = $val;
+        $this->argent = $val;
     }
 
     //SORT
@@ -159,10 +192,43 @@ class PersonnageJoueur extends Personnage{
     {
         return $this->identite_race;
     }
-
-    public function get_money_flouze_biff()
+    public function get_identite_taille()
     {
-        return $this->money_flouze_biff;
+        return $this->identite_taille;
+    }
+    public function get_identite_age()
+    {
+        return $this->identite_age;
+    }
+    public function get_identite_poids()
+    {
+        return $this->identite_poids;
+    }
+    public function get_identite_cheveux()
+    {
+        return $this->identite_cheveux;
+    }
+    public function get_identite_yeux()
+    {
+        return $this->identite_yeux;
+    }
+    public function get_identite_signeparticulier()
+    {
+        return $this->identite_signeparticulier;
+    }
+    public function get_penalitedencombrement()
+    {
+        return $this->penalitedencombrement;
+    }
+
+    public function get_argent()
+    {
+        return $this->argent;
+    }
+
+    public function get_id_carte_actuelle()
+    {
+        return $this->id_carte_actuelle;
     }
 
     public function get_liste_sort_acquis(string $key) //Si elle existe je la return, sinon je return null
@@ -194,8 +260,8 @@ class PersonnageJoueur extends Personnage{
     //INSERT
     public function insert_personnage_joueur_identite() 
     {
-        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `id_carte_actuelle`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence`, `jr_theurgie`, `jr_poison`, `jr_maladie`) 
-        VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->id_carte_actuelle) .", ". $this->bdd->real_escape_string($this->money_flouze_biff) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
+        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `id_carte_actuelle`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence_total`, `jr_theurgie_total`, `jr_poison_total`, `jr_maladie_total`) 
+        VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->id_carte_actuelle) .", ". $this->bdd->real_escape_string($this->argent) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
         $this->bdd->query($sql);
         $last_id = $this->bdd->insert_id;
         return $last_id;
@@ -231,6 +297,113 @@ class PersonnageJoueur extends Personnage{
                 $liste['apprentissage'] = $value;
     
                 $this->insert_since_array("personnage_liste_sort", $liste);
+            }
+        }
+    }
+
+
+    
+    public function hydrate_mon_personnage($id_personnage)
+    {
+        $where['id'] = $id_personnage;
+        $row = $this->select_all("personnage_identite", $where);
+
+        $this->type_creature = 1;
+
+        //identite
+        $this->id = $row[0]['id'];
+        $this->hydrate_identite_mon_personnage($row[0]);
+        unset($row);unset($where);
+
+        $where['id_personnage'] = $id_personnage;
+        //complementaire
+        $row = $this->select_all("personnage_complementaire", $where);
+        $this->hydrate($row[0]);
+        unset($row);
+
+        //langue
+        $row = $this->select_all("personnage_langue", $where);
+        $this->hydrate($row[0], "langue_");
+        unset($row);
+
+        //capacite
+        $row = $this->select_all("personnage_capacite", $where);
+        $this->hydrate($row[0]);
+        unset($row);
+
+        //competence
+        $row = $this->select_all("personnage_competence", $where);
+        $this->hydrate_competence_mon_personnage($row[0]);
+        unset($row);
+
+        //caracteristique
+        $row = $this->select_all("personnage_caracteristique", $where);
+        $this->hydrate($row[0]);
+        unset($row);
+
+        //liste de sort
+        $row = $this->select_all("personnage_liste_sort", $where);
+        $this->hydrate_liste_sort_mon_personnage($row);
+        unset($row);
+    }
+
+    private function hydrate_identite_mon_personnage($row)
+    {
+        $this->nom = $row['nom'];
+        foreach ($row as $key => $value){
+            $methode = 'set_identite_'.$key;
+            if (method_exists($this, $methode))
+            {
+                $this->$methode($value);
+            }
+            else{
+                $methode = 'set_'.$key;
+                if (method_exists($this, $methode))
+                {
+                    $this->$methode($value);
+                }
+            }
+        }
+        $this->point_de_pouvoir_actuelle = $row['point_de_pouvoir'];
+    }
+
+    private function hydrate_competence_mon_personnage($row)
+    {
+        unset($row['id'], $row['id_personnage']);
+        foreach ($row as $key => $value){
+            $index = strrchr($key, '_');
+            $variable = substr($key, 0, -strlen($index));
+            $index = substr($index, 1);
+            $methode = 'set_'.$variable;
+            if (method_exists($this, $methode))
+            {
+                $this->$methode($value, $index);
+            }
+        }
+    }
+
+    private function hydrate_liste_sort_mon_personnage($row)
+    {
+        foreach ($row as $key => $value){
+            unset($row[$key]['id'], $row[$key]['id_personnage']);
+            if($value['acquis'] == 1)
+            {
+                $this->liste_sort_acquis[] = $value['liste'];
+            }
+            if($value['acquis'] == 0)
+            {
+                $this->liste_sort_apprentissage[$value['liste']] = $value['apprentissage'];
+            }
+        }
+    }
+
+    private function hydrate($row, $prefixe = "")
+    {
+        foreach ($row as $key => $value){
+            $methode = 'set_'.$prefixe.$key;
+            if (method_exists($this, $methode))
+            {
+                $this->$methode($value);
             }
         }
     }

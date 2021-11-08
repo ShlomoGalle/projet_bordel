@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Traits\Personnage\CreationPersonnage;
+namespace App\Model\Traits\Personnage;
 
 Use Psr\Http\Message\ServerRequestInterface;
 Use Psr\Http\Message\ResponseInterface;

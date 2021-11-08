@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 
 Use Psr\Http\Message\ServerRequestInterface;
 Use Psr\Http\Message\ResponseInterface;
+Use App\Model\Classe\Creature\Personnage\PersonnageJoueur\PersonnageJoueur;
 Use App\Controllers\ConnexionBdd\Bdd as Bdd;
 
 class Connexion extends bdd {
@@ -39,6 +40,14 @@ class Connexion extends bdd {
                 $_SESSION['id'] = $userinfo['id'];
                 $_SESSION['pseudo'] = $userinfo['pseudo'];
                 $_SESSION['id_personnage'] = $userinfo['id_personnage']; //If id_personnage == 0 alors il a pas encore fait la création de personnage
+
+                if($userinfo['id_personnage'] != 0)
+                {
+                    $MonPersonnage = new PersonnageJoueur();
+                    $MonPersonnage->hydrate_mon_personnage($userinfo['id_personnage']);
+                    $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+                }
 
                 $data = array(
                     'success' => 1, 

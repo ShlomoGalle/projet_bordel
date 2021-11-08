@@ -12,8 +12,8 @@ class Creature extends Bdd {
     protected $point_de_vie_max = 5;
     protected $base_defensif = 0;
     protected $base_offensif = 0;
-    protected $type_armure = '';
     protected $type_arme = '';
+    protected $type_armure = '';
     protected $type_creature = 0; //1 pj, 2 monstre&animaux, 3pnj
     protected $nom;
     protected $id;
@@ -63,7 +63,22 @@ class Creature extends Bdd {
         $this->base_offensif = $val;
     }
 
+    public function set_type_arme(string $val)
+    {
+        $this->type_arme = $val;
+    }
+
+    public function set_type_armure(string $val)
+    {
+        $this->type_armure = $val;
+    }
+
     //GETTER   
+    public function get_nom()
+    {
+        return $this->nom;
+    }
+
     public function get_base_defensif()
     {
         return $this->base_defensif;

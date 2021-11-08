@@ -7,19 +7,188 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <style>
+        table
+        {
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        td, th /* Mettre une bordure sur les td ET les th */
+        {
+            border: 1px solid black;
+            padding : 3px 10px;
+            font-size: .9rem;
+        }
+
+        #thead_comp > tr > th, #thead_comp > tr > td
+        {
+            border: 1px solid black;
+            padding : 1px 2px;
+            font-size: .6rem;
+        }
+    </style>
 </head>
 
 <body>
     <h1>PERSONNAGE</h1>
     <br />
-    
   
-    <button id="button_creation_personnage">
-        Creation de personnage
-    </button>
-    <button id="var_dump">
-      var_dump
-  </button>
+    <h4>Identité : </h4>
+    <table id="identite">
+        <thead>
+            <tr>
+                <th>
+                    Nom  
+                </th>
+                <th>
+                    Race  
+                </th>
+                <th>
+                    Taille  
+                </th>
+                <th>
+                    Age  
+                </th>
+                <th>
+                    Poids  
+                </th>
+                <th>
+                    Cheveux  
+                </th>
+                <th>
+                    Yeux  
+                </th>
+                <th>
+                    Signe Particulier  
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h4>Caractéristique : </h4>
+    <table id="caracteristique">
+        <thead>
+            <tr>
+                <th>
+                      
+                </th>
+                <th>
+                    Force  
+                </th>
+                <th>
+                    Agilité  
+                </th>
+                <th>
+                    Constitution  
+                </th>
+                <th>
+                    Intelligence  
+                </th>
+                <th>
+                    Intuition  
+                </th>
+                <th>
+                    Présence  
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h4>Compétence : </h4>
+    <table id="competence">
+        <thead id="thead_comp">
+            <tr>
+                <th></th>
+                <th>Manoeuvre et mouvement Sans armure</th>
+                <th>Manoeuvre et mouvement Cuir souple</th>
+                <th>Manoeuvre et mouvement Cuir rigide</th>
+                <th>Manoeuvre et mouvement Cotte de maille</th>
+                <th>Manoeuvre et mouvement Plate</th>
+                <th>Arme Tranchante à une main</th>
+                <th>Arme Contondante à une main</th>
+                <th>Arme à Deux mains</th>
+                <th>Arme de Lancé</th>
+                <th>Arme à Projectile</th>
+                <th>Arme d'Hast</th>
+                <th>Generale Escalade</th>
+                <th>Generale Equitation</th>
+                <th>Generale Natation</th>
+                <th>Generale Pistage</th>
+                <th>Subterfuge Embuscade</th>
+                <th>Subterfuge Filature & dissimulation</th>
+                <th>Subterfuge Crochetage</th>
+                <th>Subterfuge Desarmement de piege</th>
+                <th>Magie Lecture de rune</th>
+                <th>Magie Utilisation d'objet</th>
+                <th>Magie Direction de sort</th>
+                <th>Physique Developement corporel</th>
+                <th>Physique Perception</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h4>Capacité : </h4>
+    <table id="capacite">
+        <thead>
+            <tr>
+                <th>
+                    Nom 
+                </th>
+                <th>
+                    Acquise  
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h4>Liste de sort : </h4>
+    <table id="liste de sort">
+        <thead>
+            <tr>
+                <th>
+                    Nom 
+                </th>
+                <th>
+                    Acquise 
+                </th>
+                <th>
+                    Apprentissage 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h4>Inventaire : </h4>
+    <table id="Inventaire">
+        <thead>
+            <tr>
+                <th>
+                    Nom 
+                </th>
+                <th>
+                    Equipée 
+                </th>
+                <th>
+                    Poids 
+                </th>
+                <th>
+                    Prix 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
     
 
     <a href="index.html" style="color: darkslategrey;">retour</a>

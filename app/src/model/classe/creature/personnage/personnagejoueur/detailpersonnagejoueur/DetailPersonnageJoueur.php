@@ -5,14 +5,13 @@ namespace App\Model\Classe\Creature\Personnage\PersonnageJoueur\DetailPersonnage
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 Use App\Model\Classe\Creature\Personnage\PersonnageJoueur\PersonnageJoueur;
-Use App\Model\Traits\Personnage\CreationPersonnage\Langue;
 Use App\Model\Traits\Personnage\CreationPersonnage\DetailComp;
 Use App\Model\Traits\Personnage\CreationPersonnage\DetailCarac;
 Use App\Model\Classe\Factory\FactoryPersonnage;
 
 
 class DetailPersonnageJoueur extends PersonnageJoueur {
-    Use Langue, DetailComp, DetailCarac;
+    Use DetailComp, DetailCarac;
 
     protected $chance_obtenir_liste_sort_pourcentage = 0; //Permet d'apprendre des nouvelles listes de sort a chaque niveau
     protected $nb_degres_langages_additionnel = 0; //Permet d'apprendre de nouveaux langages en plus des langages appris de base (raciaux)

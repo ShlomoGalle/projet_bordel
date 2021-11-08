@@ -284,6 +284,8 @@ class CreationPersonnageController extends Bdd {
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
         
         try{
+            $MonPersonnage->set_point_de_vie_max_personnage_joueur(); //Recalcule un petit coup les pv (des fois il ne les calcul pas parce que le joueur n'améliore pas son dev corp)
+
             $MonPersonnage->new_connection();
             $id = $MonPersonnage->insert_personnage_joueur_identite();
             $MonPersonnage->set_id_creature($id);

@@ -713,89 +713,89 @@ class FactoryPersonnage extends Factory {
 
     public function switch_option_finance($MonPersonnage) //Donne en fonction de la valeur d'une caracteristique sa norme
     {
-        $money_actuel = $MonPersonnage->get_money_flouze_biff();
+        $argent_actuel = $MonPersonnage->get_argent();
         switch (true) {
             // $this->selected
             case $this->selected >= 100:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 2000000);
+                $MonPersonnage->set_argent($argent_actuel + 2000000);
                 return 'Vous avez gagné un montant de : <b> 200 po </b>';
                 break;
 
             case $this->selected >= 98:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 1500000);
+                $MonPersonnage->set_argent($argent_actuel + 1500000);
                 return 'Vous avez gagné un montant de : <b> 150 po </b>';
                 break;
             
             case $this->selected >= 95:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 1250000);
+                $MonPersonnage->set_argent($argent_actuel + 1250000);
                 return 'Vous avez gagné un montant de : <b> 125 po </b>';
                 break;
 
             case $this->selected >= 91:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 1000000);
+                $MonPersonnage->set_argent($argent_actuel + 1000000);
                 return 'Vous avez gagné un montant de : <b> 100 po </b>';
                 break;
             
             case $this->selected >= 86:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 800000);
+                $MonPersonnage->set_argent($argent_actuel + 800000);
                 return 'Vous avez gagné un montant de : <b> 80 po </b>';
                 break;
             
             case $this->selected >= 81:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 700000);
+                $MonPersonnage->set_argent($argent_actuel + 700000);
                 return 'Vous avez gagné un montant de : <b> 70 po </b>';
                 break;
                 
             case $this->selected >= 76:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 600000);
+                $MonPersonnage->set_argent($argent_actuel + 600000);
                 return 'Vous avez gagné un montant de : <b> 60 po </b>';
                 break;
 
             case $this->selected >= 71:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 500000);
+                $MonPersonnage->set_argent($argent_actuel + 500000);
                 return 'Vous avez gagné un montant de : <b> 50 po </b>';
                 break;
 
             case $this->selected >= 66:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 400000);
+                $MonPersonnage->set_argent($argent_actuel + 400000);
                 return 'Vous avez gagné un montant de : <b> 40 po </b>';
                 break;
             case $this->selected >= 56:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 350000);
+                $MonPersonnage->set_argent($argent_actuel + 350000);
                 return 'Vous avez gagné un montant de : <b> 35 po </b>';
                 break;
             case $this->selected >= 46:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 300000);
+                $MonPersonnage->set_argent($argent_actuel + 300000);
                 return 'Vous avez gagné un montant de : <b> 30 po </b>';
                 break;
 
             case $this->selected >= 36:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 200000);
+                $MonPersonnage->set_argent($argent_actuel + 200000);
                 return 'Vous avez gagné un montant de : <b> 20 po </b>';
                 break;
             
             case $this->selected >= 26:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 150000);
+                $MonPersonnage->set_argent($argent_actuel + 150000);
                 return 'Vous avez gagné un montant de : <b> 15 po </b>';
                 break;
             
             case $this->selected >= 16:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 100000);
+                $MonPersonnage->set_argent($argent_actuel + 100000);
                 return 'Vous avez gagné un montant de : <b> 10 po </b>';
                 break;
             
             case $this->selected >= 6:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 50000);
+                $MonPersonnage->set_argent($argent_actuel + 50000);
                 return 'Vous avez gagné un montant de : <b> 5 po </b>';
                 break;
             
             case $this->selected >= 3:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 20000);
+                $MonPersonnage->set_argent($argent_actuel + 20000);
                 return 'Vous avez gagné un montant de : <b> 2 po </b>';
                 break;
             
             case $this->selected >= 1:
-                $MonPersonnage->set_money_flouze_biff($money_actuel + 10000);
+                $MonPersonnage->set_argent($argent_actuel + 10000);
                 return 'Vous avez gagné un montant de : <b> 1 po </b>';
                 break;
             

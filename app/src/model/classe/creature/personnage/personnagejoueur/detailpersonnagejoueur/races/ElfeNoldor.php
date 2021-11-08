@@ -70,7 +70,7 @@ class ElfeNoldor extends DetailPersonnageJoueur {
         $this->set_calcul_comp_total();
 
         //Autres
-        $this->chance_obtenir_liste_sort_pourcentage = 40;
+        $this->chance_obtenir_liste_sort_pourcentage = 200;
         $this->nb_degres_langages_additionnel = 10;
         $this->nb_points_histor = 4;
     }

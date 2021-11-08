@@ -45,5 +45,12 @@ $app->post('/finir_mon_personnage',App\Controllers\Personnage\CreationPersonnage
 
 // CARTE
 $app->post('/get_info_carte',App\Controllers\Carte\CarteController::class.':get_info_carte');
+$app->post('/change_map',App\Controllers\Carte\CarteController::class.':change_map');
+
+// PERSONNAGE
+$app->post('/get_info_personnage',App\Controllers\Personnage\PersonnageController::class.':get_info_personnage');
+
+
+
 
 $app->run();

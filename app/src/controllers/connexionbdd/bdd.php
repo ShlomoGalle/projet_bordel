@@ -29,17 +29,6 @@ class Bdd {
         $this->bdd = $conn;
     }
 
-    public function select($query){
-        $result = $this->bdd->query($query);
-        $rowtotal = [];
-        while ($row = $result->fetch_assoc())
-        {
-            $rowtotal[] = $row;
-        }
-        
-        return $rowtotal;
-    }
-
     public function new_connection(){
         if (session_status() != PHP_SESSION_ACTIVE) {
             session_start();
@@ -56,6 +45,35 @@ class Bdd {
         $this->bdd = $conn;
     }
 
+    public function select($query){
+        $result = $this->bdd->query($query);
+        $rowtotal = [];
+        while ($row = $result->fetch_assoc())
+        {
+            $rowtotal[] = $row;
+        }
+        
+        return $rowtotal;
+    }
+
+    public function select_all($name_table, $where){
+        $sql = "SELECT * FROM `".$name_table."` WHERE ";
+        foreach ($where as $key => $value) {
+            $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+        $sql .= ";";
+
+        $result = $this->bdd->query($sql);
+        $rowtotal = [];
+        while ($row = $result->fetch_assoc())
+        {
+            $rowtotal[] = $row;
+        }
+        
+        return $rowtotal;
+    }
 
     public function insert_since_array($name_table, $array){
         $sql = "INSERT INTO `".$name_table."` (";
@@ -72,8 +90,6 @@ class Bdd {
 
         $this->bdd->query($sql);
     }
-
-    // UPDATE `membre` SET `pseudo` = 'floflo', `id_personnage` = '3' WHERE `membre`.`id` = 11;
     
     public function update_since_array($name_table, $array, $where){
         $sql = "UPDATE `".$name_table."` SET ";
@@ -92,7 +108,27 @@ class Bdd {
 
         $this->bdd->query($sql);
         return $sql;
+    }
 
+    public function update_personnage_since_array($name_table, $array){
+        $sql = "UPDATE `".$name_table."` SET ";
+        foreach ($array as $key => $value) {
+            $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
+            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+        }
+        $sql = substr($sql, 0, -1);
+
+        if($name_table == "personnage_identite")
+        {
+            $sql .= " WHERE `id` = ". $_SESSION['id_personnage'] . ";";
+        }
+        else
+        {
+            $sql .= " WHERE `id_personnage` = ". $_SESSION['id_personnage'] . ";";
+        }
+
+        $this->bdd->query($sql);
+        return $sql;
     }
 
 
