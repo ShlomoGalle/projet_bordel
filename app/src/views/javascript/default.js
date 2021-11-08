@@ -5,6 +5,7 @@ $( document ).ready( function() {
         data :{
             data: $(this).serialize()
         },
+        async:false,
         type: 'POST',
         url: "../public/index.php/default",  
         success: function(data) {

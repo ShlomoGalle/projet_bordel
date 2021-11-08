@@ -16,11 +16,14 @@ Trait Arme {
     protected $arme_poids = NULL;
     //arme_type déjà dans - class créature
     
+    protected $arme_portee = 1.5;
     protected $arme_statistique_maladresse = NULL;
     protected $arme_statistique_coupcritprimaire = NULL;
     protected $arme_statistique_coupcritsecondaire = NULL;
-    protected $arme_statistique_modifspeciaux = 0;
+    protected $arme_modificateur_comp = NULL;
+    protected $arme_modificateur_val = NULL;
     protected $arme_statistique_enchantement = 0;
+    protected $arme_utilise_avec_bouclier = 0;
     
 
     public function __construct()

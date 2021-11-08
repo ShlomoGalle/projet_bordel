@@ -53,10 +53,21 @@ class CarteController extends Bdd {
         return $response->withJson($data);
     }
 
+    function enter_in_batiment(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $row = $this->select("SELECT `type` FROM `batiment` WHERE `id` = '" . $allPostPutVars['id'] . "';");
+        
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+        $data = array(
+            'success' => 1,
+            'batiment' => "/" . $row[0]['type'] . ".html?id=" . $allPostPutVars['id'],
+        );
+    
+        return $response->withJson($data);
+    }
+
     
 }
-
-
-
-
-

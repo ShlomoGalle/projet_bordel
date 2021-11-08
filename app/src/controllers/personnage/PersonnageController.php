@@ -29,12 +29,14 @@ class PersonnageController extends Bdd {
         $identite[] = $MonPersonnage->get_identite_cheveux();
         $identite[] = $MonPersonnage->get_identite_yeux();
         $identite[] = $MonPersonnage->get_identite_signeparticulier();
+
         $caracteristique[] = $MonPersonnage->get_caracteristique_force_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_agilite_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_constitution_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_intelligence_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_intuition_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_presence_total();
+
 
         $competence_val[] = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure_total('val');
         $competence_val[] = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple_total('val');
@@ -86,11 +88,71 @@ class PersonnageController extends Bdd {
         $competence_niveau[] = $MonPersonnage->get_comp_physique_developcorporel_total('niveau');
         $competence_niveau[] = $MonPersonnage->get_comp_physique_perception_total('niveau');
 
+        
         $capacite = [];
         ($MonPersonnage->get_capacite_infravision()) ? $capacite[] = 'Infravision' : '';
         ($MonPersonnage->get_capacite_vision_nocturne()) ? $capacite[] = 'Vision Nocturne' : '';
 
-        // var_dump($capacite);
+
+        $liste_de_sort = [];
+        $liste_de_sort_acquis = $MonPersonnage->get_liste_sort_acquis_like_array();
+        if(isset($liste_de_sort_acquis) && $liste_de_sort_acquis != null)
+        {
+            foreach ($liste_de_sort_acquis as $key => $value) {
+                $liste_de_sort[] = $value;
+                $liste_de_sort[] = 'Oui';
+                $liste_de_sort[] = 'Finit';
+            }
+        }
+        $liste_de_sort_apprentissage = $MonPersonnage->get_liste_sort_apprentissage_like_array();
+        if(isset($liste_de_sort_acquis) && $liste_de_sort_acquis != null)
+        {
+            foreach ($liste_de_sort_apprentissage as $key => $value) {
+                $liste_de_sort[] = $key;
+                $liste_de_sort[] = 'Non';
+                $liste_de_sort[] = $value;
+            }
+        }
+
+
+        $langue = [];
+        $temp_langue[] = 'Adunaic';
+        $temp_langue[] = 'Apysaic';
+        $temp_langue[] = 'Atliduk';
+        $temp_langue[] = 'Haradaic';
+        $temp_langue[] = 'Khuzdul';
+        $temp_langue[] = 'Kuduk';
+        $temp_langue[] = 'Labba';
+        $temp_langue[] = 'Logathig';
+        $temp_langue[] = 'Nahaiduk';
+        $temp_langue[] = 'Noirparler';
+        $temp_langue[] = 'Orque';
+        $temp_langue[] = 'Pukael';
+        $temp_langue[] = 'Quenya';
+        $temp_langue[] = 'Rohirric';
+        $temp_langue[] = 'Sindarin';
+        $temp_langue[] = 'Sylvain';
+        $temp_langue[] = 'Umitic';
+        $temp_langue[] = 'Varadja';
+        $temp_langue[] = 'Waildyth';
+        $temp_langue[] = 'Westron';
+        
+        foreach ($temp_langue as $key => $value) {
+            $methode = 'get_langue_'.$value;
+            if (method_exists($MonPersonnage, $methode))
+            {
+                $temp_langue_val = $MonPersonnage->$methode();
+
+                if($temp_langue_val != 0)
+                {
+                    $langue[] = $value;
+                    $langue[] = $temp_langue_val;
+                }
+            }
+        }
+
+        // MANQUE LINVENTAIRE A AFFICHER
+
         $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
         $data = array(
@@ -100,7 +162,8 @@ class PersonnageController extends Bdd {
             'competence_val' => $competence_val,
             'competence_niveau' => $competence_niveau,
             'capacite' => $capacite,
-            // 'liste_de_sort' => ,
+            'liste_de_sort' => $liste_de_sort,
+            'langue' => $langue,
             // 'inventaire' => ,
         );
         return $response->withJson($data);

@@ -24,15 +24,19 @@ $( document ).ready( function() {
 function click_on_img(type, id)
 {
     switch (type) {
-        case 'marchand':
-            console.log("marchand");
-            window.location.href = "/marchand.html?id=" + id;
-            break;
-    
-        case 'taverne':
-            console.log("tavervne");
-            window.location.href = "/taverne.html?id=" + id;
-
+        case 'batiment':
+            $.ajax({
+                data : {id : id},
+                type: 'POST',
+                url: "../public/index.php/enter_in_batiment",  
+                success: function(data) {
+                    if(data.success == 1)
+                    {
+                        window.location.href = data.batiment;
+                        return false;
+                    }
+                }
+            });  
             break;
     
         case 'exterieur':

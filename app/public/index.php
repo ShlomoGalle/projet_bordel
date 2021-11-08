@@ -46,6 +46,11 @@ $app->post('/finir_mon_personnage',App\Controllers\Personnage\CreationPersonnage
 // CARTE
 $app->post('/get_info_carte',App\Controllers\Carte\CarteController::class.':get_info_carte');
 $app->post('/change_map',App\Controllers\Carte\CarteController::class.':change_map');
+$app->post('/enter_in_batiment',App\Controllers\Carte\CarteController::class.':enter_in_batiment');
+//batiment
+$app->post('/check_autorize_batiment',App\Controllers\Carte\BatimentController::class.':check_autorize_batiment');
+$app->post('/get_objet_vendre',App\Controllers\Carte\BatimentController::class.':get_objet_vendre');
+
 
 // PERSONNAGE
 $app->post('/get_info_personnage',App\Controllers\Personnage\PersonnageController::class.':get_info_personnage');

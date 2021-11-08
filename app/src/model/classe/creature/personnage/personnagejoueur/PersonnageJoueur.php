@@ -231,6 +231,15 @@ class PersonnageJoueur extends Personnage{
         return $this->id_carte_actuelle;
     }
 
+    public function get_liste_sort_acquis_like_array()
+    {
+        return $this->liste_sort_acquis;
+    }
+    public function get_liste_sort_apprentissage_like_array()
+    {
+        return $this->liste_sort_apprentissage;
+    }
+
     public function get_liste_sort_acquis(string $key) //Si elle existe je la return, sinon je return null
     {
         if(isset($this->liste_sort_acquis[$key])){
@@ -260,7 +269,7 @@ class PersonnageJoueur extends Personnage{
     //INSERT
     public function insert_personnage_joueur_identite() 
     {
-        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signe_particulier`, `id_carte_actuelle`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence_total`, `jr_theurgie_total`, `jr_poison_total`, `jr_maladie_total`) 
+        $sql = "INSERT INTO `personnage_identite` (`nom`, `race`, `taille`, `age`, `poids`, `cheveux`, `yeux`, `signeparticulier`, `id_carte_actuelle`, `argent`, `point_de_pouvoir`, `point_de_vie`, `jr_essence_total`, `jr_theurgie_total`, `jr_poison_total`, `jr_maladie_total`) 
         VALUES ('". $this->bdd->real_escape_string($this->nom) ."', '". $this->bdd->real_escape_string($this->identite_race) ."', ". $this->bdd->real_escape_string($this->identite_taille) .", ". $this->bdd->real_escape_string($this->identite_age) .", ". $this->bdd->real_escape_string($this->identite_poids) .", '". $this->bdd->real_escape_string($this->identite_cheveux) ."', '". $this->bdd->real_escape_string($this->identite_yeux) ."', '". $this->bdd->real_escape_string($this->identite_signeparticulier) ."', ". $this->bdd->real_escape_string($this->id_carte_actuelle) .", ". $this->bdd->real_escape_string($this->argent) .", ". $this->bdd->real_escape_string($this->point_de_pouvoir_actuelle) .", ". $this->bdd->real_escape_string($this->point_de_vie) .", ". $this->bdd->real_escape_string($this->jr_essence_total) .", ". $this->bdd->real_escape_string($this->jr_theurgie_total) .", ". $this->bdd->real_escape_string($this->jr_poison_total) .", ". $this->bdd->real_escape_string($this->jr_maladie_total) .");";
         $this->bdd->query($sql);
         $last_id = $this->bdd->insert_id;
