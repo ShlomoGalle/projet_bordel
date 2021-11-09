@@ -75,6 +75,28 @@ class Bdd {
         return $rowtotal;
     }
 
+    public function select_personnage_all($name_table){
+        $sql = "SELECT * FROM `".$name_table."` WHERE ";
+        
+        if($name_table == "personnage_identite")
+        {
+            $sql .= "`id` = ". $_SESSION['id_personnage'] . ";";
+        }
+        else
+        {
+            $sql .= "`id_personnage` = ". $_SESSION['id_personnage'] . ";";
+        }
+
+        $result = $this->bdd->query($sql);
+        $rowtotal = [];
+        while ($row = $result->fetch_assoc())
+        {
+            $rowtotal[] = $row;
+        }
+        
+        return $rowtotal;
+    }
+
     public function insert_since_array($name_table, $array){
         $sql = "INSERT INTO `".$name_table."` (";
         foreach ($array as $key => $value) {

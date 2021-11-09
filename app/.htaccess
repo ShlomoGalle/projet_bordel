@@ -6,4 +6,5 @@ RewriteRule ^creationpersonnage.html$ /src/views/html/creationpersonnage.html [L
 RewriteRule ^carte.html$ /src/views/html/carte.html [L]
 RewriteRule ^personnage.html$ /src/views/html/personnage.html [L]
 RewriteRule ^magasin.html$ /src/views/html/magasin.html [L]
+RewriteRule ^taverne.html$ /src/views/html/taverne.html [L]
 

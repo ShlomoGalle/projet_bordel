@@ -157,6 +157,8 @@ class PersonnageJoueur extends Personnage{
     public function set_argent(int $val)
     {
         $this->argent = $val;
+        $this->new_connection();
+        $this->update_personnage_since_array('personnage_identite', ['argent' => $val]);
     }
 
     //SORT
@@ -264,6 +266,33 @@ class PersonnageJoueur extends Personnage{
         }
     }
 
+    public function insert_in_inventaire($type_objet, $row_objet) 
+    {
+        $this->new_connection();
+        $table_insert = 'personnage_'.$type_objet;
+        $this->insert_since_array($table_insert, $row_objet);
+
+        //RECALCULER L ENCOMBREMENT
+    }
+
+    public function get_inventaire() 
+    {
+        $this->new_connection();
+        $inventaire_arme = [];
+        $inventaire_arme[] = $this->select_personnage_all('personnage_arme');
+
+        $inventaire_armure = [];
+        $inventaire_armure[] = $this->select_personnage_all('personnage_armure');
+
+        $inventaire_objet = [];
+        $inventaire_objet[] = $this->select_personnage_all('personnage_objet');
+
+        $inventaire = [];
+        $inventaire['arme'] = $inventaire_arme[0];
+        $inventaire['armure'] = $inventaire_armure[0];
+        $inventaire['objet'] = $inventaire_objet[0];
+        return $inventaire;
+    }
 
     //BDD
     //INSERT

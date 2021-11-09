@@ -169,4 +169,17 @@ class PersonnageController extends Bdd {
         return $response->withJson($data);
     }
 
+    function get_inventaire(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+        $data = array(
+            'success' => 1,
+            'inventaire' => $MonPersonnage->get_inventaire()
+        );
+        return $response->withJson($data);
+    }
 }
