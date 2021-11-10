@@ -19,7 +19,8 @@ class BatimentController extends Bdd {
         $allPostPutVars = $request->getParsedBody();
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        $row = $this->select("SELECT `id_carte` FROM `batiment` WHERE `id` = '" . $allPostPutVars['id'] . "';");
+        // $row = $this->select("SELECT `id_carte` FROM `batiment` WHERE `id` = '" . $allPostPutVars['id'] . "';");
+        $row = $this->select_all('batiment', ['id' => $allPostPutVars['id']]);
 
         if(empty($row))
         {
@@ -53,7 +54,8 @@ class BatimentController extends Bdd {
         $allPostPutVars = $request->getParsedBody();
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        $row = $this->select("SELECT * FROM `objet_loot_batiment` WHERE `id_batiment` = '" . $allPostPutVars['id'] . "';");
+        // $row = $this->select("SELECT * FROM `objet_loot_batiment` WHERE `id_batiment` = '" . $allPostPutVars['id'] . "';");
+        $row = $this->select_all('objet_loot_batiment', ['id_batiment' => $allPostPutVars['id']]);
 
         unset($objet_a_vendre);
         $objet_a_vendre = [];
@@ -63,7 +65,8 @@ class BatimentController extends Bdd {
             $argent = $MonPersonnage->get_argent();
             foreach ($row as $key => $value) {
                 // $objet_a_vendre[] = $this->select("SELECT `" . $value['type_objet'] . "`.*, `objet_loot_batiment`.`type_objet` FROM `" . $value['type_objet'] . "` LEFT JOIN `objet_loot_batiment` ON `" . $value['type_objet'] . "`.`id` =  `objet_loot_batiment`.`id_objet` AND `objet_loot_batiment`.`type_objet` = '" . $value['type_objet'] . "' WHERE `" . $value['type_objet'] . "`.`id` = '" . $value['id_objet'] . "' AND `objet_loot_batiment`.`id_batiment` = '" . $allPostPutVars['id'] . "';");
-                $objet_a_vendre[] = $this->select("SELECT * FROM `" . $value['type_objet'] . "` WHERE `id` = '" . $value['id_objet'] . "';");
+                // $objet_a_vendre[] = $this->select("SELECT * FROM `" . $value['type_objet'] . "` WHERE `id` = '" . $value['id_objet'] . "';");
+                $objet_a_vendre[] = $this->select_all($value['type_objet'], ['id' => $value['id_objet']]);
             }
 
             foreach ($objet_a_vendre as $key => $value) {
@@ -95,7 +98,8 @@ class BatimentController extends Bdd {
         $allPostPutVars = $request->getParsedBody();
         $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
 
-        $row = $this->select("SELECT `id_carte` FROM `batiment` WHERE `id` = '" . $allPostPutVars['id_batiment'] . "';");
+        // $row = $this->select("SELECT `id_carte` FROM `batiment` WHERE `id` = '" . $allPostPutVars['id_batiment'] . "';");
+        $row = $this->select_all('batiment', ['id' => $allPostPutVars['id_batiment']]);
         if(empty($row)) //SI LA PERSONNE A CHANGEE L ID DU BATIMENT, ET QUE L ID DU BATIMENT N EXISTE PAS 
         {
             $data = array(
@@ -112,7 +116,8 @@ class BatimentController extends Bdd {
         }
         $argent = $MonPersonnage->get_argent();
 
-        $row_objet = $this->select("SELECT * FROM `". $allPostPutVars['type_objet'] ."` WHERE `id` = '" . $allPostPutVars['id_objet'] . "';");
+        // $row_objet = $this->select("SELECT * FROM `". $allPostPutVars['type_objet'] ."` WHERE `id` = '" . $allPostPutVars['id_objet'] . "';");
+        $row_objet = $this->select_all($allPostPutVars['type_objet'], ['id' => $allPostPutVars['id_objet']]);
         $row_objet = $row_objet[0];
         $row_objet['id_personnage'] =  $_SESSION['id_personnage'];
         $row_objet['id_objet'] = $row_objet['id'];
@@ -125,6 +130,30 @@ class BatimentController extends Bdd {
             $MonPersonnage->set_argent($argent - $row_objet['prix']);
         }
 
+
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+
+        $data = array(
+            'success' => 1,
+        );
+        return $response->withJson($data);
+    }
+
+    //id_objet, type_objet
+    function vendre_objet(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+        $mon_argent = $MonPersonnage->get_argent();
+
+
+        $row_objet = $this->select_all('personnage_'.$allPostPutVars['type_objet'], ['id' => $allPostPutVars['id_objet']]);
+        $MonPersonnage->delete_in_inventaire($allPostPutVars['type_objet'], $allPostPutVars['id_objet']);
+        $row_objet = $row_objet[0];
+
+        $prix = $row_objet['prix'] * 0.6;
+
+        $MonPersonnage->set_argent($mon_argent + ceil($prix));
 
         $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 

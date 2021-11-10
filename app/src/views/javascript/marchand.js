@@ -82,6 +82,10 @@ $( document ).ready( function() {
                 {
                     var tbodyRef = document.getElementById('objet_vendre').getElementsByTagName('tbody')[0]; 
                     for (let index = 0; index < data.inventaire.arme.length; index++) {
+                        if(data.inventaire.arme[index].equipee == "1")
+                        {
+                            data.inventaire.arme[index].name = data.inventaire.arme[index].name + ' (équipée)';
+                        }
                         var newRow = tbodyRef.insertRow();
 
                         var newCell = newRow.insertCell(); //NAME
@@ -109,6 +113,10 @@ $( document ).ready( function() {
                     }
 
                     for (let index = 0; index < data.inventaire.armure.length; index++) {
+                        if(data.inventaire.armure[index].equipee == "1")
+                        {
+                            data.inventaire.armure[index].name = data.inventaire.armure[index].name + ' (équipée)';
+                        }
                         var newRow = tbodyRef.insertRow();
 
                         var newCell = newRow.insertCell(); //NAME
@@ -211,24 +219,19 @@ function acheter_objet(id_batiment, id_objet, type_objet)
 
 function vendre_objet(id_objet, type_objet)
 {
-    console.log(id_batiment, id_objet, type_objet);
-
-    // $.ajax({
-    //     data : {id_batiment : id_batiment, id_objet: id_objet, type_objet : type_objet},
-    //     type: 'POST',
-    //     async : false,
-    //     url: "../public/index.php/acheter_objet",  
-    //     success: function(data) {
-    //         if(data.success == 1)
-    //         {
-    //             console.log(id_batiment, id_objet, type_objet);
-    //             location.reload();
-    //         }
-    //         else
-    //         {
-    //             console.log("id du batiment n'existe pas")
-    //         }
-    //     }
-    // });
+    console.log(id_objet, type_objet);
+    $.ajax({
+        data : {id_objet: id_objet, type_objet : type_objet},
+        type: 'POST',
+        async : false,
+        url: "../public/index.php/vendre_objet",  
+        success: function(data) {
+            if(data.success == 1)
+            {
+                console.log(id_objet, type_objet);
+                location.reload();
+            }
+        }
+    });
 }
 

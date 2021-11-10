@@ -32,8 +32,11 @@
 <body>
     <h1>PERSONNAGE</h1>
     <br />
+    <button id="var_dump">
+        var_dump
+    </button>
     
-    <div id="div_identite">
+    <div id="div_identite" style="display:none">
         <h4>Identité : </h4>
         <table id="identite">
             <thead>
@@ -69,22 +72,42 @@
         </table>
     </div>
 
-    <div id="div_inventaire">
+    <div id="div_inventaire" style="display:none">
         <h4>Inventaire : </h4>
-        <table id="Inventaire">
+        <table id="inventaire">
             <thead>
                 <tr>
                     <th>
                         Nom 
                     </th>
                     <th>
-                        Equipée 
+                        Type d'objet
                     </th>
                     <th>
-                        Poids 
+                        Poids
                     </th>
                     <th>
-                        Prix 
+                        Prix
+                    </th>
+                    <th>
+                        Action
+                    </th>
+               </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table id="poids_total">
+            <thead>
+                <tr>
+                    <th>
+                        Poids Transportable :  
+                    </th>
+                    <th>
+                        Poids Transporté : 
+                    </th>
+                    <th>
+                        Malus Manoeuvre et Mouvement : 
                     </th>
                 </tr>
             </thead>
@@ -93,7 +116,7 @@
         </table>
     </div>
 
-    <div id="div_caracteristique">
+    <div id="div_caracteristique" style="display:none">
         <h4>Caractéristique : </h4>
         <table id="caracteristique">
             <thead>
@@ -126,7 +149,7 @@
         </table>
     </div>
 
-    <div id="div_competence">
+    <div id="div_competence" style="display:none">
         <h4>Compétence : </h4>
         <table id="competence">
             <thead id="thead_comp">
@@ -163,7 +186,7 @@
         </table>
     </div>
 
-    <div id="div_capacite">
+    <div id="div_capacite" style="display:none">
         <h4>Capacité : </h4>
         <table id="capacite">
             <thead>
@@ -181,7 +204,7 @@
         </table>
     </div>
 
-    <div id="div_liste_de_sort">
+    <div id="div_liste_de_sort" style="display:none">
         <h4>Liste de sort : </h4>
         <table id="liste_de_sort">
             <thead>
@@ -203,7 +226,7 @@
     </div>
 
     
-    <div id="div_langue">
+    <div id="div_langue" style="display:none">
         <h4>Langue connus : </h4>
         <table id="langue">
             <thead>

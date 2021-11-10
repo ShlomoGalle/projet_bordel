@@ -105,7 +105,7 @@ class PersonnageController extends Bdd {
             }
         }
         $liste_de_sort_apprentissage = $MonPersonnage->get_liste_sort_apprentissage_like_array();
-        if(isset($liste_de_sort_acquis) && $liste_de_sort_acquis != null)
+        if(isset($liste_de_sort_apprentissage) && $liste_de_sort_apprentissage != null)
         {
             foreach ($liste_de_sort_apprentissage as $key => $value) {
                 $liste_de_sort[] = $key;
@@ -151,8 +151,6 @@ class PersonnageController extends Bdd {
             }
         }
 
-        // MANQUE LINVENTAIRE A AFFICHER
-
         $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
         $data = array(
@@ -164,7 +162,7 @@ class PersonnageController extends Bdd {
             'capacite' => $capacite,
             'liste_de_sort' => $liste_de_sort,
             'langue' => $langue,
-            // 'inventaire' => ,
+            'inventaire' => $MonPersonnage->get_inventaire(),
         );
         return $response->withJson($data);
     }
@@ -179,6 +177,21 @@ class PersonnageController extends Bdd {
         $data = array(
             'success' => 1,
             'inventaire' => $MonPersonnage->get_inventaire()
+        );
+        return $response->withJson($data);
+    }
+
+    function equiper_desequiper(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $allPostPutVars = $request->getParsedBody();
+        $MonPersonnage = unserialize($_SESSION['MonPersonnage']); //Recupere mon objet stockee en session
+
+        $methode = $allPostPutVars['action']; //LA METHODE PEUT ETRE "EQUIPER" OU "DESEQUIPER"
+        $MonPersonnage->$methode($allPostPutVars['type_objet'], $allPostPutVars['id_objet']);
+
+        $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
+        $data = array(
+            'success' => 1,
         );
         return $response->withJson($data);
     }

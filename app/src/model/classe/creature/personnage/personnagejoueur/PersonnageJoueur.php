@@ -266,11 +266,121 @@ class PersonnageJoueur extends Personnage{
         }
     }
 
+    public function equiper($type_objet, $id_objet)
+    {
+        switch ($type_objet) {
+            case 'arme':
+                $this->equiper_arme($id_objet);
+                break;
+            case 'armure':
+                $this->equiper_armure($id_objet);
+                break;
+            // case 'accessoire':
+            //     # code...
+            //     break;
+            default:
+                # code...
+                break;
+        }
+    }
+
+    public function equiper_arme($id_objet)
+    {
+        $this->new_connection();
+        $where['id'] = $id_objet;
+
+        $row_objet = $this->select_all('personnage_arme', $where);
+        if($row_objet[0]['id_personnage'] == $_SESSION['id_personnage'])
+        {
+            if($this->get_arme_id() != NULL)
+            {
+                $this->desequiper_arme($this->get_arme_id());
+            }
+            $this->set_arme($row_objet[0]);
+            $this->update_since_array('personnage_arme', ['equipee' => 1], $where);
+        }
+    }
+
+    public function equiper_armure($id_objet)
+    {
+        $this->new_connection();
+        $where['id'] = $id_objet;
+
+        $row_objet = $this->select_all('personnage_armure', $where);
+        if($row_objet[0]['id_personnage'] == $_SESSION['id_personnage'])
+        {
+            $methode_check_id_already_equiped = 'get_armure_'. $row_objet[0]['type'] .'_id';
+            if($this->$methode_check_id_already_equiped() != NULL)
+            {
+                $this->desequiper_armure($this->$methode_check_id_already_equiped());
+            }
+            $this->set_armure($row_objet[0]);
+            $this->update_since_array('personnage_armure', ['equipee' => 1], $where);
+        }   
+    }
+
+
+    public function desequiper($type_objet, $id_objet)
+    {
+        switch ($type_objet) {
+            case 'arme':
+                $this->desequiper_arme($id_objet);
+                break;
+            case 'armure':
+                $this->desequiper_armure($id_objet);
+                break;
+            // case 'accessoire':
+            //     # code...
+            //     break;
+            default:
+                # code...
+                break;
+        }
+    }
+
+    public function desequiper_arme($id_objet)
+    {
+        $this->new_connection();
+        $where['id'] = $id_objet;
+
+        $row_objet = $this->select_all('personnage_arme', $where);
+        if($row_objet[0]['id_personnage'] == $_SESSION['id_personnage'])
+        {
+            $this->update_since_array('personnage_arme', ['equipee' => 0], $where);
+            $this->set_arme_by_default();
+        }
+    }
+
+    public function desequiper_armure($id_objet)
+    {
+        $this->new_connection();
+        $where['id'] = $id_objet;
+
+        $row_objet = $this->select_all('personnage_armure', $where);
+        if($row_objet[0]['id_personnage'] == $_SESSION['id_personnage'])
+        {
+            $methode_desequipe = 'set_armure_'. $row_objet[0]['type'] .'_by_default';
+            (method_exists($this, $methode_desequipe)) ? $this->$methode_desequipe() : '';
+
+            $this->update_since_array('personnage_armure', ['equipee' => 0], $where);
+        }
+    }
+
     public function insert_in_inventaire($type_objet, $row_objet) 
     {
         $this->new_connection();
         $table_insert = 'personnage_'.$type_objet;
         $this->insert_since_array($table_insert, $row_objet);
+
+        //RECALCULER L ENCOMBREMENT
+    }
+
+
+    public function delete_in_inventaire($type_objet, $id_objet) 
+    {
+        $this->new_connection();
+        $table_delete = 'personnage_'.$type_objet;
+        $this->delete_since_id($table_delete, $id_objet);
 
         //RECALCULER L ENCOMBREMENT
     }
@@ -291,6 +401,7 @@ class PersonnageJoueur extends Personnage{
         $inventaire['arme'] = $inventaire_arme[0];
         $inventaire['armure'] = $inventaire_armure[0];
         $inventaire['objet'] = $inventaire_objet[0];
+        
         return $inventaire;
     }
 
@@ -343,46 +454,60 @@ class PersonnageJoueur extends Personnage{
     
     public function hydrate_mon_personnage($id_personnage)
     {
-        $where['id'] = $id_personnage;
-        $row = $this->select_all("personnage_identite", $where);
-
         $this->type_creature = 1;
 
         //identite
+        $row = $this->select_personnage_all("personnage_identite");
         $this->id = $row[0]['id'];
         $this->hydrate_identite_mon_personnage($row[0]);
         unset($row);unset($where);
 
-        $where['id_personnage'] = $id_personnage;
         //complementaire
-        $row = $this->select_all("personnage_complementaire", $where);
+        $row = $this->select_personnage_all("personnage_complementaire");
         $this->hydrate($row[0]);
         unset($row);
 
         //langue
-        $row = $this->select_all("personnage_langue", $where);
+        $row = $this->select_personnage_all("personnage_langue");
         $this->hydrate($row[0], "langue_");
         unset($row);
 
         //capacite
-        $row = $this->select_all("personnage_capacite", $where);
+        $row = $this->select_personnage_all("personnage_capacite");
         $this->hydrate($row[0]);
         unset($row);
 
         //competence
-        $row = $this->select_all("personnage_competence", $where);
+        $row = $this->select_personnage_all("personnage_competence");
         $this->hydrate_competence_mon_personnage($row[0]);
         unset($row);
 
         //caracteristique
-        $row = $this->select_all("personnage_caracteristique", $where);
+        $row = $this->select_personnage_all("personnage_caracteristique");
         $this->hydrate($row[0]);
         unset($row);
 
         //liste de sort
-        $row = $this->select_all("personnage_liste_sort", $where);
+        $row = $this->select_personnage_all("personnage_liste_sort");
         $this->hydrate_liste_sort_mon_personnage($row);
         unset($row);
+
+        $where['id_personnage'] = $id_personnage;
+        $where['equipee'] = '1';
+
+        //arme
+        $row = $this->select_all("personnage_arme", $where);
+        $this->equiper_arme($row[0]['id']);
+        unset($row);
+
+        //armure
+        $row = $this->select_all("personnage_armure", $where);
+        foreach ($row as $key => $value) {
+            $this->equiper_armure($value['id']); 
+        }
+        unset($row);
+
+        //accessoire quand il y en aura
     }
 
     private function hydrate_identite_mon_personnage($row)

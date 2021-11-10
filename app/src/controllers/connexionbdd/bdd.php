@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers\ConnexionBdd;
 
 ini_set('display_errors', 1);
@@ -60,9 +59,9 @@ class Bdd {
         $sql = "SELECT * FROM `".$name_table."` WHERE ";
         foreach ($where as $key => $value) {
             $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
-            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+            $sql .= "'". $this->bdd->real_escape_string($value)."' AND";
         }
-        $sql = substr($sql, 0, -1);
+        $sql = substr($sql, 0, -3);
         $sql .= ";";
 
         $result = $this->bdd->query($sql);
@@ -123,9 +122,9 @@ class Bdd {
         $sql .= " WHERE ";
         foreach ($where as $key => $value) {
             $sql .= "`".$this->bdd->real_escape_string($key)."` = ";
-            $sql .= "'". $this->bdd->real_escape_string($value)."',";
+            $sql .= "'". $this->bdd->real_escape_string($value)."'AND";
         }
-        $sql = substr($sql, 0, -1);
+        $sql = substr($sql, 0, -3);
         $sql .= ";";
 
         $this->bdd->query($sql);
@@ -153,8 +152,11 @@ class Bdd {
         return $sql;
     }
 
-
-    
+    public function delete_since_id($name_table, $id){
+        $sql = "DELETE FROM `".$name_table."` WHERE `".$name_table."`.`id` = '". $id ."';";
+        $this->bdd->query($sql);
+        return $sql;
+    }
 
 }
 

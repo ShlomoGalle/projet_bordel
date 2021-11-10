@@ -51,11 +51,13 @@ $app->post('/enter_in_batiment',App\Controllers\Carte\CarteController::class.':e
 $app->post('/check_autorize_batiment',App\Controllers\Carte\BatimentController::class.':check_autorize_batiment');
 $app->post('/get_objet_achat',App\Controllers\Carte\BatimentController::class.':get_objet_achat');
 $app->post('/acheter_objet',App\Controllers\Carte\BatimentController::class.':acheter_objet');
+$app->post('/vendre_objet',App\Controllers\Carte\BatimentController::class.':vendre_objet');
 
 
 // PERSONNAGE
 $app->post('/get_info_personnage',App\Controllers\Personnage\PersonnageController::class.':get_info_personnage');
 $app->post('/get_inventaire',App\Controllers\Personnage\PersonnageController::class.':get_inventaire');
+$app->post('/equiper_desequiper',App\Controllers\Personnage\PersonnageController::class.':equiper_desequiper');
 
 
 
