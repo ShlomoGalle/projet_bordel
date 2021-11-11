@@ -39,6 +39,8 @@ Trait Arme {
                 $this->$methode($value);
             }
         }
+
+        $this->set_type_arme($array['type']);
     }
 
     public function set_arme_id($val)

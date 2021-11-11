@@ -195,7 +195,7 @@ class PersonnageJoueur extends Personnage{
         $temp = $poids_transporte - $poids_transportable;
         if($temp > 0)
         {
-            $this->set_penalitedencombrement(ceil($temp/2)); 
+            $this->set_penalitedencombrement(ceil($temp/1.6)); 
         }
         else
         {

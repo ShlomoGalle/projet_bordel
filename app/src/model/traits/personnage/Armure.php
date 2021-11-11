@@ -67,6 +67,8 @@ Trait Armure {
                 $this->$methode($value);
             }
         }
+
+        $this->set_type_armure($array['materiaux']);
     }
     
     public function set_armure_armure_id($val)
