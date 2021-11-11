@@ -188,6 +188,20 @@ class PersonnageJoueur extends Personnage{
         }
     }
 
+    public function set_penalitedencombrement_calcul()
+    {
+        $poids_transportable = $this->get_poids_transportable();
+        $poids_transporte = $this->get_poids_transporte();
+        $temp = $poids_transporte - $poids_transportable;
+        if($temp > 0)
+        {
+            $this->set_penalitedencombrement(ceil($temp/2)); 
+        }
+        else
+        {
+            $this->set_penalitedencombrement(0);
+        }
+    }
 
     //GETTER
     public function get_identite_race()
@@ -266,6 +280,60 @@ class PersonnageJoueur extends Personnage{
         }
     }
 
+    public function get_poids_transportable() 
+    {
+        $this->new_connection();
+        $row = $this->select_personnage_all("detail_personnage_caracteristique");
+        if(isset($row[0]))
+        {
+            $poid_transportable = ($row[0]['caracteristique_force_val'] + 45 + 45)/3;
+            return ceil($poid_transportable);
+        }
+    }
+
+    public function get_poids_transporte() 
+    {
+        $poids_total = 0;
+        $inventaire = $this->get_inventaire();
+        foreach ($inventaire['arme'] as $key => $value) {
+            if($value['equipee'] == 0)
+            {
+                $poids_total += $value['poids'];
+            }
+        }
+        foreach ($inventaire['armure'] as $key => $value) {
+            if($value['equipee'] == 0)
+            {
+                $poids_total += $value['poids'];
+            }
+        }
+        foreach ($inventaire['objet'] as $key => $value) {
+            $poids_total += $value['poids'];
+        }
+
+        return $poids_total;
+    }
+    
+    public function get_inventaire() 
+    {
+        $this->new_connection();
+        $inventaire_arme = [];
+        $inventaire_arme[] = $this->select_personnage_all('personnage_arme');
+
+        $inventaire_armure = [];
+        $inventaire_armure[] = $this->select_personnage_all('personnage_armure');
+
+        $inventaire_objet = [];
+        $inventaire_objet[] = $this->select_personnage_all('personnage_objet');
+
+        $inventaire = [];
+        $inventaire['arme'] = $inventaire_arme[0];
+        $inventaire['armure'] = $inventaire_armure[0];
+        $inventaire['objet'] = $inventaire_objet[0];
+        
+        return $inventaire;
+    }
+
     public function equiper($type_objet, $id_objet)
     {
         switch ($type_objet) {
@@ -282,6 +350,28 @@ class PersonnageJoueur extends Personnage{
                 # code...
                 break;
         }
+
+        $this->set_penalitedencombrement_calcul(); 
+    }
+
+    public function desequiper($type_objet, $id_objet)
+    {
+        switch ($type_objet) {
+            case 'arme':
+                $this->desequiper_arme($id_objet);
+                break;
+            case 'armure':
+                $this->desequiper_armure($id_objet);
+                break;
+            // case 'accessoire':
+            //     # code...
+            //     break;
+            default:
+                # code...
+                break;
+        }
+
+        $this->set_penalitedencombrement_calcul();
     }
 
     public function equiper_arme($id_objet)
@@ -319,25 +409,6 @@ class PersonnageJoueur extends Personnage{
         }   
     }
 
-
-    public function desequiper($type_objet, $id_objet)
-    {
-        switch ($type_objet) {
-            case 'arme':
-                $this->desequiper_arme($id_objet);
-                break;
-            case 'armure':
-                $this->desequiper_armure($id_objet);
-                break;
-            // case 'accessoire':
-            //     # code...
-            //     break;
-            default:
-                # code...
-                break;
-        }
-    }
-
     public function desequiper_arme($id_objet)
     {
         $this->new_connection();
@@ -372,7 +443,7 @@ class PersonnageJoueur extends Personnage{
         $table_insert = 'personnage_'.$type_objet;
         $this->insert_since_array($table_insert, $row_objet);
 
-        //RECALCULER L ENCOMBREMENT
+        $this->set_penalitedencombrement_calcul(); 
     }
 
 
@@ -382,27 +453,7 @@ class PersonnageJoueur extends Personnage{
         $table_delete = 'personnage_'.$type_objet;
         $this->delete_since_id($table_delete, $id_objet);
 
-        //RECALCULER L ENCOMBREMENT
-    }
-
-    public function get_inventaire() 
-    {
-        $this->new_connection();
-        $inventaire_arme = [];
-        $inventaire_arme[] = $this->select_personnage_all('personnage_arme');
-
-        $inventaire_armure = [];
-        $inventaire_armure[] = $this->select_personnage_all('personnage_armure');
-
-        $inventaire_objet = [];
-        $inventaire_objet[] = $this->select_personnage_all('personnage_objet');
-
-        $inventaire = [];
-        $inventaire['arme'] = $inventaire_arme[0];
-        $inventaire['armure'] = $inventaire_armure[0];
-        $inventaire['objet'] = $inventaire_objet[0];
-        
-        return $inventaire;
+        $this->set_penalitedencombrement_calcul(); 
     }
 
     //BDD
@@ -492,18 +543,23 @@ class PersonnageJoueur extends Personnage{
         $this->hydrate_liste_sort_mon_personnage($row);
         unset($row);
 
+        $this->set_penalitedencombrement_calcul(); //Hydrater les penalités d'enconbrements
+
         $where['id_personnage'] = $id_personnage;
         $where['equipee'] = '1';
 
         //arme
         $row = $this->select_all("personnage_arme", $where);
-        $this->equiper_arme($row[0]['id']);
-        unset($row);
+        if(isset($row[0]))
+        {
+            $this->equiper('arme', $row[0]['id']);
+            unset($row);
+        }
 
         //armure
         $row = $this->select_all("personnage_armure", $where);
         foreach ($row as $key => $value) {
-            $this->equiper_armure($value['id']); 
+            $this->equiper('armure', $value['id']); 
         }
         unset($row);
 

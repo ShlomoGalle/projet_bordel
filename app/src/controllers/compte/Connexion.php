@@ -74,13 +74,11 @@ class Connexion extends bdd {
 
         // $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
-        // die($_SESSION['pseudo']);
         return $response->withJson($data);
     }
 
     function deconnexion(ServerRequestInterface $request, ResponseInterface $response)
     {
-        // $allPostPutVars = $request->getParsedBody();
         session_destroy();
 
         return $response->withJson($data);

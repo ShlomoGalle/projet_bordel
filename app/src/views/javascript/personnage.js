@@ -225,6 +225,27 @@ $( document ).ready( function() {
                     var newText = document.createTextNode(transform_intpiece_to_stringpiece(data.inventaire.objet[index].prix));
                     newCell.appendChild(newText);
                 }
+
+                //APPEND LA TRANSPORTABILITE DU PERSONNAGE DANS LA FEUILLE DE PERSONNAGE
+                var tbodyRef = document.getElementById('poids_total').getElementsByTagName('tbody')[0]; 
+
+                var newRow = tbodyRef.insertRow();
+
+                var newCell = newRow.insertCell(); //Poids transportable max par le héro
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.transportable + " kg");
+                newCell.appendChild(newText);
+
+                var newCell = newRow.insertCell(); //Poids transporté dans l'inv par le héro (non compris les objets équipés)
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.transporte + " kg");
+                newCell.appendChild(newText);
+
+                if(data.poid_inventaire.penalite_encombrement != 0){data.poid_inventaire.penalite_encombrement = '-'+data.poid_inventaire.penalite_encombrement}
+                var newCell = newRow.insertCell(); //Poids transporté dans l'inv par le héro (non compris les objets équipés)
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.penalite_encombrement);
+                newCell.appendChild(newText);
             }
         }
     });    
@@ -312,6 +333,7 @@ $("#var_dump").click(function() {
 
 function get_info_inventaire(){
     $("#inventaire > tbody").html("");
+    $("#poids_total > tbody").html("");
 
     $.ajax({
         async : false,
@@ -421,6 +443,27 @@ function get_info_inventaire(){
                     var newText = document.createTextNode(transform_intpiece_to_stringpiece(data.inventaire.objet[index].prix));
                     newCell.appendChild(newText);
                 }
+
+                //APPEND LA TRANSPORTABILITE DU PERSONNAGE DANS LA FEUILLE DE PERSONNAGE
+                var tbodyRef = document.getElementById('poids_total').getElementsByTagName('tbody')[0]; 
+
+                var newRow = tbodyRef.insertRow();
+
+                var newCell = newRow.insertCell(); //Poids transportable max par le héro
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.transportable + " kg");
+                newCell.appendChild(newText);
+
+                var newCell = newRow.insertCell(); //Poids transporté dans l'inv par le héro (non compris les objets équipés)
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.transporte + " kg");
+                newCell.appendChild(newText);
+                
+                if(data.poid_inventaire.penalite_encombrement != 0){data.poid_inventaire.penalite_encombrement = '-'+data.poid_inventaire.penalite_encombrement}
+                var newCell = newRow.insertCell(); //Poids transporté dans l'inv par le héro (non compris les objets équipés)
+                // Append a text node to the cell
+                var newText = document.createTextNode(data.poid_inventaire.penalite_encombrement);
+                newCell.appendChild(newText);
             }
         }
     });    

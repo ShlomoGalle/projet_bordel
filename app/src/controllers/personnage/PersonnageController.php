@@ -37,7 +37,6 @@ class PersonnageController extends Bdd {
         $caracteristique[] = $MonPersonnage->get_caracteristique_intuition_total();
         $caracteristique[] = $MonPersonnage->get_caracteristique_presence_total();
 
-
         $competence_val[] = $MonPersonnage->get_comp_manoeuvreetmouvement_sansarmure_total('val');
         $competence_val[] = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirsouple_total('val');
         $competence_val[] = $MonPersonnage->get_comp_manoeuvreetmouvement_cuirrigide_total('val');
@@ -151,6 +150,10 @@ class PersonnageController extends Bdd {
             }
         }
 
+        $poid_inventaire['transportable'] = $MonPersonnage->get_poids_transportable();
+        $poid_inventaire['transporte'] = $MonPersonnage->get_poids_transporte();
+        $poid_inventaire['penalite_encombrement'] = $MonPersonnage->get_penalitedencombrement();
+
         $_SESSION['MonPersonnage'] = serialize($MonPersonnage); //Stock mon objet en session
 
         $data = array(
@@ -163,6 +166,7 @@ class PersonnageController extends Bdd {
             'liste_de_sort' => $liste_de_sort,
             'langue' => $langue,
             'inventaire' => $MonPersonnage->get_inventaire(),
+            'poid_inventaire' => $poid_inventaire,
         );
         return $response->withJson($data);
     }
